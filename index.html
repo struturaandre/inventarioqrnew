@@ -12,13 +12,17 @@
     <meta name="format-detection" content="telephone=no" />
     <meta
       name="description"
-      content="Sistema privado de inventário com Google Sheets e leitor de códigos QR/Barra."
+      content="Sistema privado de inventário com Google Sheets e leitor de códigos."
     />
-    <title>StockFlow — Inventário Privado</title>
+    <title>StockFlow — Inventário privado</title>
     <script>
+      /*
+       * Manifesto e ícones integrados para manter o envio em apenas dois arquivos.
+       * Chrome/Android e Safari/iOS recebem a logo sem depender de imagens externas.
+       */
       (() => {
-        const icon192 = "data:image/png;base64,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";
-        const icon512 = "data:image/png;base64,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#x/h/y343a/f9iXceAODXm1i153b34Wf2a//XGzUACn//6L7q/7pG/fM3/mN1P8D/3v1I4D36/S//43M3AOBXv1/5v/5jBkA1sB9/d/pfdX9e53/xP81/u2x28x9e/a//08+vzn/31/ffmn018//y/49+X46+3/m72X/5v/9/3c9e//s3/2X2v3/3x9//978m+e/X/vT4x+/X0xP33783L77/5Nfe3O/X7vX/8d8+vvp3/P1f3X3yv4N/fM3ffqP8/M3vf/j4fv/d/Pcf/d+0iXv642ve/Xv4x/eMf37y37/q/+/T23/fvv18/r+s1v/f/43p448m6y0AAtPxxI9vT1s/T2S//MOfSft3iQYAdEwAJHXl6p7p/v4p/y4fAMCECYCkBMAwAQD5CYBhAiApATBMAEB+AmCYAEhKAAwTAJCfABgmAJISAMMEAOQnAIYJgKQEwDABAPkJgGECICkB0I/H/t3/3P/o9//14m8fX+U/3909/fH9q33sY4//N3+vT/795A//68e//7i2/v8m+/P3fPzv/N0/+L343NfO/2+m+Pfj3v6/v/bN///Xvf33+Nq/e3z9//454yfe//m85rn//j3j/29u/p+/Mfs/f7n9f9In/+/j2/3s6feP8/7U5799vvp8Xvsff3+81/25d978e5/4/1s7j/89m3/mE/ff/X9/7dv/94m/93Gf//v/0sff/6y2536LBgA4X3+aAABsggB4tH8/e3j69++b8e+S+uX/9+D8v7/2L2u/+7//M33x3a3ZfxsAwCQJgEf743v/PP0Xf+23e3p9A4BhAuDR3v9z7v39265ff//13//yO9i49wYAw/xK36OtmvS/49qP+14AMF0eAEBvJvt3366p/f8aAOCf5QEwWQH31x08C4A9D9+/3X8A8Cj/XwLAt38f3/5X29gBAvD32vPAnf4DgEf75OaH1Q5OnQCw8m5v3372QLWD3wkA4J/+Xw0A//Y/P/oO+0/f/gFgqgTAoyy+2z/4d/L95S4A3v/zC/3v4G+r2v4A4LcC4NH+m/mAtA4f21ft/9sEAPC2463uBfC307e5EAD8R/f7//H9y/2f2/vj//Xw+H/vL/k5p8/f72cA8GsB8Cif3Pyw3/s+6I39//Y/6/H3j6e6H+S//2+/f+f/zI+d9O37s18/f3v6Dvh//u7k//XJm4+m/3s5/pXvY89/s+r5b/X/Xo7/5d/P9S//9p1f/1z+v8n+fNznD48/nvv2+/f7HQCmSAAAAAASEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAd+m/iInE1g7i4twAAAABJRU5ErkJggg==";
+        const icon192 = "data:image/png;base64,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";
+        const icon512 = "data:image/png;base64,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N/f5X007e/s/Xv5/6O2+m+48a+94/S9E4u/s61/6Nl/+139z3f+e2T+U3/uH8Pvvuf64+e/+n//Pq3/N88b/4m9r33+2333K4Xf4j/4/D/d3k8+m2s2bL46/4u3cI5fTxf992f+7kOsn/+d/v/d9+e/c3X915z8a94p7e/6jceX63/7P13/+5/t/+p8f3//z5//j+M9fM/+6y9eT/+f+/3mXb8f6T96d9/43f/G873L43S/+y3x/9/y4363234d+/46/5fIno/7v8f2L7/p+XHzn4d8//x48Xvy33X3/x7//l/353//v7uI33v714d/4x+S6d/vH7m7+9v83fX8/2j/d+P6y/T5f+81f/9a/xefn+f6u23m/731f82/3/eM735fXN939X+fM/zD/x/f8Pbf5m3+XffLqO9k3L3+X6319Lvd7uW29+vCj/zUvLlh11y/93cR3uE25X/q48d3/d8z/0I1/5y0e9X+9Gvj79/X//v8D3y6/2qf+1124+f/D4v//4e9411f37uXvXmO5v/S9+4X2N2Xp08/2+Lp7p30/r7923G/+l/f1y//e3X/3j6/+X/51r7+Vf+/42/s5vud/343/8PfbX7sWv/Oq4d//p+5P3/53/p/vN8/7l0L873EfeM6l/9vY/b+kL92955f/5R/u9S3P/1p330/50vXfH7+p1zO5v+93//3f7a/v5e49/0v/0m+q9/1zG/uVl3p/929/N24/r0xUAMSLpL46+kS132G7eI2k3M4e9f7q0mdfx/r23Xn9pX4r/2E+/M3v5370j0fM5m9+/zFm/D/zH++yX3y/99341X2p/4vX/9K3S/3yS//v+5Xf3Pvvf+G//38+3H/e1zS9//a/r+Wfefyq+v7m54+9/x7fH/7xS5u/p6/z2I++v/f5xK4fHqSefx96C/O/3M51/S13/v1P42+Z1P9D8Y3eI/49+aI/3n17+Kce2t2z/R96u1P23m/1P/H/45e+m/5rL7O1f/3f82/6P2X3sIe919865O3//8dff4/4k69vI7+/6/a076779//3w+0f0896v/9H2P3+7v59eD8e+m82/t6Nf39N/O35G9+X3i/s4SjE8Xf42L6p3/vL3O13vI4R+1yX8eE/Rft7/29/A+8//t3L7e9Z3NqKdw5fOfSfav/Do4hXU353f2f/3+LpL2/+sfx3eM3/0K95+13v+2+/s56d2i+4x32+e08//P0525N366+/m3X/4/qUf6+I12X/6bdfVNvdo5jR+8+f3ai2sycX/z2+XfD09+p2b12Ua4f210e7yvO3eI0v9/5vSly33X7uV//G9Lp3x3//3a3f5fX8s1f6/uX3f/f7xX++Cffx3a82f3/mX37f19S2S/+U3RzP/39X8b/P47/u0x//5b9f7a7f4S/4155x5S/d/s9//649a+P4L33sU2888vud7+/P/eA2/+d96+Nvvv+7/2965q5ff4M+f/nNvvevP+y+/aX3//8/4u6Xf431xfe3v7uX/S36Hfe44b/i++Lh/u2W3b9GzPP5wz3/9oK32mO2474f//7k3159++8X/N3v9sL8L3+584XfIe//IeN/X+v4/f/m+O+v3//fH2/871e86T9u8992f+y3f+cff//xW76/P/O4b0e5P773+lO87771m399/I/S93f33+0L5fe/k56Y3e0eG205AOInFz8xceK4d/e31f71sL7/j54In/kfuuk8ACq+u388+uFm95f4I76cEACD4jaSbwT+539vD/s9fPqM97+x02o74yK03C4B8FCxL34m0+H/i9i9290/m/4eG18b7D0AUv3v1s/GfnY/5fX2T2p/X8c/j92I33vne/uK4zff+L0fXfyt6fT7M6L/L+4d2mMAxF1vXw789s1/b9++s8u/X3/c3938b8yX78T3tX6M/e7/s2+m5f0A23v6323/p219xX1k49eB//X//S+4u6fL/8e0/97c+/E8EACPy/t/X2L5T/m/sS/f+f/z3y36pvd/o//v8/0/5+/6+28M4vjM3/+/f/3t35s1f6//+e9/X/v1N/3r77y+/d+/eOf//4d3/I3/7v34n1+6v6v+s7f394c4fv335m6f/6W/v2Xz3y244f/c/3t2q7fx//jP93efjX8f4tf/q6eefP3/9m4//s/P3v/e//u2/N+Tz/3XN1//3Y3/5v9/X/438x//Mbf5G837+L/P7b/X531/M6X8j//0d//vG///Rtzf/e8f//m/a4f/O+5/a0+/O/+L8//3N+/i/aY9ff/18f/4b/369ve7v//e2y0e9389vj13824//lO7m3f3v0e/853Xb/m16/2X//3Iffr9/v4f5/291X//+8/7/s7v//u/d+xX93d/+Xvd2O3/f2v38+/8/c1v8eUfO1P534Pvf3s//3330I6+/tO++e9i5sU4f+m/v+S3/1O41/8+/Pvx/zS3s3b46qvvf1+yB8CPf36j2sYexATh0v+v70tM4/A889xT4/0XvM348aU/f/P16X8pX8f39pU3/e//n+e+I2m9+V338O999/pXftPfeKnv139/26f+9T99a9+433364O+E449pS//42X710l9f++zC//2n60++/u7z9763L/8//ve3e73i/9+w//pTf4tf5/q//+7/e33+p4/O/+Gj6c5vN//421iX/83PffU1P/32A+3rL19P/S+A3+/f/fL/9b2N9fN1fI0v37m//rXv9/94L2e2X/vvxvd29792y92v/30m9mP4N//Dcfd1//qf/p+/0/37f374S/3394c4fvGf3/b28038z9e+3//p/z3m/25f/vf/3//X8T//X//y//H//A9vfv/9+785/S/m/e1//9fXf/X2v943/sf9/I//y//4Xf31//0e3X+84rX/7/X53/v4r+/+500/v3987/4//rL+/+4v/7i/N//Xff6X//N/N24+7yXf/3d83x/f493yqS8/2fuvv3P1r4/f/J+330t/c91+e9l9M97S9/e3/v1P757+s3v8099s/i1efs/X+eG/0/7dG1P+x+3v4u/4rI//2U9/+/1fv+r7vzn+L9aP37f/x+/+XfS3/8m3f/S+v499f5X+f0f3q5m+m/I7/8e//358xXNvv36//mE1M3/+1L/2/9a+9q/9+Xk/3y+/X/f931y44X/44f/6mze/v7v/3+I9+Msvf//8x+4v/35/33X7R/GfN/59c7l9XWnv3vX+l7O1f/3f3/jF+7v794e2v+/+76+/+98A33p338X/933190+l+I1ffedX3+/v42//62u6/e/j+C3f1vL952/x9rfp71u6/39Xb2z+33388a1/q9/s1v8/e9d+/a2GfA5P/C2f9x/jY22X+O12a6v/87D27S+f2eIe3E1T240rR2U//41f92eX5/T0/xJj9o4X33q17x9i/fJ91f3e4i6/7l6+a1/8Nf3v73//mB9eT/m3e7l5eIu++Ie9eL/f+H//3p+/s/i3e9k9fFv/+a/72v/fS13/v6G489e/31fe7x9948XftH/99912CInH//l/i4+d2O03+/P/+s0v3/33m/+P//W//+/o73/tX9fN77/9G/78a9+/4x/f7f9Xf/e9f34f/yS++399G35u/fbf+/t3fIeX4r03j3/wN+4a/1s9/sXfx/c//l315Wv3526+r3v49zefS//P/27M47v//a//O27/+S/Efe3/6d//43/4y3/3f+u///84//vv3//vv+P+/6337/32P363i+8Q/+vPfnTjf3f+/f9u/v8p34uL3/l3f139f4pve/+l9388vv+vv8X//j1mffx7v/XvX95/1L7e+f/+p++X7vXNvf1/8p+/33fbf9x+2/3m//vf3P5579d//k+//8f42X/7n79d4vvea//p/8Wf/OfXv+Xn3363v+/N+/v//M/1b4+/6949/lff593457x59eXv1y/3u2/E3v9/v/f3d//x//p9/e7//8H//qPf0f37y/bf8V91S/+X/9m3f3+v0178H/yVz9f3+/X3I55P/89v/u/98ff3+/vY7d45f3//f++u2P727m/z+/2x/97e4qf62f3/5v9iX+I//f427f+//2//031ff+/6/0X05fvx3/fI9795/7f67u0f/sX3v/0pvlz/8X+A/9tfe9v+4m/++//4/5q+x/vf8T2+a03f901v+/Nfe9/f88f/r1t+f4l/39y/vP3+/e/+e82P/8fvv3/X+/uI/+L70y/3L3/3919v4/7P973f7m/+11y4e/uN/z/1fS22p49X4L/tftS+e3c/+f2f4v26e/y39cE9vvj2D/efzP9d/8/3v+z/+E3i2/7jft/ff4X/8Y63pX/r62s1X70fL/5+4fN7e2f/S/99qf3f7eP7G/8a2a+/rfn8/f3e/Pfx0f1I1/MvftzL7vGz33/z4sL9mP/6d+/jI3vM/v1X497I/L/i1/4p5vf0I+MfnvveGv//q1f153/+t/q6b/2pX//iN39/vD+/90f7L//hO49e/1v6yff37651cZ354e3fX/fX3v//s6v/98+uX7r81uXm3261G9f+/e4+37q3S/+5m86v4+74+e+/P/6X4x//2b/9+p++p2/f3/r5P63//m+///rI9+Kx9f7m07sXbv0v8L1L/v7T7u9+93//D/f6z7e//f97+9p59N0v/+/f/X//9R+6v3u3m3vv+O6fev1XNf9X/b621fe7e5e/119f/8e//x3//Zsfv6Xv5m99P3+/e39/33/2099s/j26+/D/31/541/+7m//xU9e+d/q//vdN9f/02381f9l08/v1/948/+G/9a4G///q352q+G/5W74//Sfv/3P/e/+8X+/i7//1y2/+H5vvv2t//4t//u/1+c/uvP5fvef/3j8L+s3/+SjO//m/96/vf/19vX8t/7fO74/v+E7a74//fvd33//j5v/fvT/O4q/6Y4e3f7f2b9ff/+vvP731u+/2tcv3d/vX+/q///r32/8q8//5j78/179w+rfX25p/1yvf/0jX37/v1S6O3m3/z933S8//P2233f25b+4G931v/mP+X/D092/+/v03v//c49e7v+f5G++4v38x3z5X9m95/v+R2//+j/+Tq/f42/+Xl/7l78///U/7lS643u7tffp+684f+O/9Ovd6y2X9y9/Xy49+sI+m9o13n8sXf7/dPfN/80a91P+p33v08X+v3330Nf7f9/0ffmP73fL2e+p+/0m9/a4t2x0C3M1+s+XevGbfx3pPv+f/L379t/9+kM99v/9c5u6//LqG42/8/c+p/7L5N3N34v4G925+e0O4o2/iTf344P3iH8T+j51N3e//28+m/mdf/L938c//4v3+4/8pft//4/3/6/51r9v5D49vvhf/+X8xPq075/9Xvv/6u/8Xo/v1m5//d9c//92Nf6+8v+/Nfd29v0P9+/942f9+/f/++d//0t3/9p/eJef4/052+s59x/c+V/8p/z8mXvN36Efx+f/r5d//e931/9u7Xv+i999E64//2Lw1f3N/3/bU0e3/v1P4/i/f3//f5v/5u8s/5+93aXj3/k7/9fIvxH812833v2/3rL18s5bf+/8/d9/3mX+/8S5f/37f8y9//5d+5P3/4c+/Xy3+u7f7r/+Rvv65v+/4+/8P//S/f233fL76+3iP3XfvxTjf8z+P3Sndj3/99X3376vP/3S/2Pq3z6+/i/9519u3v730e/82/3y4+3XN//u//3p88bf//8f/81vf7f33d/N/6+/sPn33+v2/99v9/x/e11P1a+Xo+z93X2m/1P00c/83Xv+x22//l++2P0//12P/7v/4n9t/+X71/a5XyqN3e38q6++X213j052u7f/yq/c+o/E/mfx+f+X27339/9e3L//3t+8c//fD9/7/r+fvdvv/S/b/8m/+sLvf/vft2Nf+/O/5v/+r3/r391I9121//52m/7xI/7p1d/e/2++v6+/2/8u3v3tP/b04d1f5/01/vG39nO/9Lff/P8yS/9z/eZf27X3m3/z/yZ6s/L+S0rfeP5m/P79b/f1o/uJ3+f+y9/9e+/9+N/q//67v934fv63t/f9S33yzevf/P/O5vvU/ff33s3//7v5yv++9/m9v/s5O3+/2OefO9P8P/Gf+y//4O+f2L5s93/v3i8m+3e///m//T3S41u4269e/m58M3a7d2eXb3S2m/v3yq91Nf4S221P3+T/vXvz+t/f9u/Xf//m7/9+/4/75p/u5d8/jPf3A2/3/x/fX8X/e17e/3G/eH331fX3++rf3qj36e/++4776/23O+4vf9r2c3s97X+/o+d+9/N3c2l67M/v/j73m+/e0/d/u1v7fM+f+919+/e2/6/2e9m9p2N397vN3f02v9d32d0/++mX3T363d//9L3f4vdz/X6d/b1//q4+eP39P/y10I99v1x5623/S3v/+Gf9P+T3P3x65c5/327+/0jE9xN+4/2+fvvvvf/+u97f7//71y+/78/8uO/3+v7u961mP/p//9b3u1f8u/8f6f+v+003dvn9L4I/S6X29+r96I3p6eX31m0AjI2p/2e6/J/bHw2wS5aOvr2N120GqI9A/a8mS3zL9+Uo/93+sS12e09vXf5yO/xX+c5rK2+6Y2L3d0f0p+yH9LOf8oD7/vL/J0L3/i5+4z23m9238e833sH/vN//L7U/4819d9I5OvvO+qU+xN91+/s6f432v/L3/f746979/e/b+8r7f3p//3n73+M43+XfA5Xv3b/q4v+q/TfX/96NqXzb4e45ePv5v5v+mve15e21e//yX69jE9vP3b/v7P/bfX2r7+3H//96xvf3U9o7a1N/f5X14yq3qxeN1uS2u8fM7nI3A8pX/P/0+v/4L7a/E+k//9O/+z2d847Mv+m1o7//f39p/0M5z4M8Rtr/AOxv2T8x9Vn1+G/39feP2e34d/30y/+H2v/943d+z6m88m+3S62e2//20fH9//9v77uL339yU+b//3k9+9vf3//893++yL92i+/b/f//E++2v7f4T2Ndfi0u/s1S3xYv/n0v97+X1eHj1fblu3x4y23O/sXf43Gv9/72//v2o3++4sXf7R3//q++X/e//Xvf/Tf8664+/s+4+S2/n+m3282N//m6Xf8303f/mXvvv/+s13u/f7v/3+t6+vv5Xvf2s7/fL148v/f6/85//7dff3M+/6Pvdn9/c/0N4/cbf6/vf3d/9vD3v4233Uj/e1v9/31S7/P/v2X+30ffz3Tf1s/+f41/zI+//vv13x78n/f/jff8i9/3y///O3v/f//+a+I+//x95/+/l/f9/59e/xP//49//P++/m/76P42ff3G39+v/mbf7f/r+I7/x/e11m3e//4t3//x/s29/L3r0/+/79b/Ie57+/v//ve23f+e4x//224//yL353m+11O+vJ+f/H931/+e373N2s9/4ff4vvx5u6/v/d9z/310a3L/d++vvL+/8t23x4eXm9p3/vL23+3/2b0A+/p/210S+X//S+4s53t7//PvdPtf1f35Tf3Aft/4x/aTf852t+G2/7z5e7b//n/f3d//4x/f1f/f/0n7/v75p/1ff/0y/+1P/7z8+43/5+3m4ev72l3p/+2p1u022e2uIenL+/+bnef+a99X/+xL195s93/v3x68/3G//f880+/uNvdvP05/i7jvfS+/9mffT9s8fefm9/G3tS3S3X3f6e1y7a5f6Nrm2e74y8e/3X/f93N1y/9IePv0mefX8t3S3z1S3/7m379z/32q/f/+m1263v2/27X/f///rO00d+7k625f32/385/1t+j9bNf/Xefb2v2j//f+eP799c/+qH+9a7/vv+/sP9x7/+rfp27Nf/+L/+v/e+079+/X7o1/10fv3/e1r2vM//rL769m3L97u+589v/aefS/u/38f94d+/z82fG/+L8d3/3d/f+//0u70c/3L138v//L059+/+/p+d/q//e//nffxvfX/u//36+/f4/u+/P/+N/f395mP9r137sL3z533/G/ffvX7l//b94m/y//n9x///aP/N3+tXp/f5u/736/3O31f3pL3fX//9/+/632f7e42d7+/3i/4A3O/G3O32/y+5p4O3b5x4A+A/E/dJ3O1aI+8XvC6qf/NfL1X6G1f1sR/0i67Yf2f84qH7/1y/+/Y+/6z7++S2//6i8H9eL//m2+/N//yX++Jff/z86sP/yX33X18Ltf7u4/9m2L7fF3e/4qN+428++rrbP89ETh2dfL5/9/P49E5O+x2/d6U/X+5f+54G4H/u4f/i1S/6G/aX/A/4fE7/zY9++15/347v78u+O6s5/5f3S03IeAOHr//2s2sYY/3zS7/oX++s3v/rYv+03Xv5649//5v/i//s//eL2x4iA50//v/v5z7745O3L4//+p0//2a++/e59v2E8d+mPj266f8s2d7eX//G9ahtj/e85L93s37G8d3f+qN923485/O5/4r//v/l+/O/N/v7TffS3f7H3/vj/m+3fT4I9f4A9fXvS8sWf13/q3+/S//0+vnz/L3v4Rzfe/43t/12o56Mv4k4I/Kx3m+/Sfv4/r19s47G6+C73b8O8P5qY/98/p19/6Y3SvxuI+8Gvf/5dG/mfeH/eX33X/e3L49vL7Wvv43/x3O5/X2N/2727a+/X/G8bA//vXb5uO4S/c7f/f/0tfeNf7i38734e/T3+/vF3fP2L14d2eH/e94v+/f6vXv2ff6jN4f/lX4N9+yfvf+2x292L/8r/+Kk3Svt0qf+8e2f8L2r98k//89X6m9n1d2e/6a1X34++x/fD3/k2//20f//8f5x/r3s3+iX3vN3P2032/3f0v/L//u/m/+fveS/u6++L9s/02x4e30r6zbf4/9/X252M/+v6v1v/j7vf/x3s43L/375++Yf/7f+/++Xf3/0e/+/xXy3096//vvN3+x3/96E2u39A/xXm/2L3z0e3//7d3/+I9/Gv/4T94d+e6u99vfI/bfe//103fn/P4jvf4jvf6/m39p5+sL2j4/u3L4936v/X/pI9//f+o4vfP9b//7L/A3s3+/fL+9+I939v/v39eHfb//vP4j6+/Wn5zR94A2B/c/9m13bfvvOa10X2zS5fPnLr7wP975fP/3f08m//95/1/srf+o6Xff/p3f//S+/f/X+v/9P+/S///vL82X/+/3x993///2b37w///v6+vfO798v/xR/eX33X/9z3D/z6b//3z/3XN7/+r//z13/G19m8v//1i5+/Xvx3/0O319p/vS//9199/3pUf/4u/f4X++j2n9//2ve/L96//3uL//vf3f7v9349uO1+3b6x+p8X/8H3//m2fvU7/v23S/7xG/+r+P/y8vd/+9K23/n0m3+/8Tff/3/+XjP3N/+///r3N8v//1I93y324209uvy/7d9++e9X97+/m6///u/2/231///f87v3u7//7T9d//G///Dvv0z2f/r1x/e39/33/8pSfv3b3yXfX48d//a//U3/+a/+/mO33x59+/m2u9/291v/d2uS/1e4m5O0E8z2xT8b4d8eG3X8l/+E+/4/T8+f80N97eX1q+XvAft19/6+f4m79f+m69/e/T///11/n73//s//3v3n+33j//d9m1j439f0zT+f//t8++Pj3X/8l28s3722m7/5y/+1L9831y8//d/T9/X33/93+s7f6M7NbxP/uR2//7vXf/i/3S8AAGAsA/8/AMp/vL0HAAA8BgEADIsAAGb+X28P/I/75R8/vXX3919v5//8m80/+2efrLq9+uK35e/+p9/1p69s4/vX27/+/X6/v+f1z3a4S33rY261+/XN93v8/3p15bf8+3/58puf3vv/3zO33/zv//Lp3b/383///f33x/+/+X/+1b9/88tfz7f9/n++3xP341e/yX/x3e+f/v/+T376v/7d+/z/+2f/p+f95veS19/l3e/v//PjfeX//+O/9/0//227+/fN93d39/c3s4/S4u99m8/vff+2vvvf6Svf/683//qfb/X99/+f121/+fvvS1p4/S776v/d7f+I5iO02e/912I0f/e/EaI5++5f/79a32+2S69/p7y1M++W/9s25n6/sV/vv7l3/+/sD2/+O+N33o/ffr2d/+/3r3Xj+yft1167O133+7/xvvxve/u+/fX/XG/7sTvfT/+/pY95P6L/3eL/x/v3d/f+fv9u/l2xU8f/+M33/fH/8Lffv/v++e9LftuX19e2+4n//R64+v7Xf3Pzf/s3x+u/z8e//r/f79tfvv6/+/X19O9f+4+/bXf/13//p7+/vfG47vf85/1e+mdf/P8x/sO5/1/s1179v955+T//vfG2b9qP//17/2L3l9v1t6t8561p6/vN3e7XvvP1y5m21/189/9s/l8L3v/+v/f/43+/b1//22/7+/P93c6f49uX/3f/u7/7+///+/f3///vX925e0/3v//d2/1u2bS3vv+N/b/k2+m//p+/f543/n9//3n/+/eL++///96/v+/3b3X697P1r/33m7v//++m8b++8b3XvO2//N5m+7vf0e/79/S1L6p/S7f/m1q//r//++//x/+/9//+L1z3m+r/+/f//r35+3933f/P3f3t//r///vv72/e9391263//ffXvv899e32+6e93/78/3S12a14v///+9/u33/f3+/Pfv9z3T/3//m28/m+/f//m/+/+/v2/v/p7+52+z/++//++fv//+/e/99/+u///2/0/3v9/a3d/r3+7W+/2/82//3e3f/99ff30X/9vv++3/8bvf/x9/7x//d++9+/++/vf7v3/f9//32839/3v5u2/5s2x3e23N+9vb//77X5v//vXf3+uX/+v89fX/e5e//d3X+ff34+1ve3z+/++v32p+//58v//e2/e29v1y3p18+22f0vffx/+S329ff/32v177vv2//+//99m83///+/f3+//3a+/3u3d//s/e/X/8vX339281//m2+5/13/28//9f/+p2/f31++2X315++///+n9y+//+f/0/1f3//323359mbf//f18e/+4///++/P3e+//e1/a/u5f/5++/+/l7t/2vO4///s383f/d2/X29e//90f5//e/+f3r5++/9+d++/2///++fLz/f3x++2//3f//45++/e2dvd/e3y++/x/f/3vvX//ff3/+u2/1s1m1f///2e//+95++/11///2+fS/a+9p//d39//1v/fLp/2324X1//mff98v3v1ffr2+/m293933e387+/2+bvvff9f39/m+/f+d///v32v6+/+v3v93+19+X97/y9vff/X+9f3//S3v/+v/S395///+/X+/f3d/+s0578b9O/S//f+b+2/+l/u//4/+m3f6+5a/f28//778vv+//3/3///fe9e3f+ev/vX79383f3/v//e8f0//S799b6fP8N+9//9942r/f/n8u/1t3//e3S//3//v91+/S7f+x/z/e93m///S73fX7//xX//+u///31vv4s+/p/+7b5f25/d87X935p3v//m2e92/+35y+/X82f5d/vv31X3///S7r3v+5/z/2+m+7f3v+/+vvf+vv5u92f/vv1///7+/vX+//3e/f3f33///23f7+d+0sbfb2l8/m///v++n/f/+39//vX//vN3//fv/+z++v2725+c2t9937/+d3e/e0+e36v77u//v/4/S+/y3e9p31/3+//n39m///+324s3a/x/f32/38v923d38706e2p3f3f/33m///x3b//Pff+3//2e3//m///9//3e/v//3/Xf373S//e+/8v/d23d/ff+395379/S21f3v9X/1v//76///3v///6d/S/vv///e363/e/bvf/f3+fXf7+/+5uX9/N/Xb9/53v//6f3a///73/2///f39//39/u9+v90/++Xvff/+3m/+91e3e7f++/29m72x7X5t+//f//tfe/+X/+/39b/4e/7+/33u/S3/34v/896+/+/1vv/+nvf+7a/3v9m7+/93fS2/f+/5f+X7//d3/+s1//b132/z5f+/vv7/++r+9/9/m7+vv/+3/m3/y3//n/9v2/++53b/+f5e933v///S/u/3f///1f/3vv33f/+n//m+/2///e3//+v//m/2f/+n+//vff7v/d+/v/v//P/801vS3+/v//32b2+/57+2++/3//y3X92///+37/9ff7/5f5u65v/u/9//9f7d/++3z93z/1ve89//m/e295//+ff1e/y/vv2u1f/5f5/X1X9///v///f+/2f//+e1m3//r/f7///73X/3n/+d/7/fX10u2p9fA//2///v//1////vXv19m3/f9//+u///5u+//3///ff///9/8f2f/3v///3/3e979n9v///vvf8/X+3/vvvv/+3//++/73/+f5t+//z8u/e6f/f/0/162/e9+//b5u+//4/+5v5///+/3////3///e+///z31vv98v7ff///+/a9/+/e1f//u072/+v//+2f8d3m/f//v/6X///v//f/vvvvff2e2///u///7x///1+/v2e3a+/2//7+/r++n789vX////73f+n8f3///t89n5fX/t+/v//+/a/3/+d3m/3m/1/v//vf9///3v//f//f/2+//++/t///3/+f72837ff//v025v9v///++/z8v2f//d/3v/+f323+/5vv/8fXv7b5v//vv//fvv8/f9//31+3f7ff93//74v5vv5//+/v/vf1/+fff+/X/7fX//ff5f9/+r/ff2d/Xvv/15//b5u/b22f/+?=";
         const startUrl = location.href.split("#")[0].split("?")[0];
         const scopeUrl = new URL(".", startUrl).href;
         const addLink = (rel, href, sizes = "") => {
@@ -32,7 +36,7 @@
         addLink("apple-touch-icon", icon192, "192x192");
         const manifest = {
           id: startUrl,
-          name: "StockFlow — Inventário Privado",
+          name: "StockFlow — Inventário privado",
           short_name: "StockFlow",
           description: "Controle privado de estoque com leitor de códigos.",
           lang: "pt-BR",
@@ -54,6 +58,9 @@
       })();
     </script>
     <style>
+      /* ==========================================================
+         TOKENS — semânticos, com modo claro e escuro
+         ========================================================== */
       :root {
         color-scheme: light dark;
         --bg: #f4f6fa;
@@ -82,7 +89,9 @@
         --radius-sm: 10px;
         --shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 10px 30px rgba(15, 23, 42, 0.06);
         --nav-w: 248px;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
       }
       @media (prefers-color-scheme: dark) {
         :root {
@@ -111,249 +120,1364 @@
           --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.25);
         }
       }
-      * { box-sizing: border-box; }
-      html { background: var(--bg); color: var(--ink); -webkit-text-size-adjust: 100%; }
-      body { min-width: 320px; min-height: 100vh; margin: 0; background: var(--bg); font-size: 15px; line-height: 1.5; }
-      button, input, select, textarea { font: inherit; color: inherit; }
-      button { border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-      button:disabled { cursor: not-allowed; }
-      h1, h2, h3, p { margin: 0; }
-      :focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
-      .hidden { display: none !important; }
-      .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-      .i { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-      .i.sm { width: 16px; height: 16px; }
-      .i.lg { width: 24px; height: 24px; }
-      .sidebar { position: fixed; inset: 0 auto 0 0; z-index: 20; width: var(--nav-w); padding: 20px 14px; display: flex; flex-direction: column; gap: 26px; border-right: 1px solid var(--line); background: var(--surface); }
-      .brand { padding: 0 6px; display: flex; align-items: center; gap: 10px; }
-      .brand-mark { width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 12px; background: var(--primary); color: var(--on-primary); }
-      .brand-copy strong { display: block; font-size: 16px; letter-spacing: -0.01em; }
-      .brand-copy small { color: var(--muted); font-size: 12px; }
-      .side-nav { display: grid; gap: 4px; }
-      .nav-button { width: 100%; min-height: 44px; padding: 0 12px; display: flex; align-items: center; gap: 12px; border-radius: var(--radius-sm); color: var(--ink-2); font-size: 14px; font-weight: 600; text-align: left; transition: background 160ms ease, color 160ms ease; }
-      .nav-button:hover { background: var(--surface-2); }
-      .nav-button[aria-current="page"] { background: var(--accent-soft); color: var(--accent-ink); }
-      .sidebar-foot { margin-top: auto; display: grid; gap: 8px; }
-      .conn { min-height: 44px; padding: 8px 12px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: 13px; }
-      .conn > span:last-child { min-width: 0; display: grid; }
-      .conn strong { font-size: 13px; }
-      .conn small { overflow: hidden; color: var(--muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
-      .conn-dot { width: 10px; height: 10px; flex: none; border-radius: 50%; background: var(--muted); }
-      .conn[data-state="online"] .conn-dot { background: var(--accent); }
-      .conn[data-state="error"] .conn-dot { background: var(--danger); }
-      .mobile-header, .bottom-nav, .fab { display: none; }
-      .shell { margin-left: var(--nav-w); }
-      main { max-width: 1180px; margin: 0 auto; padding: 28px 32px 64px; }
-      .topbar { margin-bottom: 24px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
-      .eyebrow { margin-bottom: 4px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-      h1 { font-size: clamp(24px, 3vw, 32px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
-      h1:focus { outline: none; }
-      h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
-      .top-actions, .dialog-actions { display: flex; align-items: center; gap: 8px; }
-      .button { min-height: 44px; padding: 0 16px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid transparent; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 160ms ease, border-color 160ms ease, opacity 160ms ease; }
-      .button.primary { background: var(--primary); color: var(--on-primary); }
-      .button.primary:hover { opacity: 0.88; }
-      .button.accent { background: var(--accent); color: var(--on-accent); }
-      .button.accent:hover { opacity: 0.9; }
-      .button.light { background: #ffffff; color: #0f172a; }
-      .button.secondary { border-color: var(--line); background: var(--surface); color: var(--ink); }
-      .button.secondary:hover { background: var(--surface-2); }
-      .button.danger { border-color: var(--danger); color: var(--danger); }
-      .button.danger:hover { background: var(--danger-soft); }
-      .button:disabled { opacity: 0.55; }
-      .icon-button { width: 44px; height: 44px; flex: none; display: inline-grid; place-items: center; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
-      .icon-button:hover { background: var(--surface-2); }
-      .panel { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-      .panel-heading { padding: 18px 20px 14px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); }
-      .text-link { min-height: 44px; padding: 0 4px; display: inline-flex; align-items: center; gap: 4px; color: var(--accent-ink); font-size: 14px; font-weight: 600; }
-      .text-link:hover { text-decoration: underline; }
-      .view { display: none; }
-      .view.active { display: block; animation: reveal 200ms ease; }
-      @keyframes reveal { from { opacity: 0; transform: translateY(4px); } }
-      .loading { min-height: 300px; display: grid; place-items: center; color: var(--muted); text-align: center; }
-      .spinner { width: 30px; height: 30px; margin: 0 auto 12px; border: 3px solid var(--line); border-top-color: var(--primary); border-radius: 50%; animation: spin 800ms linear infinite; }
-      @keyframes spin { to { transform: rotate(360deg); } }
-      .setup-notice { margin-bottom: 18px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; border: 1px solid var(--warn); border-radius: var(--radius-sm); background: var(--warn-soft); color: var(--warn); font-size: 14px; }
-      .setup-notice strong { display: block; }
-      .setup-notice code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
-      .scan-banner { margin-bottom: 16px; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-radius: var(--radius); background: var(--banner); color: #ffffff; }
-      .scan-banner h2 { margin-bottom: 4px; font-size: 20px; }
-      .scan-banner p { max-width: 480px; color: #cbd5e1; font-size: 14px; }
-      .summary-grid { margin-bottom: 16px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-      .stat { padding: 16px; display: grid; gap: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-      .stat header { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 13px; font-weight: 600; }
-      .stat-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: var(--surface-2); color: var(--ink); }
-      .stat.tone-ok .stat-icon { background: var(--accent-soft); color: var(--accent-ink); }
-      .stat.tone-warn .stat-icon { background: var(--warn-soft); color: var(--warn); }
-      .stat.tone-info .stat-icon { background: var(--info-soft); color: var(--info); }
-      .stat strong { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
-      .stat small { color: var(--muted); font-size: 12px; }
-      .dashboard-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-      .list { display: grid; }
-      .list-row { min-height: 64px; padding: 12px 20px; display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--line); }
-      .list-row:first-child { border-top: 0; }
-      .avatar { width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 12px; background: var(--surface-2); color: var(--ink-2); font-size: 13px; font-weight: 700; }
-      .row-main { min-width: 0; flex: 1; display: grid; }
-      .row-main strong { overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
-      .row-main small { overflow: hidden; color: var(--muted); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
-      .row-number { text-align: right; font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
-      .row-number.danger { color: var(--danger); }
-      .move-icon { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: 10px; }
-      .move-icon.entry { background: var(--accent-soft); color: var(--accent-ink); }
-      .move-icon.exit { background: var(--warn-soft); color: var(--warn); }
-      .empty { padding: 36px 20px; display: grid; justify-items: center; gap: 10px; color: var(--muted); font-size: 14px; text-align: center; }
-      .empty .i { width: 28px; height: 28px; }
-      .toolbar { margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-      .toolbar > p { color: var(--muted); }
-      .search { width: min(100%, 420px); min-height: 44px; padding: 0 12px; display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--muted); }
-      .search:focus-within { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent); }
-      .search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 15px; }
-      .table-wrap { overflow-x: auto; }
-      table { width: 100%; border-collapse: collapse; }
-      th { padding: 12px 16px; background: var(--surface-2); color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-align: left; text-transform: uppercase; white-space: nowrap; }
-      td { padding: 12px 16px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 14px; vertical-align: middle; }
-      tbody tr:hover { background: var(--surface-2); }
-      td strong { color: var(--ink); }
-      .num { font-variant-numeric: tabular-nums; }
-      .product-cell { display: flex; align-items: center; gap: 12px; }
-      .product-cell > div { min-width: 0; display: grid; }
-      .product-cell strong { max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-      .product-cell small { color: var(--muted); font-size: 13px; }
-      .code { padding: 4px 8px; border-radius: 6px; background: var(--surface-2); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
-      .pill { min-height: 26px; padding: 0 10px; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; }
-      .pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-      .pill.ok, .pill.entry { background: var(--accent-soft); color: var(--accent-ink); }
-      .pill.low, .pill.exit { background: var(--warn-soft); color: var(--warn); }
-      .pill.out { background: var(--danger-soft); color: var(--danger); }
-      .mobile-list { display: none; }
-      .mobile-card { padding: 14px 16px; display: grid; gap: 10px; border-top: 1px solid var(--line); }
-      .mobile-card:first-child { border-top: 0; }
-      .mobile-card header { display: flex; align-items: center; gap: 12px; }
-      .mobile-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 13px; }
-      .segmented { padding: 4px; display: inline-flex; gap: 2px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
-      .segmented button { min-height: 40px; padding: 0 14px; border-radius: 8px; color: var(--muted); font-size: 14px; font-weight: 600; }
-      .segmented button[aria-pressed="true"] { background: var(--primary); color: var(--on-primary); }
-      .suppliers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-      .supplier-card { padding: 18px; display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-      .supplier-card header { margin-bottom: 8px; display: flex; align-items: flex-start; justify-content: space-between; }
-      .supplier-card h3 { font-size: 16px; }
-      .supplier-card > small { color: var(--muted); font-size: 13px; }
-      .contact { margin-top: 10px; display: grid; gap: 2px; }
-      .contact a { min-height: 44px; display: flex; align-items: center; gap: 8px; overflow: hidden; color: var(--ink-2); font-size: 14px; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; }
-      .contact a:hover { color: var(--accent-ink); text-decoration: underline; }
-      .supplier-note { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
-      .report-grid { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 16px; }
-      .chart-panel, .insights-panel { padding: 22px; }
-      .chart-panel > p, .insights-panel > p { margin-top: 2px; color: var(--muted); font-size: 14px; }
-      .bars { margin-top: 22px; display: grid; gap: 14px; }
-      .bar-row { display: grid; grid-template-columns: minmax(96px, 1fr) minmax(140px, 3fr) 44px; align-items: center; gap: 12px; }
-      .bar-label { overflow: hidden; font-size: 14px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
-      .bar-track { height: 12px; overflow: hidden; border-radius: 999px; background: var(--surface-2); }
-      .bar-fill { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
-      .bar-value { font-size: 14px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
-      .insights { margin-top: 18px; display: grid; gap: 10px; }
-      .insight { padding: 14px; border-radius: var(--radius-sm); background: var(--surface-2); }
-      .insight strong { display: block; font-size: 14px; }
-      .insight p { margin-top: 2px; color: var(--muted); font-size: 13px; }
-      dialog { width: min(calc(100% - 28px), 640px); max-height: calc(100dvh - 28px); padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--ink); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3); }
-      dialog::backdrop { background: var(--scrim); backdrop-filter: blur(4px); }
-      .dialog-header { padding: 20px 24px 8px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
-      .dialog-header h2 { font-size: 21px; }
-      .form-grid { padding: 12px 24px 8px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-      .field { display: grid; align-content: start; gap: 6px; }
-      .field.wide { grid-column: span 2; }
-      .field > span { color: var(--ink-2); font-size: 13px; font-weight: 600; }
-      .field small, .hint { color: var(--muted); font-size: 12px; }
-      .field input, .field select, .field textarea, .manual-code input { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); font-size: 15px; }
-      .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: 0.8; }
-      .field input[readonly] { background: var(--surface-2); color: var(--muted); }
-      .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--ring); outline: 0; box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent); }
-      .field textarea { resize: vertical; }
-      .input-action { display: flex; gap: 8px; }
-      .input-action input, .input-action select { min-width: 0; flex: 1; }
-      .form-error { margin: 4px 24px 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--danger-soft); color: var(--danger); font-size: 14px; font-weight: 600; }
-      .dialog-actions { margin-top: 12px; padding: 16px 24px 20px; justify-content: flex-end; border-top: 1px solid var(--line); }
-      .dialog-actions .spacer { margin-right: auto; }
-      .movement-types { padding: 8px 24px 4px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .movement-types label { cursor: pointer; }
-      .movement-types input { position: absolute; opacity: 0; pointer-events: none; }
-      .movement-types .option { min-height: 64px; padding: 10px 12px; display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
-      .movement-types .option .move-icon { background: var(--surface-2); color: var(--ink-2); }
-      .movement-types .option div { display: grid; }
-      .movement-types .option small { color: var(--muted); font-size: 13px; }
-      .movement-types input:checked + .option { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
-      .movement-types input:checked + .option .move-icon { background: var(--accent); color: var(--on-accent); }
-      .movement-types input:focus-visible + .option { outline: 3px solid var(--ring); outline-offset: 2px; }
-      .stock-preview { margin: 4px 24px 0; padding: 12px 14px; border-radius: var(--radius-sm); background: var(--surface-2); color: var(--ink-2); font-size: 14px; }
-      .stock-preview.bad { background: var(--danger-soft); color: var(--danger); }
-      .auth-copy { padding: 0 24px; color: var(--muted); font-size: 14px; }
-      .scanner-dialog { border-color: #263350; background: #0f172a; color: #ffffff; }
-      .scanner-dialog .eyebrow { color: #a3b1c6; }
-      .scanner-dialog .icon-button { border-color: #334155; background: #1e293b; color: #ffffff; }
-      .scanner-viewport { position: relative; width: calc(100% - 36px); aspect-ratio: 4 / 3; margin: 8px 18px 0; overflow: hidden; border-radius: 14px; background: #020617; }
-      .scanner-viewport video { width: 100%; height: 100%; object-fit: cover; }
-      .portable-scanner { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; background: #020617; }
-      .portable-scanner > div, .portable-scanner video, .portable-scanner canvas { width: 100% !important; height: 100% !important; }
-      .portable-scanner video { object-fit: cover !important; }
-      .scanner-viewport.portable-active .scanner-frame { display: none; }
-      .scanner-frame { position: absolute; inset: 50% auto auto 50%; width: 78%; height: 42%; border: 3px solid #34d399; border-radius: 12px; transform: translate(-50%, -50%); box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.3); }
-      .scanner-frame::after { content: ""; position: absolute; left: 7%; right: 7%; top: 8%; height: 2px; background: #34d399; box-shadow: 0 0 12px #34d399; animation: scan 2s ease-in-out infinite; }
-      @keyframes scan { 50% { top: 90%; } }
-      .scanner-status { min-height: 20px; margin: 14px 22px; color: #cbd5e1; font-size: 14px; text-align: center; }
-      .manual-code { padding: 16px 22px 22px; display: grid; gap: 8px; border-top: 1px solid #263350; }
-      .manual-code > span { color: #cbd5e1; font-size: 13px; font-weight: 600; }
-      .manual-code > div { display: flex; gap: 8px; }
-      .manual-code input { border-color: #334155; background: #1e293b; color: #ffffff; }
-      .toast-region { position: fixed; z-index: 100; right: 20px; bottom: 20px; display: grid; gap: 8px; }
-      .toast { width: min(calc(100vw - 32px), 380px); min-height: 52px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; border-radius: var(--radius-sm); background: var(--primary); color: var(--on-primary); box-shadow: var(--shadow); font-size: 14px; animation: toast-in 180ms ease; }
-      .toast.error { background: var(--danger); color: #ffffff; }
-      @keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
-      @media (max-width: 1100px) { .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .suppliers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        background: var(--bg);
+        color: var(--ink);
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        background: var(--bg);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+        color: inherit;
+      }
+      button {
+        border: 0;
+        background: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+      button:disabled {
+        cursor: not-allowed;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      :focus-visible {
+        outline: 3px solid var(--ring);
+        outline-offset: 2px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .i {
+        width: 20px;
+        height: 20px;
+        flex: none;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.75;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .i.sm {
+        width: 16px;
+        height: 16px;
+      }
+      .i.lg {
+        width: 24px;
+        height: 24px;
+      }
+      /* ==========================================================
+         NAVEGAÇÃO
+         ========================================================== */
+      .sidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        z-index: 20;
+        width: var(--nav-w);
+        padding: 20px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+        border-right: 1px solid var(--line);
+        background: var(--surface);
+      }
+      .brand {
+        padding: 0 6px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        flex: none;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--primary);
+        color: var(--on-primary);
+      }
+      .brand-copy strong {
+        display: block;
+        font-size: 16px;
+        letter-spacing: -0.01em;
+      }
+      .brand-copy small {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .side-nav {
+        display: grid;
+        gap: 4px;
+      }
+      .nav-button {
+        width: 100%;
+        min-height: 44px;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: var(--radius-sm);
+        color: var(--ink-2);
+        font-size: 14px;
+        font-weight: 600;
+        text-align: left;
+        transition: background 160ms ease, color 160ms ease;
+      }
+      .nav-button:hover {
+        background: var(--surface-2);
+      }
+      .nav-button[aria-current="page"] {
+        background: var(--accent-soft);
+        color: var(--accent-ink);
+      }
+      .sidebar-foot {
+        margin-top: auto;
+        display: grid;
+        gap: 8px;
+      }
+      .conn {
+        min-height: 44px;
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        font-size: 13px;
+      }
+      .conn > span:last-child {
+        min-width: 0;
+        display: grid;
+      }
+      .conn strong {
+        font-size: 13px;
+      }
+      .conn small {
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .conn-dot {
+        width: 10px;
+        height: 10px;
+        flex: none;
+        border-radius: 50%;
+        background: var(--muted);
+      }
+      .conn[data-state="online"] .conn-dot {
+        background: var(--accent);
+      }
+      .conn[data-state="error"] .conn-dot {
+        background: var(--danger);
+      }
+      .mobile-header,
+      .bottom-nav,
+      .fab {
+        display: none;
+      }
+      .shell {
+        margin-left: var(--nav-w);
+      }
+      main {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 28px 32px 64px;
+      }
+      /* ==========================================================
+         COMPONENTES
+         ========================================================== */
+      .topbar {
+        margin-bottom: 24px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .eyebrow {
+        margin-bottom: 4px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: clamp(24px, 3vw, 32px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+      h1:focus {
+        outline: none;
+      }
+      h2 {
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+      .top-actions,
+      .dialog-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .button {
+        min-height: 44px;
+        padding: 0 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 1px solid transparent;
+        border-radius: var(--radius-sm);
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background 160ms ease, border-color 160ms ease, opacity 160ms ease;
+      }
+      .button.primary {
+        background: var(--primary);
+        color: var(--on-primary);
+      }
+      .button.primary:hover {
+        opacity: 0.88;
+      }
+      .button.accent {
+        background: var(--accent);
+        color: var(--on-accent);
+      }
+      .button.accent:hover {
+        opacity: 0.9;
+      }
+      .button.light {
+        background: #ffffff;
+        color: #0f172a;
+      }
+      .button.secondary {
+        border-color: var(--line);
+        background: var(--surface);
+        color: var(--ink);
+      }
+      .button.secondary:hover {
+        background: var(--surface-2);
+      }
+      .button.danger {
+        border-color: var(--danger);
+        color: var(--danger);
+      }
+      .button.danger:hover {
+        background: var(--danger-soft);
+      }
+      .button:disabled {
+        opacity: 0.55;
+      }
+      .icon-button {
+        width: 44px;
+        height: 44px;
+        flex: none;
+        display: inline-grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--surface);
+        color: var(--ink);
+      }
+      .icon-button:hover {
+        background: var(--surface-2);
+      }
+      .panel {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+      .panel-heading {
+        padding: 18px 20px 14px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      .text-link {
+        min-height: 44px;
+        padding: 0 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--accent-ink);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .text-link:hover {
+        text-decoration: underline;
+      }
+      .view {
+        display: none;
+      }
+      .view.active {
+        display: block;
+        animation: reveal 200ms ease;
+      }
+      @keyframes reveal {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+      }
+      .loading {
+        min-height: 300px;
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        text-align: center;
+      }
+      .spinner {
+        width: 30px;
+        height: 30px;
+        margin: 0 auto 12px;
+        border: 3px solid var(--line);
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        animation: spin 800ms linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .setup-notice {
+        margin-bottom: 18px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        border: 1px solid var(--warn);
+        border-radius: var(--radius-sm);
+        background: var(--warn-soft);
+        color: var(--warn);
+        font-size: 14px;
+      }
+      .setup-notice strong {
+        display: block;
+      }
+      .setup-notice code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+      }
+      /* Resumo */
+      .scan-banner {
+        margin-bottom: 16px;
+        padding: 22px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        border-radius: var(--radius);
+        background: var(--banner);
+        color: #ffffff;
+      }
+      .scan-banner h2 {
+        margin-bottom: 4px;
+        font-size: 20px;
+      }
+      .scan-banner p {
+        max-width: 480px;
+        color: #cbd5e1;
+        font-size: 14px;
+      }
+      .summary-grid {
+        margin-bottom: 16px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .stat {
+        padding: 16px;
+        display: grid;
+        gap: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+      .stat header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .stat-icon {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: var(--surface-2);
+        color: var(--ink);
+      }
+      .stat.tone-ok .stat-icon {
+        background: var(--accent-soft);
+        color: var(--accent-ink);
+      }
+      .stat.tone-warn .stat-icon {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+      .stat.tone-info .stat-icon {
+        background: var(--info-soft);
+        color: var(--info);
+      }
+      .stat strong {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+      }
+      .stat small {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .list {
+        display: grid;
+      }
+      .list-row {
+        min-height: 64px;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-top: 1px solid var(--line);
+      }
+      .list-row:first-child {
+        border-top: 0;
+      }
+      .avatar {
+        width: 40px;
+        height: 40px;
+        flex: none;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--surface-2);
+        color: var(--ink-2);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .row-main {
+        min-width: 0;
+        flex: 1;
+        display: grid;
+      }
+      .row-main strong {
+        overflow: hidden;
+        font-size: 14px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .row-main small {
+        overflow: hidden;
+        color: var(--muted);
+        font-size: 13px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .row-number {
+        text-align: right;
+        font-size: 16px;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+      .row-number.danger {
+        color: var(--danger);
+      }
+      .move-icon {
+        width: 36px;
+        height: 36px;
+        flex: none;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+      }
+      .move-icon.entry {
+        background: var(--accent-soft);
+        color: var(--accent-ink);
+      }
+      .move-icon.exit {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+      .empty {
+        padding: 36px 20px;
+        display: grid;
+        justify-items: center;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 14px;
+        text-align: center;
+      }
+      .empty .i {
+        width: 28px;
+        height: 28px;
+      }
+      /* Tabelas e filtros */
+      .toolbar {
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .toolbar > p {
+        color: var(--muted);
+      }
+      .search {
+        width: min(100%, 420px);
+        min-height: 44px;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--surface);
+        color: var(--muted);
+      }
+      .search:focus-within {
+        border-color: var(--ring);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent);
+      }
+      .search input {
+        width: 100%;
+        min-width: 0;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        font-size: 15px;
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th {
+        padding: 12px 16px;
+        background: var(--surface-2);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-align: left;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      td {
+        padding: 12px 16px;
+        border-top: 1px solid var(--line);
+        color: var(--ink-2);
+        font-size: 14px;
+        vertical-align: middle;
+      }
+      tbody tr:hover {
+        background: var(--surface-2);
+      }
+      td strong {
+        color: var(--ink);
+      }
+      .num {
+        font-variant-numeric: tabular-nums;
+      }
+      .product-cell {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .product-cell > div {
+        min-width: 0;
+        display: grid;
+      }
+      .product-cell strong {
+        max-width: 280px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .product-cell small {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .code {
+        padding: 4px 8px;
+        border-radius: 6px;
+        background: var(--surface-2);
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+      }
+      .pill {
+        min-height: 26px;
+        padding: 0 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .pill::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .pill.ok,
+      .pill.entry {
+        background: var(--accent-soft);
+        color: var(--accent-ink);
+      }
+      .pill.low,
+      .pill.exit {
+        background: var(--warn-soft);
+        color: var(--warn);
+      }
+      .pill.out {
+        background: var(--danger-soft);
+        color: var(--danger);
+      }
+      .mobile-list {
+        display: none;
+      }
+      .mobile-card {
+        padding: 14px 16px;
+        display: grid;
+        gap: 10px;
+        border-top: 1px solid var(--line);
+      }
+      .mobile-card:first-child {
+        border-top: 0;
+      }
+      .mobile-card header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .mobile-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .segmented {
+        padding: 4px;
+        display: inline-flex;
+        gap: 2px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--surface);
+      }
+      .segmented button {
+        min-height: 40px;
+        padding: 0 14px;
+        border-radius: 8px;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .segmented button[aria-pressed="true"] {
+        background: var(--primary);
+        color: var(--on-primary);
+      }
+      /* Fornecedores */
+      .suppliers {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .supplier-card {
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+      .supplier-card header {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .supplier-card h3 {
+        font-size: 16px;
+      }
+      .supplier-card > small {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .contact {
+        margin-top: 10px;
+        display: grid;
+        gap: 2px;
+      }
+      .contact a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        overflow: hidden;
+        color: var(--ink-2);
+        font-size: 14px;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .contact a:hover {
+        color: var(--accent-ink);
+        text-decoration: underline;
+      }
+      .supplier-note {
+        margin-top: auto;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+      }
+      /* Relatórios */
+      .report-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr;
+        gap: 16px;
+      }
+      .chart-panel,
+      .insights-panel {
+        padding: 22px;
+      }
+      .chart-panel > p,
+      .insights-panel > p {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .bars {
+        margin-top: 22px;
+        display: grid;
+        gap: 14px;
+      }
+      .bar-row {
+        display: grid;
+        grid-template-columns: minmax(96px, 1fr) minmax(140px, 3fr) 44px;
+        align-items: center;
+        gap: 12px;
+      }
+      .bar-label {
+        overflow: hidden;
+        font-size: 14px;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .bar-track {
+        height: 12px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: var(--surface-2);
+      }
+      .bar-fill {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--accent);
+      }
+      .bar-value {
+        font-size: 14px;
+        font-weight: 700;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .insights {
+        margin-top: 18px;
+        display: grid;
+        gap: 10px;
+      }
+      .insight {
+        padding: 14px;
+        border-radius: var(--radius-sm);
+        background: var(--surface-2);
+      }
+      .insight strong {
+        display: block;
+        font-size: 14px;
+      }
+      .insight p {
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      /* Diálogos e formulários */
+      dialog {
+        width: min(calc(100% - 28px), 640px);
+        max-height: calc(100dvh - 28px);
+        padding: 0;
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--surface);
+        color: var(--ink);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
+      }
+      dialog::backdrop {
+        background: var(--scrim);
+        backdrop-filter: blur(4px);
+      }
+      .dialog-header {
+        padding: 20px 24px 8px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .dialog-header h2 {
+        font-size: 21px;
+      }
+      .form-grid {
+        padding: 12px 24px 8px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .field {
+        display: grid;
+        align-content: start;
+        gap: 6px;
+      }
+      .field.wide {
+        grid-column: span 2;
+      }
+      .field > span {
+        color: var(--ink-2);
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .field small,
+      .hint {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .field input,
+      .field select,
+      .field textarea,
+      .manual-code input {
+        width: 100%;
+        min-height: 44px;
+        padding: 9px 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--surface);
+        color: var(--ink);
+        font-size: 15px;
+      }
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: var(--muted);
+        opacity: 0.8;
+      }
+      .field input[readonly] {
+        background: var(--surface-2);
+        color: var(--muted);
+      }
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: var(--ring);
+        outline: 0;
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent);
+      }
+      .field textarea {
+        resize: vertical;
+      }
+      .input-action {
+        display: flex;
+        gap: 8px;
+      }
+      .input-action input,
+      .input-action select {
+        min-width: 0;
+        flex: 1;
+      }
+      .form-error {
+        margin: 4px 24px 0;
+        padding: 10px 12px;
+        border-radius: var(--radius-sm);
+        background: var(--danger-soft);
+        color: var(--danger);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .dialog-actions {
+        margin-top: 12px;
+        padding: 16px 24px 20px;
+        justify-content: flex-end;
+        border-top: 1px solid var(--line);
+      }
+      .dialog-actions .spacer {
+        margin-right: auto;
+      }
+      .movement-types {
+        padding: 8px 24px 4px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .movement-types label {
+        cursor: pointer;
+      }
+      .movement-types input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .movement-types .option {
+        min-height: 64px;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--surface);
+      }
+      .movement-types .option .move-icon {
+        background: var(--surface-2);
+        color: var(--ink-2);
+      }
+      .movement-types .option div {
+        display: grid;
+      }
+      .movement-types .option small {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .movement-types input:checked + .option {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+        box-shadow: inset 0 0 0 1px var(--accent);
+      }
+      .movement-types input:checked + .option .move-icon {
+        background: var(--accent);
+        color: var(--on-accent);
+      }
+      .movement-types input:focus-visible + .option {
+        outline: 3px solid var(--ring);
+        outline-offset: 2px;
+      }
+      .stock-preview {
+        margin: 4px 24px 0;
+        padding: 12px 14px;
+        border-radius: var(--radius-sm);
+        background: var(--surface-2);
+        color: var(--ink-2);
+        font-size: 14px;
+      }
+      .stock-preview.bad {
+        background: var(--danger-soft);
+        color: var(--danger);
+      }
+      .auth-copy {
+        padding: 0 24px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      /* Scanner: sempre escuro para que a câmera tenha boa leitura */
+      .scanner-dialog {
+        border-color: #263350;
+        background: #0f172a;
+        color: #ffffff;
+      }
+      .scanner-dialog .eyebrow {
+        color: #a3b1c6;
+      }
+      .scanner-dialog .icon-button {
+        border-color: #334155;
+        background: #1e293b;
+        color: #ffffff;
+      }
+      .scanner-viewport {
+        position: relative;
+        width: calc(100% - 36px);
+        aspect-ratio: 4 / 3;
+        margin: 8px 18px 0;
+        overflow: hidden;
+        border-radius: 14px;
+        background: #020617;
+      }
+      .scanner-viewport video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .portable-scanner {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #020617;
+      }
+      .portable-scanner > div,
+      .portable-scanner video,
+      .portable-scanner canvas {
+        width: 100% !important;
+        height: 100% !important;
+      }
+      .portable-scanner video {
+        object-fit: cover !important;
+      }
+      .scanner-viewport.portable-active .scanner-frame {
+        display: none;
+      }
+      .scanner-frame {
+        position: absolute;
+        inset: 50% auto auto 50%;
+        width: 78%;
+        height: 42%;
+        border: 3px solid #34d399;
+        border-radius: 12px;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.3);
+      }
+      .scanner-frame::after {
+        content: "";
+        position: absolute;
+        left: 7%;
+        right: 7%;
+        top: 8%;
+        height: 2px;
+        background: #34d399;
+        box-shadow: 0 0 12px #34d399;
+        animation: scan 2s ease-in-out infinite;
+      }
+      @keyframes scan {
+        50% {
+          top: 90%;
+        }
+      }
+      .scanner-status {
+        min-height: 20px;
+        margin: 14px 22px;
+        color: #cbd5e1;
+        font-size: 14px;
+        text-align: center;
+      }
+      .manual-code {
+        padding: 16px 22px 22px;
+        display: grid;
+        gap: 8px;
+        border-top: 1px solid #263350;
+      }
+      .manual-code > span {
+        color: #cbd5e1;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .manual-code > div {
+        display: flex;
+        gap: 8px;
+      }
+      .manual-code input {
+        border-color: #334155;
+        background: #1e293b;
+        color: #ffffff;
+      }
+      .toast-region {
+        position: fixed;
+        z-index: 100;
+        right: 20px;
+        bottom: 20px;
+        display: grid;
+        gap: 8px;
+      }
+      .toast {
+        width: min(calc(100vw - 32px), 380px);
+        min-height: 52px;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: var(--radius-sm);
+        background: var(--primary);
+        color: var(--on-primary);
+        box-shadow: var(--shadow);
+        font-size: 14px;
+        animation: toast-in 180ms ease;
+      }
+      .toast.error {
+        background: var(--danger);
+        color: #ffffff;
+      }
+      @keyframes toast-in {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+      }
+      /* ==========================================================
+         RESPONSIVO
+         ========================================================== */
+      @media (max-width: 1100px) {
+        .summary-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .suppliers {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
       @media (max-width: 900px) {
-        .sidebar { display: none; }
-        .shell { margin-left: 0; }
-        .mobile-header { position: sticky; top: 0; z-index: 30; min-height: calc(60px + env(safe-area-inset-top)); padding: env(safe-area-inset-top) calc(14px + env(safe-area-inset-right)) 0 calc(14px + env(safe-area-inset-left)); display: flex; align-items: center; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(14px); }
-        .mobile-header .brand { padding: 0; }
-        .mobile-header .conn { min-height: 36px; padding: 4px 10px; }
-        .mobile-header .conn small { display: none; }
-        .mobile-actions { display: flex; align-items: center; gap: 8px; }
-        main { padding: 20px calc(14px + env(safe-area-inset-right)) calc(150px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left)); }
-        .top-actions { display: none; }
-        .bottom-nav { position: fixed; inset: auto 0 0; z-index: 40; min-height: calc(64px + env(safe-area-inset-bottom)); padding: 4px 6px env(safe-area-inset-bottom); display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: var(--surface); }
-        .bottom-nav button { min-height: 56px; padding: 4px 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: var(--radius-sm); color: var(--muted); font-size: 12px; font-weight: 600; }
-        .bottom-nav button[aria-current="page"] { color: var(--accent-ink); }
-        .bottom-nav button[aria-current="page"] .i { stroke-width: 2.4; }
-        .fab { position: fixed; right: calc(16px + env(safe-area-inset-right)); bottom: calc(80px + env(safe-area-inset-bottom)); z-index: 45; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 18px; background: var(--accent); color: var(--on-accent); box-shadow: 0 8px 24px rgba(4, 120, 87, 0.35); }
-        .scan-banner { flex-direction: column; align-items: stretch; }
-        .dashboard-grid, .report-grid { grid-template-columns: 1fr; }
-        .toast-region { right: 14px; bottom: calc(148px + env(safe-area-inset-bottom)); }
+        .sidebar {
+          display: none;
+        }
+        .shell {
+          margin-left: 0;
+        }
+        .mobile-header {
+          position: sticky;
+          top: 0;
+          z-index: 30;
+          min-height: calc(60px + env(safe-area-inset-top));
+          padding: env(safe-area-inset-top) calc(14px + env(safe-area-inset-right)) 0
+            calc(14px + env(safe-area-inset-left));
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          border-bottom: 1px solid var(--line);
+          background: color-mix(in srgb, var(--surface) 92%, transparent);
+          backdrop-filter: blur(14px);
+        }
+        .mobile-header .brand {
+          padding: 0;
+        }
+        .mobile-header .conn {
+          min-height: 36px;
+          padding: 4px 10px;
+        }
+        .mobile-header .conn small {
+          display: none;
+        }
+        .mobile-actions {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        main {
+          padding: 20px calc(14px + env(safe-area-inset-right))
+            calc(150px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left));
+        }
+        .top-actions {
+          display: none;
+        }
+        .bottom-nav {
+          position: fixed;
+          inset: auto 0 0;
+          z-index: 40;
+          min-height: calc(64px + env(safe-area-inset-bottom));
+          padding: 4px 6px env(safe-area-inset-bottom);
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          border-top: 1px solid var(--line);
+          background: var(--surface);
+        }
+        .bottom-nav button {
+          min-height: 56px;
+          padding: 4px 2px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 2px;
+          border-radius: var(--radius-sm);
+          color: var(--muted);
+          font-size: 12px;
+          font-weight: 600;
+        }
+        .bottom-nav button[aria-current="page"] {
+          color: var(--accent-ink);
+        }
+        .bottom-nav button[aria-current="page"] .i {
+          stroke-width: 2.4;
+        }
+        .fab {
+          position: fixed;
+          right: calc(16px + env(safe-area-inset-right));
+          bottom: calc(80px + env(safe-area-inset-bottom));
+          z-index: 45;
+          width: 58px;
+          height: 58px;
+          display: grid;
+          place-items: center;
+          border-radius: 18px;
+          background: var(--accent);
+          color: var(--on-accent);
+          box-shadow: 0 8px 24px rgba(4, 120, 87, 0.35);
+        }
+        .scan-banner {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .dashboard-grid,
+        .report-grid {
+          grid-template-columns: 1fr;
+        }
+        .toast-region {
+          right: 14px;
+          bottom: calc(148px + env(safe-area-inset-bottom));
+        }
       }
       @media (max-width: 700px) {
-        .table-wrap { display: none; }
-        .mobile-list { display: grid; }
-        .toolbar { align-items: stretch; flex-direction: column; }
-        .toolbar .button, .search, .segmented { width: 100%; }
-        .segmented button { flex: 1; }
-        .suppliers { grid-template-columns: 1fr; }
-        .bar-row { grid-template-columns: 90px 1fr 36px; gap: 8px; }
-        .stat strong { font-size: 24px; }
-        dialog { width: 100%; max-height: 94dvh; margin: auto 0 0; border-radius: 18px 18px 0 0; }
-        .form-grid { grid-template-columns: 1fr; padding-inline: 18px; }
-        .field.wide { grid-column: auto; }
-        .dialog-header, .movement-types, .auth-copy { padding-inline: 18px; }
-        .form-error, .stock-preview { margin-inline: 18px; }
-        .dialog-actions { position: sticky; bottom: 0; padding: 14px 18px calc(16px + env(safe-area-inset-bottom)); flex-wrap: wrap; background: var(--surface); }
-        .dialog-actions .button { flex: 1; }
-        .dialog-actions .spacer { flex-basis: 100%; margin-right: 0; }
-        .field input, .field select, .field textarea, .manual-code input { font-size: 16px; }
+        .table-wrap {
+          display: none;
+        }
+        .mobile-list {
+          display: grid;
+        }
+        .toolbar {
+          align-items: stretch;
+          flex-direction: column;
+        }
+        .toolbar .button,
+        .search,
+        .segmented {
+          width: 100%;
+        }
+        .segmented button {
+          flex: 1;
+        }
+        .suppliers {
+          grid-template-columns: 1fr;
+        }
+        .bar-row {
+          grid-template-columns: 90px 1fr 36px;
+          gap: 8px;
+        }
+        .stat strong {
+          font-size: 24px;
+        }
+        dialog {
+          width: 100%;
+          max-height: 94dvh;
+          margin: auto 0 0;
+          border-radius: 18px 18px 0 0;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+          padding-inline: 18px;
+        }
+        .field.wide {
+          grid-column: auto;
+        }
+        .dialog-header,
+        .movement-types,
+        .auth-copy {
+          padding-inline: 18px;
+        }
+        .form-error,
+        .stock-preview {
+          margin-inline: 18px;
+        }
+        .dialog-actions {
+          position: sticky;
+          bottom: 0;
+          padding: 14px 18px calc(16px + env(safe-area-inset-bottom));
+          flex-wrap: wrap;
+          background: var(--surface);
+        }
+        .dialog-actions .button {
+          flex: 1;
+        }
+        .dialog-actions .spacer {
+          flex-basis: 100%;
+          margin-right: 0;
+        }
+        .field input,
+        .field select,
+        .field textarea,
+        .manual-code input {
+          font-size: 16px;
+        }
       }
-      @media (max-width: 480px) { .mobile-header .brand-copy { display: none; } .mobile-header { gap: 8px; } }
-      @media (display-mode: standalone) { body { overscroll-behavior-y: none; } }
-      .app-installed [data-install] { display: none !important; }
-      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+      @media (max-width: 480px) {
+        .mobile-header .brand-copy {
+          display: none;
+        }
+        .mobile-header {
+          gap: 8px;
+        }
+      }
+      @media (display-mode: standalone) {
+        body {
+          overscroll-behavior-y: none;
+        }
+      }
+      .app-installed [data-install] {
+        display: none !important;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- Ícones SVG (estilo de traço único, 1.75px) -->
     <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
       <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z" /><path d="m3 13 9 5 9-5" /></symbol>
       <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /><path d="M10 21v-6h4v6" /></symbol>
@@ -381,7 +1505,7 @@
         <span class="brand-mark" aria-hidden="true"><svg class="i lg"><use href="#i-layers" /></svg></span>
         <span class="brand-copy">
           <strong>StockFlow</strong>
-          <small id="business-name">Inventário Privado</small>
+          <small id="business-name">Inventário privado</small>
         </span>
       </div>
       <nav class="side-nav" aria-label="Navegação principal">
@@ -436,7 +1560,7 @@
       <main>
         <div class="topbar">
           <div>
-            <p class="eyebrow">Controle de Estoque</p>
+            <p class="eyebrow">Controle de estoque</p>
             <h1 id="page-title" tabindex="-1">Resumo</h1>
           </div>
           <div class="top-actions">
@@ -451,10 +1575,10 @@
         <div id="setup-notice" class="setup-notice hidden" role="alert">
           <svg class="i" aria-hidden="true"><use href="#i-alert" /></svg>
           <div>
-            <strong id="setup-title">Conecte o Google Apps Script</strong>
+            <strong id="setup-title">Falta conectar o Google Apps Script</strong>
             <span id="setup-text">
-              Procure a variável <code>SCRIPT_URL</code> no final deste arquivo e cole a URL da
-              sua implantação terminada em <code>/exec</code>.
+              Procure a variável <code>SCRIPT_URL</code> no final deste arquivo e cole lá a URL de
+              implantação terminada em <code>/exec</code>.
             </span>
           </div>
         </div>
@@ -468,7 +1592,7 @@
           <div class="scan-banner">
             <div>
               <h2>Escaneie um produto</h2>
-              <p>QR Code ou código de barras: encontre-o instantaneamente e registre uma entrada ou saída.</p>
+              <p>QR Code ou código de barras: encontre instantaneamente e registre uma entrada ou saída.</p>
             </div>
             <button class="button light" data-scan type="button">
               <svg class="i" aria-hidden="true"><use href="#i-scan" /></svg>Abrir leitor
@@ -553,8 +1677,8 @@
                     <th>Tipo</th>
                     <th>Produto</th>
                     <th>Quantidade</th>
-                    <th>Estoque Final</th>
-                    <th>Observação</th>
+                    <th>Estoque final</th>
+                    <th>Nota</th>
                     <th>Usuário</th>
                   </tr>
                 </thead>
@@ -582,9 +1706,9 @@
               <div id="sales-bars" class="bars"></div>
             </article>
             <article class="panel insights-panel">
-              <p class="eyebrow">Leitura rápida</p>
+              <p class="eyebrow">Visão rápida</p>
               <h2>Status do negócio</h2>
-              <p>Informações atualizadas diretamente da planilha.</p>
+              <p>Informações atualizadas a partir da planilha.</p>
               <div id="insights" class="insights"></div>
             </article>
           </div>
@@ -615,12 +1739,12 @@
       <form id="auth-form">
         <header class="dialog-header">
           <div>
-            <p class="eyebrow">Acesso Privado</p>
+            <p class="eyebrow">Acesso privado</p>
             <h2>Digite sua senha</h2>
           </div>
         </header>
         <p class="auth-copy">
-          É a senha <strong>ACCESS_PIN</strong> da aba Configurações da sua planilha. Fica salva
+          É a chave <strong>ACCESS_PIN</strong> da aba Configuração da sua planilha. Fica salva
           apenas neste dispositivo.
         </p>
         <div class="form-grid">
@@ -663,10 +1787,10 @@
         <div class="form-grid">
           <label class="field wide">
             <span>Nome do produto</span>
-            <input name="nombre" required maxlength="120" placeholder="Ex. Furadeira de impacto 13 mm" />
+            <input name="nombre" required maxlength="120" placeholder="Ex: Furadeira de impacto 13 mm" />
           </label>
           <label class="field">
-            <span>Código QR ou de barras</span>
+            <span>QR Code ou código de barras</span>
             <div class="input-action">
               <input name="codigo" required maxlength="80" placeholder="Escaneie ou digite" />
               <button class="icon-button" type="button" id="scan-product-code" aria-label="Escanear código">
@@ -676,7 +1800,7 @@
           </label>
           <label class="field">
             <span>Categoria</span>
-            <input name="categoria" maxlength="60" placeholder="Ex. Ferramentas" />
+            <input name="categoria" maxlength="60" placeholder="Ex: Ferramentas" />
           </label>
           <label class="field">
             <span>Preço de venda</span>
@@ -685,7 +1809,7 @@
           <label class="field">
             <span id="stock-label">Estoque inicial</span>
             <input name="stock" type="number" inputmode="numeric" min="0" step="1" value="0" />
-            <small id="stock-hint">Quantidade inicial. Depois muda apenas via movimentações.</small>
+            <small id="stock-hint">Unidades iniciais. Depois muda conforme movimentações.</small>
           </label>
           <label class="field">
             <span>Estoque mínimo</span>
@@ -723,7 +1847,7 @@
             <input type="radio" name="tipo" value="Entrada" checked />
             <span class="option">
               <span class="move-icon"><svg class="i" aria-hidden="true"><use href="#i-down" /></svg></span>
-              <div><strong>Entrada</strong><small>Adiciona estoque</small></div>
+              <div><strong>Entrada</strong><small>Soma estoque</small></div>
             </span>
           </label>
           <label>
@@ -753,7 +1877,7 @@
             <select name="proveedorId" id="movement-supplier"></select>
           </label>
           <label class="field wide">
-            <span>Observação</span>
+            <span>Nota</span>
             <textarea name="nota" rows="2" maxlength="200" placeholder="Venda, compra, devolução…"></textarea>
           </label>
         </div>
@@ -780,7 +1904,7 @@
         <div class="form-grid">
           <label class="field wide">
             <span>Empresa ou fornecedor</span>
-            <input name="nombre" required maxlength="120" placeholder="Ex. Distribuidora Central" />
+            <input name="nombre" required maxlength="120" placeholder="Ex: Distribuidora Central" />
           </label>
           <label class="field">
             <span>Pessoa de contato</span>
@@ -788,14 +1912,14 @@
           </label>
           <label class="field">
             <span>Telefone</span>
-            <input name="telefono" type="tel" maxlength="40" placeholder="(11) 91234-5678" />
+            <input name="telefono" type="tel" maxlength="40" placeholder="+55 11 91234 5678" />
           </label>
           <label class="field wide">
             <span>E-mail</span>
             <input name="email" type="email" maxlength="120" placeholder="vendas@fornecedor.com" />
           </label>
           <label class="field wide">
-            <span>Observações</span>
+            <span>Notas</span>
             <textarea name="notas" rows="3" maxlength="300" placeholder="Dias de entrega, pedido mínimo…"></textarea>
           </label>
         </div>
@@ -834,25 +1958,40 @@
       </div>
     </dialog>
     <div id="toast-region" class="toast-region" aria-live="polite"></div>
-
     <script>
+      /* ==========================================================
+         ÚNICA CONFIGURAÇÃO NECESSÁRIA
+         Substitua o texto entre aspas pela URL /exec.
+         A chave de acesso NÃO vai aqui: ela é definida na planilha
+         (Configuracion > ACCESS_PIN) e solicitada ao abrir o app.
+         ========================================================== */
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby1HW-Ow8RxktryghvY8uEQqP_KubDK1pTxBWwrFDIolZneaQ6Cjv5mmFpOkCau82Jk/exec";
       const CONFIGURED =
         SCRIPT_URL.startsWith("https://script.google.com/macros/s/") &&
         SCRIPT_URL.endsWith("/exec");
-
       const store = {
         get(key) {
-          try { return localStorage.getItem(key) || ""; } catch { return ""; }
+          try {
+            return localStorage.getItem(key) || "";
+          } catch {
+            return "";
+          }
         },
         set(key, value) {
-          try { localStorage.setItem(key, value); } catch {}
+          try {
+            localStorage.setItem(key, value);
+          } catch {
+            /* Sem armazenamento: a chave será pedida a cada visita. */
+          }
         },
         remove(key) {
-          try { localStorage.removeItem(key); } catch {}
+          try {
+            localStorage.removeItem(key);
+          } catch {
+            /* Nada para limpar. */
+          }
         }
       };
-
       const emptyData = () => ({
         products: [],
         suppliers: [],
@@ -860,9 +1999,8 @@
         lowStock: [],
         summary: { productCount: 0, totalUnits: 0, lowStockCount: 0, monthlyOutputs: 0 },
         topSelling: [],
-        settings: { businessName: "Meu Negócio", currency: "BRL" }
+        settings: { businessName: "Meu negócio", currency: "BRL" }
       });
-
       const state = {
         route: "dashboard",
         productSearch: "",
@@ -870,10 +2008,8 @@
         session: { pin: store.get("stockflow.pin"), user: store.get("stockflow.user") },
         data: emptyData()
       };
-
       const $ = (selector, root = document) => root.querySelector(selector);
       const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-
       const elements = {
         loading: $("#loading"),
         setupNotice: $("#setup-notice"),
@@ -917,7 +2053,6 @@
         manualCode: $("#manual-code"),
         toastRegion: $("#toast-region")
       };
-
       let deferredInstallPrompt = null;
       const titles = {
         dashboard: "Resumo",
@@ -926,7 +2061,6 @@
         suppliers: "Fornecedores",
         reports: "Relatórios"
       };
-
       let cameraStream = null;
       let detector = null;
       let scanFrame = null;
@@ -940,7 +2074,6 @@
         "https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js",
         "https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"
       ];
-
       function escapeHtml(value) {
         return String(value ?? "")
           .replaceAll("&", "&")
@@ -949,16 +2082,13 @@
           .replaceAll('"', """)
           .replaceAll("'", "'");
       }
-
       function icon(name, size = "") {
         return `<svg class="i ${size}" aria-hidden="true"><use href="#i-${name}"/></svg>`;
       }
-
       function number(value, fallback = 0) {
         const parsed = Number(value);
         return Number.isFinite(parsed) ? parsed : fallback;
       }
-
       function initials(value) {
         return String(value || "?")
           .trim()
@@ -968,7 +2098,6 @@
           .join("")
           .toUpperCase();
       }
-
       function money(value) {
         const currency = state.data.settings?.currency || "BRL";
         try {
@@ -981,7 +2110,6 @@
           return "R$ " + number(value).toLocaleString("pt-BR");
         }
       }
-
       function dateText(value, time = false) {
         const date = new Date(value);
         if (Number.isNaN(date.getTime())) return "—";
@@ -992,21 +2120,17 @@
           ...(time ? { hour: "2-digit", minute: "2-digit" } : {})
         }).format(date);
       }
-
       function newId() {
         return globalThis.crypto?.randomUUID
           ? crypto.randomUUID()
           : Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
       }
-
       function productById(id) {
         return state.data.products.find((product) => product.id === id);
       }
-
       function supplierById(id) {
         return state.data.suppliers.find((supplier) => supplier.id === id);
       }
-
       function stockStatus(product) {
         const stock = number(product.stock);
         const minimum = number(product.stockMinimo);
@@ -1014,7 +2138,6 @@
         if (minimum > 0 && stock <= minimum) return { label: "Estoque baixo", className: "low" };
         return { label: "Disponível", className: "ok" };
       }
-
       function showToast(message, type = "success") {
         const toast = document.createElement("div");
         toast.className = "toast" + (type === "error" ? " error" : "");
@@ -1023,38 +2146,18 @@
         elements.toastRegion.append(toast);
         setTimeout(() => toast.remove(), type === "error" ? 7000 : 4200);
       }
-
       function openDialog(dialog) {
-        if (dialog && !dialog.open) {
-          if (typeof dialog.showModal === "function") {
-            dialog.showModal();
-          } else {
-            dialog.setAttribute("open", "");
-          }
-        }
+        if (!dialog.open) dialog.showModal();
       }
-
-      function closeDialog(dialog) {
-        if (dialog && dialog.open) {
-          if (typeof dialog.close === "function") {
-            dialog.close();
-          } else {
-            dialog.removeAttribute("open");
-          }
-        }
-      }
-
       function isInstalled() {
         return (
           window.matchMedia("(display-mode: standalone)").matches ||
           window.navigator.standalone === true
         );
       }
-
       function syncInstallState() {
         document.body.classList.toggle("app-installed", isInstalled());
       }
-
       async function installApp() {
         if (isInstalled()) {
           showToast("O StockFlow já está instalado neste dispositivo.");
@@ -1064,7 +2167,7 @@
           deferredInstallPrompt.prompt();
           const choice = await deferredInstallPrompt.userChoice;
           deferredInstallPrompt = null;
-          if (choice.outcome === "accepted") showToast("O StockFlow está sendo instalado.");
+          if (choice.outcome === "accepted") showToast("Instalando o StockFlow.");
           return;
         }
         const appleMobile = /iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -1074,17 +2177,15 @@
             : "No Chrome: abra o menu ⋮ e escolha “Instalar aplicativo”."
         );
       }
-
       function setConnection(status, detail) {
         $$(".conn").forEach((box) => {
           box.dataset.state = status;
           $(".conn-title", box).textContent =
             status === "online" ? "Sincronizado" : status === "error" ? "Sem conexão" : "Desconectado";
           $(".conn-detail", box).textContent =
-            detail || (status === "online" ? "Google Sheets" : "Verifique a configuração");
+            detail || (status === "online" ? "Google Sheets" : "Verifique as configurações");
         });
       }
-
       function setBusy(form, busy) {
         $$("button, input, select, textarea", form).forEach((control) => {
           control.disabled = busy;
@@ -1099,24 +2200,24 @@
           }
         }
       }
-
       function showFormError(form, message) {
         const box = $(".form-error", form);
         if (!box) return;
         box.textContent = message || "";
         box.classList.toggle("hidden", !message);
       }
-
+      /* ==========================================================
+         API
+         ========================================================== */
       function isAuthError(error) {
         return ["AUTH", "AUTH_LOCKED", "AUTH_SETUP"].includes(error?.code);
       }
-
       async function api(action, payload = {}) {
         if (!CONFIGURED) {
-          throw new Error("Primeiro cole a URL /exec do Apps Script no arquivo index.html.");
+          throw new Error("Primeiro cole a URL /exec do Apps Script no index.html.");
         }
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 25000);
+        const timeout = setTimeout(() => controller.abort(), 30000);
         try {
           const response = await fetch(SCRIPT_URL, {
             method: "POST",
@@ -1125,47 +2226,49 @@
             body: JSON.stringify({ action, pin: state.session.pin, ...payload }),
             signal: controller.signal
           });
-
           const text = await response.text();
           let result;
           try {
             result = JSON.parse(text);
           } catch {
-            throw new Error("O Apps Script retornou uma resposta inválida. Verifique a implantação web.");
+            throw new Error(
+              "O Apps Script não retornou um JSON. Verifique a permissão da implantação web."
+            );
           }
-
           if (!result.ok) {
-            throw error;
             const error = new Error(result.error || "A operação não pôde ser concluída.");
             error.code = result.code;
+            throw error;
           }
           return result.data;
         } catch (error) {
           if (error.name === "AbortError") {
-            throw new Error("O Google Sheets demorou para responder. Tente novamente.");
+            throw new Error(
+              "O Google Sheets demorou demais. Você pode tentar novamente: a ação não será duplicada."
+            );
           }
           throw error;
         } finally {
           clearTimeout(timeout);
         }
       }
-
       async function refresh() {
         const data = await api("bootstrap");
         state.data = { ...emptyData(), ...data };
         renderAll();
       }
-
+      /* ==========================================================
+         ACESSO
+         ========================================================== */
       function openAuth(message = "") {
-        elements.loading.classList.add("hidden");
         elements.authError.textContent = message;
         elements.authError.classList.toggle("hidden", !message);
         elements.authForm.elements.pin.value = "";
-        elements.authForm.elements.user.value = state.session.user || "";
+        elements.authForm.elements.user.value = state.session.user;
+        elements.loading.classList.add("hidden");
         openDialog(elements.authDialog);
-        setTimeout(() => elements.authForm.elements.pin.focus(), 100);
+        elements.authForm.elements.pin.focus();
       }
-
       function logout() {
         state.session.pin = "";
         store.remove("stockflow.pin");
@@ -1174,7 +2277,9 @@
         setConnection("idle");
         openAuth();
       }
-
+      /* ==========================================================
+         NAVEGAÇÃO E VISTAS
+         ========================================================== */
       function routeTo(route) {
         const next = titles[route] ? route : "dashboard";
         state.route = next;
@@ -1188,15 +2293,13 @@
         elements.pageTitle.focus({ preventScroll: true });
         window.scrollTo({ top: 0 });
       }
-
       function emptyState(iconName, text) {
         return `<div class="empty">${icon(iconName)}<span>${escapeHtml(text)}</span></div>`;
       }
-
       function renderDashboard() {
         const summary = state.data.summary || {};
         const cards = [
-          ["Produtos ativos", summary.productCount, "box", "No catálogo", ""],
+          ["Produtos ativos", summary.productCount, "box", "No seu catálogo", ""],
           ["Unidades disponíveis", summary.totalUnits, "layers", "Estoque total", "tone-ok"],
           [
             "Estoque baixo",
@@ -1221,7 +2324,6 @@
             `
           )
           .join("");
-
         const lowStock = state.data.lowStock || [];
         elements.lowStockList.innerHTML = lowStock.length
           ? lowStock
@@ -1240,38 +2342,35 @@
               )
               .join("")
           : emptyState("box", "Nenhum produto abaixo do estoque mínimo.");
-
-        const recent = (state.data.movements || []).slice(0, 5);
+        const recent = state.data.movements.slice(0, 5);
         elements.recentMovements.innerHTML = recent.length
           ? recent
               .map((movement) => {
                 const entry = movement.tipo === "Entrada";
-                const tipoLabel = entry ? "Entrada" : "Saída";
+                const labelTipo = entry ? "Entrada" : "Saída";
                 return `
                   <div class="list-row">
                     <span class="move-icon ${entry ? "entry" : "exit"}">${icon(entry ? "down" : "up")}</span>
                     <span class="row-main">
                       <strong>${escapeHtml(movement.producto)}</strong>
-                      <small>${tipoLabel} · ${dateText(movement.fecha, true)}</small>
+                      <small>${escapeHtml(labelTipo)} · ${dateText(movement.fecha, true)}</small>
                     </span>
                     <span class="row-number">${entry ? "+" : "−"}${number(movement.cantidad)}</span>
                   </div>
                 `;
               })
               .join("")
-          : emptyState("swap", "Nenhuma movimentação registrada ainda.");
+          : emptyState("swap", "Ainda não há movimentações registradas.");
       }
-
       function filteredProducts() {
         const query = state.productSearch.toLocaleLowerCase("pt-BR");
-        return (state.data.products || []).filter((product) =>
+        return state.data.products.filter((product) =>
           [product.nombre, product.codigo, product.categoria]
             .join(" ")
             .toLocaleLowerCase("pt-BR")
             .includes(query)
         );
       }
-
       function renderProducts() {
         const products = filteredProducts();
         const editButton = (product) => `
@@ -1302,8 +2401,7 @@
                 `;
               })
               .join("")
-          : `<tr><td colspan="7">${emptyState("box", "Nenhum produto encontrado.")}</td></tr>`;
-
+          : `<tr><td colspan="7">${emptyState("box", "Nenhum produto para exibir.")}</td></tr>`;
         elements.productsMobile.innerHTML = products.length
           ? products
               .map((product) => {
@@ -1327,25 +2425,23 @@
                 `;
               })
               .join("")
-          : emptyState("box", "Nenhum produto encontrado.");
+          : emptyState("box", "Nenhum produto para exibir.");
       }
-
       function filteredMovements() {
-        if (state.movementFilter === "Todos") return state.data.movements || [];
-        return (state.data.movements || []).filter((movement) => movement.tipo === state.movementFilter);
+        if (state.movementFilter === "Todos") return state.data.movements;
+        return state.data.movements.filter((movement) => movement.tipo === state.movementFilter);
       }
-
       function renderMovements() {
         const movements = filteredMovements();
         elements.movementsBody.innerHTML = movements.length
           ? movements
               .map((movement) => {
                 const entry = movement.tipo === "Entrada";
-                const tipoLabel = entry ? "Entrada" : "Saída";
+                const labelTipo = entry ? "Entrada" : "Saída";
                 return `
                   <tr>
                     <td>${dateText(movement.fecha, true)}</td>
-                    <td><span class="pill ${entry ? "entry" : "exit"}">${tipoLabel}</span></td>
+                    <td><span class="pill ${entry ? "entry" : "exit"}">${escapeHtml(labelTipo)}</span></td>
                     <td>
                       <div class="product-cell">
                         <div>
@@ -1363,24 +2459,23 @@
               })
               .join("")
           : `<tr><td colspan="7">${emptyState("swap", "Nenhuma movimentação para este filtro.")}</td></tr>`;
-
         elements.movementsMobile.innerHTML = movements.length
           ? movements
               .map((movement) => {
                 const entry = movement.tipo === "Entrada";
-                const tipoLabel = entry ? "Entrada" : "Saída";
+                const labelTipo = entry ? "Entrada" : "Saída";
                 return `
                   <article class="mobile-card">
                     <header>
                       <span class="move-icon ${entry ? "entry" : "exit"}">${icon(entry ? "down" : "up")}</span>
                       <span class="row-main">
                         <strong>${escapeHtml(movement.producto)}</strong>
-                        <small>${dateText(movement.fecha, true)} · ${escapeHtml(movement.nota || "Sem observação")}</small>
+                        <small>${dateText(movement.fecha, true)} · ${escapeHtml(movement.nota || "Sem observações")}</small>
                       </span>
                       <strong class="num">${entry ? "+" : "−"}${number(movement.cantidad)}</strong>
                     </header>
                     <div class="mobile-meta">
-                      <span class="pill ${entry ? "entry" : "exit"}">${tipoLabel}</span>
+                      <span class="pill ${entry ? "entry" : "exit"}">${escapeHtml(labelTipo)}</span>
                       <span>Estoque final: <strong class="num">${number(movement.stockNuevo)}</strong></span>
                     </div>
                   </article>
@@ -1389,18 +2484,16 @@
               .join("")
           : emptyState("swap", "Nenhuma movimentação para este filtro.");
       }
-
       function renderSuppliers() {
-        const suppliers = state.data.suppliers || [];
-        elements.suppliersGrid.innerHTML = suppliers.length
-          ? suppliers
+        elements.suppliersGrid.innerHTML = state.data.suppliers.length
+          ? state.data.suppliers
               .map(
                 (supplier) => `
                   <article class="supplier-card">
                     <header>
-                        aria-label="Editar ${escapeHtml(supplier.nombre)}" type="button">${icon("edit")}</button>
                       <span class="avatar" aria-hidden="true">${escapeHtml(initials(supplier.nombre))}</span>
                       <button class="icon-button" data-edit-supplier="${escapeHtml(supplier.id)}"
+                        aria-label="Editar ${escapeHtml(supplier.nombre)}" type="button">${icon("edit")}</button>
                     </header>
                     <h3>${escapeHtml(supplier.nombre)}</h3>
                     <small>${escapeHtml(supplier.contacto || "Sem pessoa de contato")}</small>
@@ -1408,22 +2501,21 @@
                       ${
                         supplier.telefono
                           ? `<a href="tel:${escapeHtml(supplier.telefono)}">${icon("phone", "sm")}${escapeHtml(supplier.telefono)}</a>`
-                      ${
                           : ""
                       }
+                      ${
                         supplier.email
                           ? `<a href="mailto:${escapeHtml(supplier.email)}">${icon("mail", "sm")}${escapeHtml(supplier.email)}</a>`
                           : ""
                       }
                     </div>
-                    <p class="supplier-note">${escapeHtml(supplier.notas || "Sem observações adicionais.")}</p>
+                    <p class="supplier-note">${escapeHtml(supplier.notas || "Sem notas adicionais.")}</p>
                   </article>
                 `
               )
               .join("")
-          : `<div class="panel">${emptyState("truck", "Nenhum fornecedor cadastrado ainda.")}</div>`;
+          : `<div class="panel">${emptyState("truck", "Você ainda não cadastrou fornecedores.")}</div>`;
       }
-
       function renderReports() {
         const ranking = state.data.topSelling || [];
         const max = Math.max(...ranking.map((item) => number(item.cantidad)), 1);
@@ -1443,10 +2535,9 @@
               )
               .join("")
           : emptyState("chart", "Registre saídas para gerar o ranking.");
-
         const summary = state.data.summary || {};
         const leader = ranking[0];
-        const totalValue = (state.data.products || []).reduce(
+        const totalValue = state.data.products.reduce(
           (sum, product) => sum + number(product.precio) * number(product.stock),
           0
         );
@@ -1465,20 +2556,17 @@
           </article>
         `;
       }
-
       function renderSelects() {
-        const suppliers = state.data.suppliers || [];
-        const products = state.data.products || [];
         const supplierOptions = [
           '<option value="">Sem fornecedor</option>',
-          ...suppliers.map(
+          ...state.data.suppliers.map(
             (supplier) =>
               `<option value="${escapeHtml(supplier.id)}">${escapeHtml(supplier.nombre)}</option>`
           )
         ].join("");
         const productOptions = [
           '<option value="">Selecione um produto</option>',
-          ...products.map(
+          ...state.data.products.map(
             (product) =>
               `<option value="${escapeHtml(product.id)}">${escapeHtml(product.nombre)} · Estoque ${number(product.stock)}</option>`
           )
@@ -1487,13 +2575,11 @@
         elements.movementSupplier.innerHTML = supplierOptions;
         elements.movementProduct.innerHTML = productOptions;
       }
-
       function renderBranding() {
-        const name = state.data.settings?.businessName || "Meu Negócio";
+        const name = state.data.settings?.businessName || "Meu negócio";
         elements.businessName.textContent = name;
         document.title = name + " — StockFlow";
       }
-
       function renderAll() {
         renderBranding();
         renderDashboard();
@@ -1504,11 +2590,12 @@
         renderSelects();
         updateStockPreview();
       }
-
+      /* ==========================================================
+         FORMULÁRIOS
+         ========================================================== */
       function formValues(form) {
         return Object.fromEntries(new FormData(form).entries());
       }
-
       function resetForm(form) {
         form.reset();
         Object.keys(form.dataset).forEach((key) => {
@@ -1516,7 +2603,6 @@
         });
         showFormError(form, "");
       }
-
       function openProduct(product = null) {
         const form = elements.productForm;
         resetForm(form);
@@ -1526,8 +2612,8 @@
         stockInput.readOnly = Boolean(product);
         $("#stock-label").textContent = product ? "Estoque atual" : "Estoque inicial";
         $("#stock-hint").textContent = product
-          ? "Apenas leitura: para alterar o estoque, registre uma movimentação."
-          : "Quantidade inicial. Depois muda apenas via movimentações.";
+          ? "Apenas leitura: para alterá-lo, registre uma movimentação."
+          : "Unidades iniciais. Depois muda conforme movimentações.";
         if (product) {
           Object.entries(product).forEach(([name, value]) => {
             const input = form.elements.namedItem(name);
@@ -1540,7 +2626,6 @@
         }
         openDialog(elements.productDialog);
       }
-
       function openSupplier(supplier = null) {
         const form = elements.supplierForm;
         resetForm(form);
@@ -1554,14 +2639,12 @@
         }
         openDialog(elements.supplierDialog);
       }
-
       function openMovement(productId = "") {
         resetForm(elements.movementForm);
         elements.movementProduct.value = productId;
         openDialog(elements.movementDialog);
         updateStockPreview();
       }
-
       function updateStockPreview() {
         const product = productById(elements.movementProduct.value);
         elements.stockPreview.classList.remove("bad");
@@ -1576,13 +2659,17 @@
         if (result < 0) {
           elements.stockPreview.classList.add("bad");
           elements.stockPreview.textContent =
-            "Estoque insuficiente: há " + current + " unidades disponíveis.";
+            "Estoque insuficiente: existem apenas " + current + " unidades disponíveis.";
           return;
         }
         elements.stockPreview.innerHTML =
           "Estoque atual: <strong>" + current + "</strong> → Estoque resultante: <strong>" + result + "</strong>";
       }
-
+      /*
+       * Envia um formulário. Cada tentativa leva um requestId que se conserva
+       * até que a operação tenha sucesso: se a resposta for perdida e o
+       * usuário tentar novamente, o servidor não repetirá a movimentação.
+       */
       async function submitForm(form, dialog, action, payload, successMessage) {
         const key = "rid" + action;
         if (!form.dataset[key]) form.dataset[key] = newId();
@@ -1593,10 +2680,10 @@
           await api(action, { ...payload, requestId: form.dataset[key] });
           saved = true;
           delete form.dataset[key];
-          closeDialog(dialog);
+          dialog.close();
         } catch (error) {
           if (isAuthError(error)) {
-            closeDialog(dialog);
+            dialog.close();
             openAuth(error.message);
           } else {
             showFormError(form, error.message);
@@ -1615,25 +2702,32 @@
           );
         }
       }
-
       function loadPortableScannerLibrary() {
         if (window.Html5Qrcode) return Promise.resolve();
         if (scannerLibraryPromise) return scannerLibraryPromise;
         scannerLibraryPromise = new Promise((resolve, reject) => {
           const trySource = (index) => {
             if (index >= SCANNER_LIBRARY_URLS.length) {
-              reject(new Error("Não foi possível carregar o leitor compatível."));
+              reject(new Error("Não foi possível baixar o leitor compatível."));
               return;
             }
             const script = document.createElement("script");
             script.src = SCANNER_LIBRARY_URLS[index];
             script.async = true;
             script.crossOrigin = "anonymous";
+            script.dataset.stockflowScanner = "true";
             script.onload = () => {
-              if (window.Html5Qrcode) resolve();
-              else { script.remove(); trySource(index + 1); }
+              if (window.Html5Qrcode) {
+                resolve();
+              } else {
+                script.remove();
+                trySource(index + 1);
+              }
             };
-            script.onerror = () => { script.remove(); trySource(index + 1); };
+            script.onerror = () => {
+              script.remove();
+              trySource(index + 1);
+            };
             document.head.appendChild(script);
           };
           trySource(0);
@@ -1643,23 +2737,40 @@
         });
         return scannerLibraryPromise;
       }
-
       function portableScannerFormats() {
         const formats = window.Html5QrcodeSupportedFormats;
         if (!formats) return [];
-        return ["QR_CODE", "EAN_13", "EAN_8", "CODE_128", "CODE_39", "CODE_93", "UPC_A", "UPC_E", "ITF", "DATA_MATRIX", "PDF_417"]
+        return [
+          "QR_CODE",
+          "EAN_13",
+          "EAN_8",
+          "CODE_128",
+          "CODE_39",
+          "CODE_93",
+          "UPC_A",
+          "UPC_E",
+          "ITF",
+          "DATA_MATRIX",
+          "PDF_417"
+        ]
           .map((name) => formats[name])
           .filter((value) => Number.isInteger(value));
       }
-
       function cameraErrorMessage(error) {
-        if (!window.isSecureContext) return "A câmera requer uma conexão HTTPS segura.";
-        if (error?.name === "NotAllowedError" || error?.name === "SecurityError") return "Conceda permissão de acesso à câmera para o StockFlow.";
-        if (error?.name === "NotFoundError" || error?.message === "NO_CAMERA") return "Nenhuma câmera encontrada neste dispositivo.";
-        if (error?.name === "NotReadableError") return "A câmera está em uso por outro aplicativo.";
-        return "Não foi possível iniciar a câmera. Digite o código manualmente.";
+        if (!window.isSecureContext) {
+          return "A câmera exige uma conexão HTTPS segura.";
+        }
+        if (error?.name === "NotAllowedError" || error?.name === "SecurityError") {
+          return "Conceda permissão de acesso à câmera para o StockFlow e tente novamente.";
+        }
+        if (error?.name === "NotFoundError" || error?.message === "NO_CAMERA") {
+          return "Nenhuma câmera foi encontrada neste dispositivo.";
+        }
+        if (error?.name === "NotReadableError") {
+          return "A câmera está em uso por outro aplicativo. Feche-o e tente novamente.";
+        }
+        return "Não foi possível iniciar a câmera. Verifique a permissão ou digite o código manualmente.";
       }
-
       function stopNativeScanner() {
         if (scanFrame) cancelAnimationFrame(scanFrame);
         scanFrame = null;
@@ -1669,30 +2780,53 @@
         elements.scannerVideo.pause();
         elements.scannerVideo.srcObject = null;
       }
-
-      async function stopPortableScanner(scanner = portableScannerInstance, wasStarted = portableScannerStarted) {
+      async function stopPortableScanner(
+        scanner = portableScannerInstance,
+        wasStarted = portableScannerStarted
+      ) {
         if (!scanner) return;
         if (scanner === portableScannerInstance) {
           portableScannerInstance = null;
           portableScannerStarted = false;
         }
         if (wasStarted) {
-          try { await scanner.stop(); } catch {}
+          try {
+            await scanner.stop();
+          } catch {
+            // A câmera pode ter sido desligada antes de concluir o fechamento.
+          }
         }
-        try { await scanner.clear(); } catch {}
+        try {
+          await scanner.clear();
+        } catch {
+          // A limpeza visual continua mesmo que a biblioteca já tenha fechado.
+        }
       }
-
       async function startNativeScanner(session) {
         const supported = await window.BarcodeDetector.getSupportedFormats();
-        const wanted = ["qr_code", "ean_13", "ean_8", "code_128", "code_39", "upc_a", "upc_e", "itf", "data_matrix"].filter((format) => supported.includes(format));
-        if (!wanted.length) throw new Error("NATIVE_DECODER_UNAVAILABLE");
-
+        const wanted = [
+          "qr_code",
+          "ean_13",
+          "ean_8",
+          "code_128",
+          "code_39",
+          "upc_a",
+          "upc_e",
+          "itf",
+          "data_matrix"
+        ].filter((format) => supported.includes(format));
+        if (!wanted.length) {
+          throw new Error("NATIVE_DECODER_UNAVAILABLE");
+        }
         detector = new window.BarcodeDetector({ formats: wanted });
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: { ideal: "environment" }, width: { ideal: 1920 }, height: { ideal: 1080 } },
+          video: {
+            facingMode: { ideal: "environment" },
+            width: { ideal: 1920 },
+            height: { ideal: 1080 }
+          },
           audio: false
         });
-
         if (session !== scanSession || !elements.scannerDialog.open) {
           stream.getTracks().forEach((track) => track.stop());
           return;
@@ -1703,35 +2837,38 @@
         elements.scannerViewport.classList.remove("portable-active");
         elements.scannerVideo.srcObject = cameraStream;
         await elements.scannerVideo.play();
-        elements.scannerStatus.textContent = "Aponte a câmera para o código e mantenha o celular firme.";
+        elements.scannerStatus.textContent =
+          "Aponte para o código e mantenha o celular firme.";
         scanLoop(session);
       }
-
       async function startPortableScanner(session) {
-        elements.scannerStatus.textContent = "Carregando leitor compatível para este dispositivo…";
+        elements.scannerStatus.textContent =
+          "Carregando leitor compatível para este dispositivo…";
         await loadPortableScannerLibrary();
         if (session !== scanSession || !elements.scannerDialog.open) return;
-
         const formats = portableScannerFormats();
         const configuration = formats.length ? { formatsToSupport: formats } : {};
-        const scanner = new window.Html5Qrcode("portable-scanner", configuration, false);
+        const scanner = new window.Html5Qrcode(
+          "portable-scanner",
+          configuration,
+          false
+        );
         portableScannerInstance = scanner;
-
         const cameras = await window.Html5Qrcode.getCameras();
         if (!cameras?.length) {
           const error = new Error("NO_CAMERA");
           error.name = "NotFoundError";
           throw error;
         }
-
-        const rearCamera = cameras.find((camera) => /back|rear|environment|traser|posterior|arrière|rück/i.test(camera.label));
+        const rearCamera = cameras.find((camera) =>
+          /back|rear|environment|traser|posterior|arrière|rück/i.test(camera.label)
+        );
         const mobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent);
-        const selectedCamera = rearCamera || cameras[mobile ? cameras.length - 1 : 0];
-
+        const selectedCamera =
+          rearCamera || cameras[mobile ? cameras.length - 1 : 0];
         elements.scannerVideo.classList.add("hidden");
         elements.portableScanner.classList.remove("hidden");
         elements.scannerViewport.classList.add("portable-active");
-
         await scanner.start(
           selectedCamera.id,
           {
@@ -1742,18 +2879,21 @@
             }),
             disableFlip: false
           },
-          (decodedText) => { if (session === scanSession && decodedText) finishScan(decodedText); },
-          () => {}
+          (decodedText) => {
+            if (session === scanSession && decodedText) finishScan(decodedText);
+          },
+          () => {
+            // É normal não identificar um código em todos os quadros.
+          }
         );
-
         if (scanner === portableScannerInstance) portableScannerStarted = true;
         if (session !== scanSession || !elements.scannerDialog.open) {
           await stopPortableScanner(scanner, true);
           return;
         }
-        elements.scannerStatus.textContent = "Aponte a câmera para o código e mantenha o celular firme.";
+        elements.scannerStatus.textContent =
+          "Aponte para o código e mantenha o celular firme.";
       }
-
       async function openScanner(callback) {
         const session = ++scanSession;
         scanCallback = callback;
@@ -1763,15 +2903,14 @@
         elements.scannerVideo.classList.remove("hidden");
         elements.portableScanner.classList.add("hidden");
         elements.scannerViewport.classList.remove("portable-active");
-        openDialog(elements.scannerDialog);
-
+        elements.scannerDialog.showModal();
         if (!navigator.mediaDevices?.getUserMedia) {
-          elements.scannerStatus.textContent = window.isSecureContext
-            ? "Este dispositivo não suporta acesso à câmera."
-            : "A câmera requer uma conexão HTTPS segura.";
+          elements.scannerStatus.textContent =
+            window.isSecureContext
+              ? "Este dispositivo não permite o acesso à câmera."
+              : "A câmera exige uma conexão HTTPS segura.";
           return;
         }
-
         try {
           if ("BarcodeDetector" in window) {
             try {
@@ -1779,7 +2918,11 @@
               return;
             } catch (nativeError) {
               stopNativeScanner();
-              if (["NotAllowedError", "SecurityError", "NotFoundError", "NotReadableError"].includes(nativeError?.name)) {
+              if (
+                ["NotAllowedError", "SecurityError", "NotFoundError", "NotReadableError"].includes(
+                  nativeError?.name
+                )
+              ) {
                 throw nativeError;
               }
             }
@@ -1796,7 +2939,6 @@
           elements.scannerStatus.textContent = cameraErrorMessage(error);
         }
       }
-
       async function scanLoop(session) {
         if (!detector || !cameraStream || session !== scanSession) return;
         try {
@@ -1805,10 +2947,11 @@
             finishScan(codes[0].rawValue);
             return;
           }
-        } catch {}
+        } catch {
+          // Um quadro ilegível não deve interromper a câmera.
+        }
         scanFrame = requestAnimationFrame(() => scanLoop(session));
       }
-
       async function finishScan(value) {
         if (scanFinishing) return;
         scanFinishing = true;
@@ -1817,11 +2960,10 @@
         navigator.vibrate?.(80);
         callback?.(String(value).trim());
       }
-
       async function closeScanner() {
         scanSession += 1;
         scanCallback = null;
-        closeDialog(elements.scannerDialog);
+        if (elements.scannerDialog.open) elements.scannerDialog.close();
         stopNativeScanner();
         await stopPortableScanner();
         elements.portableScanner.replaceChildren();
@@ -1829,202 +2971,209 @@
         elements.scannerVideo.classList.remove("hidden");
         elements.scannerViewport.classList.remove("portable-active");
       }
-
       function scannedMain(code) {
-        const product = (state.data.products || []).find((item) => String(item.codigo) === String(code));
+        const product = state.data.products.find(
+          (item) => String(item.codigo) === String(code)
+        );
         if (product) {
           openMovement(product.id);
-          showToast(product.nombre + " encontrado.");
+          showToast(product.nombre + " localizado.");
         } else {
           openProduct();
           elements.productForm.elements.codigo.value = code;
           showToast("Código novo. Preencha os dados do produto.");
         }
       }
-
-      function setupEventListeners() {
-        window.addEventListener("beforeinstallprompt", (event) => {
+      /* ==========================================================
+         EVENTOS
+         ========================================================== */
+      window.addEventListener("beforeinstallprompt", (event) => {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+      });
+      window.addEventListener("appinstalled", () => {
+        deferredInstallPrompt = null;
+        syncInstallState();
+        showToast("O StockFlow foi instalado com sucesso.");
+      });
+      $$("[data-install]").forEach((button) => button.addEventListener("click", installApp));
+      $$("[data-logout]").forEach((button) => button.addEventListener("click", logout));
+      $$("[data-route]").forEach((button) => {
+        button.addEventListener("click", () => routeTo(button.dataset.route));
+      });
+      $$("[data-go]").forEach((button) => {
+        button.addEventListener("click", () => routeTo(button.dataset.go));
+      });
+      $$("[data-scan]").forEach((button) => {
+        button.addEventListener("click", () => openScanner(scannedMain));
+      });
+      $$("[data-new-movement]").forEach((button) => {
+        button.addEventListener("click", () => openMovement());
+      });
+      $$("[data-close]").forEach((button) => {
+        button.addEventListener("click", () => $("#" + button.dataset.close).close());
+      });
+      $("#scanner-close").addEventListener("click", closeScanner);
+      elements.scannerDialog.addEventListener("cancel", (event) => {
+        event.preventDefault();
+        closeScanner();
+      });
+      elements.authDialog.addEventListener("cancel", (event) => event.preventDefault());
+      $("#use-manual-code").addEventListener("click", () => {
+        const value = elements.manualCode.value.trim();
+        if (value) finishScan(value);
+      });
+      elements.manualCode.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
           event.preventDefault();
-          deferredInstallPrompt = event;
+          $("#use-manual-code").click();
+        }
+      });
+      $("#scan-product-code").addEventListener("click", () => {
+        openScanner((code) => {
+          elements.productForm.elements.codigo.value = code;
         });
-
-        window.addEventListener("appinstalled", () => {
-          deferredInstallPrompt = null;
-          syncInstallState();
-          showToast("StockFlow instalado com sucesso.");
-        });
-
-        $$("[data-install]").forEach((button) => button.addEventListener("click", installApp));
-        $$("[data-logout]").forEach((button) => button.addEventListener("click", logout));
-        $$("[data-route]").forEach((button) => {
-          button.addEventListener("click", () => routeTo(button.dataset.route));
-        });
-        $$("[data-go]").forEach((button) => {
-          button.addEventListener("click", () => routeTo(button.dataset.go));
-        });
-        $$("[data-scan]").forEach((button) => {
-          button.addEventListener("click", () => openScanner(scannedMain));
-        });
-        $$("[data-new-movement]").forEach((button) => {
-          button.addEventListener("click", () => openMovement());
-        });
-        $$("[data-close]").forEach((button) => {
-          button.addEventListener("click", () => closeDialog($("#" + button.dataset.close)));
-        });
-
-        $("#scanner-close").addEventListener("click", closeScanner);
-        elements.scannerDialog.addEventListener("cancel", (event) => {
-          event.preventDefault();
-          closeScanner();
-        });
-        elements.authDialog.addEventListener("cancel", (event) => event.preventDefault());
-
-        $("#use-manual-code").addEventListener("click", () => {
-          const value = elements.manualCode.value.trim();
-          if (value) finishScan(value);
-        });
-
-        elements.manualCode.addEventListener("keydown", (event) => {
-          if (event.key === "Enter") {
-            event.preventDefault();
-            $("#use-manual-code").click();
-          }
-        });
-
-        $("#scan-product-code").addEventListener("click", () => {
-          openScanner((code) => {
-            elements.productForm.elements.codigo.value = code;
-          });
-        });
-
-        $("#scan-movement-product").addEventListener("click", () => {
-          openScanner((code) => {
-            const product = (state.data.products || []).find((item) => String(item.codigo) === String(code));
-            if (!product) {
-              showToast("Este código ainda não está cadastrado.", "error");
-              return;
-            }
-            elements.movementProduct.value = product.id;
-            updateStockPreview();
-          });
-        });
-
-        $("#add-product").addEventListener("click", () => openProduct());
-        $("#add-supplier").addEventListener("click", () => openSupplier());
-
-        elements.productSearch.addEventListener("input", (event) => {
-          state.productSearch = event.target.value.trim();
-          renderProducts();
-        });
-
-        $$("[data-movement-filter]").forEach((button) => {
-          button.addEventListener("click", () => {
-            state.movementFilter = button.dataset.movementFilter;
-            $$("[data-movement-filter]").forEach((item) => {
-              item.setAttribute("aria-pressed", String(item === button));
-            });
-            renderMovements();
-          });
-        });
-
-        document.addEventListener("click", (event) => {
-          const editProduct = event.target.closest("[data-edit-product]");
-          if (editProduct) openProduct(productById(editProduct.dataset.editProduct));
-          const editSupplier = event.target.closest("[data-edit-supplier]");
-          if (editSupplier) openSupplier(supplierById(editSupplier.dataset.editSupplier));
-        });
-
-        elements.movementForm.addEventListener("input", updateStockPreview);
-        elements.movementForm.addEventListener("change", updateStockPreview);
-
-        elements.authForm.addEventListener("submit", async (event) => {
-          event.preventDefault();
-          const values = formValues(elements.authForm);
-          state.session.pin = String(values.pin || "").trim();
-          state.session.user = String(values.user || "").trim();
-          store.set("stockflow.pin", state.session.pin);
-          store.set("stockflow.user", state.session.user);
-          closeDialog(elements.authDialog);
-          await loadInitial();
-        });
-
-        elements.productForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const values = formValues(elements.productForm);
-          submitForm(
-            elements.productForm,
-            elements.productDialog,
-            "saveProduct",
-            {
-              product: {
-                ...values,
-                precio: number(values.precio),
-                stock: number(values.stock),
-                stockMinimo: number(values.stockMinimo),
-                usuario: state.session.user
-              }
-            },
-            values.id ? "Produto atualizado com sucesso." : "Produto adicionado com sucesso."
-          );
-        });
-
-        elements.archiveProduct.addEventListener("click", () => {
-          const id = elements.productForm.elements.id.value;
-          const product = productById(id);
-          if (!product) return;
-          const extra = number(product.stock) > 0 ? ` Ainda possui ${number(product.stock)} unidades.` : "";
-          if (!confirm(`Deseja arquivar “${product.nombre}”?${extra} Ele deixará de ser exibido no app.`)) return;
-          submitForm(elements.productForm, elements.productDialog, "archiveProduct", { id }, "Produto arquivado.");
-        });
-
-        elements.supplierForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const values = formValues(elements.supplierForm);
-          submitForm(
-            elements.supplierForm,
-            elements.supplierDialog,
-            "saveSupplier",
-            { supplier: values },
-            values.id ? "Fornecedor atualizado com sucesso." : "Fornecedor adicionado com sucesso."
-          );
-        });
-
-        elements.archiveSupplier.addEventListener("click", () => {
-          const id = elements.supplierForm.elements.id.value;
-          const supplier = supplierById(id);
-          if (!supplier) return;
-          if (!confirm(`Deseja arquivar “${supplier.nombre}”? Ele deixará de ser exibido no app.`)) return;
-          submitForm(elements.supplierForm, elements.supplierDialog, "archiveSupplier", { id }, "Fornecedor arquivado.");
-        });
-
-        elements.movementForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          const values = formValues(elements.movementForm);
-          const product = productById(values.productoId);
-          const quantity = number(values.cantidad);
+      });
+      $("#scan-movement-product").addEventListener("click", () => {
+        openScanner((code) => {
+          const product = state.data.products.find((item) => String(item.codigo) === String(code));
           if (!product) {
-            showFormError(elements.movementForm, "Selecione um produto válido.");
+            showToast("Este código ainda não está cadastrado.", "error");
             return;
           }
-          if (!Number.isInteger(quantity) || quantity < 1) {
-            showFormError(elements.movementForm, "A quantidade deve ser um número inteiro maior que zero.");
-            return;
-          }
-          if (values.tipo === "Salida" && quantity > number(product.stock)) {
-            showFormError(elements.movementForm, "Estoque insuficiente: há apenas " + number(product.stock) + " unidades.");
-            return;
-          }
-          const successText = values.tipo === "Entrada" ? "Entrada registrada com sucesso." : "Saída registrada com sucesso.";
-          submitForm(
-            elements.movementForm,
-            elements.movementDialog,
-            "movement",
-            { movement: { ...values, cantidad: quantity, usuario: state.session.user } },
-            successText
-          );
+          elements.movementProduct.value = product.id;
+          updateStockPreview();
         });
-      }
-
+      });
+      $("#add-product").addEventListener("click", () => openProduct());
+      $("#add-supplier").addEventListener("click", () => openSupplier());
+      elements.productSearch.addEventListener("input", (event) => {
+        state.productSearch = event.target.value.trim();
+        renderProducts();
+      });
+      $$("[data-movement-filter]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.movementFilter = button.dataset.movementFilter;
+          $$("[data-movement-filter]").forEach((item) => {
+            item.setAttribute("aria-pressed", String(item === button));
+          });
+          renderMovements();
+        });
+      });
+      document.addEventListener("click", (event) => {
+        const editProduct = event.target.closest("[data-edit-product]");
+        if (editProduct) openProduct(productById(editProduct.dataset.editProduct));
+        const editSupplier = event.target.closest("[data-edit-supplier]");
+        if (editSupplier) openSupplier(supplierById(editSupplier.dataset.editSupplier));
+      });
+      elements.movementForm.addEventListener("input", updateStockPreview);
+      elements.movementForm.addEventListener("change", updateStockPreview);
+      elements.authForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const values = formValues(elements.authForm);
+        state.session.pin = String(values.pin || "").trim();
+        state.session.user = String(values.user || "").trim();
+        store.set("stockflow.pin", state.session.pin);
+        store.set("stockflow.user", state.session.user);
+        elements.authDialog.close();
+        await loadInitial();
+      });
+      elements.productForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const values = formValues(elements.productForm);
+        submitForm(
+          elements.productForm,
+          elements.productDialog,
+          "saveProduct",
+          {
+            product: {
+              ...values,
+              precio: number(values.precio),
+              stock: number(values.stock),
+              stockMinimo: number(values.stockMinimo),
+              usuario: state.session.user
+            }
+          },
+          values.id ? "Produto atualizado." : "Produto adicionado."
+        );
+      });
+      elements.archiveProduct.addEventListener("click", () => {
+        const id = elements.productForm.elements.id.value;
+        const product = productById(id);
+        if (!product) return;
+        const extra =
+          number(product.stock) > 0 ? ` Ele ainda possui ${number(product.stock)} unidades.` : "";
+        if (
+          !confirm(
+            `Arquivar “${product.nombre}”?${extra} Ele deixará de ser exibido, mas o histórico é mantido na planilha.`
+          )
+        ) {
+          return;
+        }
+        submitForm(
+          elements.productForm,
+          elements.productDialog,
+          "archiveProduct",
+          { id },
+          "Produto arquivado."
+        );
+      });
+      elements.supplierForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const values = formValues(elements.supplierForm);
+        submitForm(
+          elements.supplierForm,
+          elements.supplierDialog,
+          "saveSupplier",
+          { supplier: values },
+          values.id ? "Fornecedor atualizado." : "Fornecedor adicionado."
+        );
+      });
+      elements.archiveSupplier.addEventListener("click", () => {
+        const id = elements.supplierForm.elements.id.value;
+        const supplier = supplierById(id);
+        if (!supplier) return;
+        if (!confirm(`Arquivar “${supplier.nombre}”? Ele deixará de ser exibido no aplicativo.`)) return;
+        submitForm(
+          elements.supplierForm,
+          elements.supplierDialog,
+          "archiveSupplier",
+          { id },
+          "Fornecedor arquivado."
+        );
+      });
+      elements.movementForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const values = formValues(elements.movementForm);
+        const product = productById(values.productoId);
+        const quantity = number(values.cantidad);
+        if (!product) {
+          showFormError(elements.movementForm, "Selecione um produto válido.");
+          return;
+        }
+        if (!Number.isInteger(quantity) || quantity < 1) {
+          showFormError(elements.movementForm, "A quantidade deve ser um número inteiro maior que zero.");
+          return;
+        }
+        if (values.tipo === "Salida" && quantity > number(product.stock)) {
+          showFormError(
+            elements.movementForm,
+            "Estoque insuficiente: existem apenas " + number(product.stock) + " unidades."
+          );
+          return;
+        }
+        const labelConfirmacao = values.tipo === "Entrada" ? "Entrada" : "Saída";
+        submitForm(
+          elements.movementForm,
+          elements.movementDialog,
+          "movement",
+          { movement: { ...values, cantidad: quantity, usuario: state.session.user } },
+          labelConfirmacao + " registrada com sucesso."
+        );
+      });
+      /* ==========================================================
+         INICIALIZAÇÃO
+         ========================================================== */
       async function loadInitial() {
         elements.loading.classList.remove("hidden");
         elements.setupNotice.classList.add("hidden");
@@ -2033,9 +3182,11 @@
           setConnection("online");
         } catch (error) {
           if (isAuthError(error)) {
-            state.session.pin = "";
-            store.remove("stockflow.pin");
-            setConnection("error", "Senha incorreta ou pendente");
+            if (error.code === "AUTH") {
+              state.session.pin = "";
+              store.remove("stockflow.pin");
+            }
+            setConnection("error", "Acesso necessário");
             openAuth(error.message);
           } else {
             setConnection("error", error.message);
@@ -2049,34 +3200,33 @@
           elements.loading.classList.add("hidden");
         }
       }
-
       async function start() {
         syncInstallState();
-        setupEventListeners();
         renderAll();
-
         if (!CONFIGURED) {
           elements.loading.classList.add("hidden");
           elements.setupNotice.classList.remove("hidden");
-          setConnection("error", "URL /exec não configurada");
+          setConnection("error", "Falta colar a URL /exec");
           return;
         }
-
         if (!state.session.pin) {
           openAuth();
           return;
         }
-
         await loadInitial();
       }
-
       if (!("BarcodeDetector" in window)) {
-        window.addEventListener("load", () => {
-          loadPortableScannerLibrary().catch(() => {});
-        }, { once: true });
+        window.addEventListener(
+          "load",
+          () => {
+            loadPortableScannerLibrary().catch(() => {
+              // Se a pré-carga falhar, haverá nova tentativa ao abrir o leitor.
+            });
+          },
+          { once: true }
+        );
       }
-
-      document.addEventListener("DOMContentLoaded", start);
+      start();
     </script>
   </body>
 </html>
