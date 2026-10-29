@@ -16,13 +16,9 @@
     />
     <title>StockFlow — Inventário Privado</title>
     <script>
-      /*
-       * Manifesto e ícones integrados para manter a aplicação em apenas dois arquivos.
-       * Chrome/Android e Safari/iOS recebem a logo sem depender de imagens externas.
-       */
       (() => {
-        const icon192 = "data:image/png;base64,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";
-        const icon512 = "data:image/png;base64,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giABISgAAMEQAJCUAABgiAJISAAAMEQBJCQAAhiwFwL6lvRtf3Drd9yA/uX83e/Xb9/5q195dW2dfmZp4f/e9+38f92s4f/mN/y338IqfP3P6yXm7mB6fT+Rffv1/s9fOHKwOvuUf2/aLwQo/ff1x/P3f33m1OpZn1+4X/pL3fX5p7+S3/1s2AODR3Lz9ZvX76m312/emGgCl9+5f/C/X/P2x/O5/Tfrz4f7p0e94//To+I479ne/m2X2p94C4On3j/v46Xv1a547AODXv37nrfk3sNfeffK/5/836ff94p3m9i/tnmrmN3ffm1396l9Xv6veogFw/eT/jAt83L/7Y35fO751m1k0AOBXv9//x/h/y343a/f9iXceAODXm1i153b34Wf2a//XGzUACn//6L7q/7pG/fM3/mN1P8D/3v1I4D36/S//43M3AOBXv1/5v/5jBkA1sB9/d/pfdX9e53/xP81/u2x28x9e/a//08+vzn/31/ffmn018//y/49+X46+3/m72X/5v/9/3c9e//s3/2X2v3/3x9//978m+e/X/vT4x+/X0xP33783L77/5Nfe3O/X7vX/8d8+vvp3/P1f3X3yv4N/fM3ffqP8/M3vf/j4fv/d/Pcf/d+0iXv642ve/Xv4x/eMf37y37/q/+/T23/fvv18/r+s1v/f/43p448m6y0AAtPxxI9vT1s/T2S//MOfSft3iQYAdEwAJHXl6p7p/v4p/y4fAMCECYCkBMAwAQD5CYBhAiApATBMAEB+AmCYAEhKAAwTAJCfABgmAJISAMMEAOQnAIYJgKQEwDABAPkJgGECICkB0I/H/t3/3P/o9//14m8fX+U/3909/fH9q33sY4//N3+vT/795A//68e//7i2/v8m+/P3fPzv/N0/+L343NfO/2+m+Pfj3v6/v/bN///Xvf33+Nq/e3z9//454yfe//m85rn//j3j/29u/p+/Mfs/f7n9f9In/+/j2/3s6feP8/7U5799vvp8Xvsff3+81/25d978e5/4/1s7j/89m3/mE/ff/X9/7dv/94m/93Gf//v/0sff/6y2536LBgA4X3+aAABsggB4tH8/e3j69++b8e+S+uX/9+D8v7/2L2u/+7//M33x3a3ZfxsAwCQJgEf743v/PP0Xf+23e3p9A4BhAuDR3v9z7v39265ff//13//yO9i49wYAw/xK36OtmvS/49qP+14AMF0eAEBvJvt3366p/f8aAOCf5QEwWQH31x08C4A9D9+/3X8A8Cj/XwLAt38f3/5X29gBAvD32vPAnf4DgEf75OaH1Q5OnQCw8m5v3372QLWD3wkA4J/+Xw0A//Y/P/oO+0/f/gFgqgTAoyy+2z/4d/L95S4A3v/zC/3v4G+r2v4A4LcC4NH+m/mAtA4f21ft/9sEAPC2463uBfC307e5EAD8R/f7//H9y/2f2/vj//Xw+H/vL/k5p8/f72cA8GsB8Cif3Pyw3/s+6I39//Y/6/H3j6e6H+S//2+/f+f/zI+d9O37s18/f3v6Dvh//u7k//XJm4+m/3s5/pXvY89/s+r5b/X/Xo7/5d/P9S//9p1f/1z+v8n+fNznD48/nvv2+/f7HQCmSAAAAAASEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAd+m/iInE1g7i4twAAAABJRU5ErkJggg==";
+        const icon192 = "data:image/png;base64,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";
+        const icon512 = "data:image/png;base64,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#x/h/y343a/f9iXceAODXm1i153b34Wf2a//XGzUACn//6L7q/7pG/fM3/mN1P8D/3v1I4D36/S//43M3AOBXv1/5v/5jBkA1sB9/d/pfdX9e53/xP81/u2x28x9e/a//08+vzn/31/ffmn018//y/49+X46+3/m72X/5v/9/3c9e//s3/2X2v3/3x9//978m+e/X/vT4x+/X0xP33783L77/5Nfe3O/X7vX/8d8+vvp3/P1f3X3yv4N/fM3ffqP8/M3vf/j4fv/d/Pcf/d+0iXv642ve/Xv4x/eMf37y37/q/+/T23/fvv18/r+s1v/f/43p448m6y0AAtPxxI9vT1s/T2S//MOfSft3iQYAdEwAJHXl6p7p/v4p/y4fAMCECYCkBMAwAQD5CYBhAiApATBMAEB+AmCYAEhKAAwTAJCfABgmAJISAMMEAOQnAIYJgKQEwDABAPkJgGECICkB0I/H/t3/3P/o9//14m8fX+U/3909/fH9q33sY4//N3+vT/795A//68e//7i2/v8m+/P3fPzv/N0/+L343NfO/2+m+Pfj3v6/v/bN///Xvf33+Nq/e3z9//454yfe//m85rn//j3j/29u/p+/Mfs/f7n9f9In/+/j2/3s6feP8/7U5799vvp8Xvsff3+81/25d978e5/4/1s7j/89m3/mE/ff/X9/7dv/94m/93Gf//v/0sff/6y2536LBgA4X3+aAABsggB4tH8/e3j69++b8e+S+uX/9+D8v7/2L2u/+7//M33x3a3ZfxsAwCQJgEf743v/PP0Xf+23e3p9A4BhAuDR3v9z7v39265ff//13//yO9i49wYAw/xK36OtmvS/49qP+14AMF0eAEBvJvt3366p/f8aAOCf5QEwWQH31x08C4A9D9+/3X8A8Cj/XwLAt38f3/5X29gBAvD32vPAnf4DgEf75OaH1Q5OnQCw8m5v3372QLWD3wkA4J/+Xw0A//Y/P/oO+0/f/gFgqgTAoyy+2z/4d/L95S4A3v/zC/3v4G+r2v4A4LcC4NH+m/mAtA4f21ft/9sEAPC2463uBfC307e5EAD8R/f7//H9y/2f2/vj//Xw+H/vL/k5p8/f72cA8GsB8Cif3Pyw3/s+6I39//Y/6/H3j6e6H+S//2+/f+f/zI+d9O37s18/f3v6Dvh//u7k//XJm4+m/3s5/pXvY89/s+r5b/X/Xo7/5d/P9S//9p1f/1z+v8n+fNznD48/nvv2+/f7HQCmSAAAAAASEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAdEgAA0CEBAAAd+m/iInE1g7i4twAAAABJRU5ErkJggg==";
         const startUrl = location.href.split("#")[0].split("?")[0];
         const scopeUrl = new URL(".", startUrl).href;
         const addLink = (rel, href, sizes = "") => {
@@ -58,9 +54,6 @@
       })();
     </script>
     <style>
-      /* ==========================================================
-         TOKENS — semânticos, com modo claro e escuro
-         ========================================================== */
       :root {
         color-scheme: light dark;
         --bg: #f4f6fa;
@@ -89,9 +82,7 @@
         --radius-sm: 10px;
         --shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 10px 30px rgba(15, 23, 42, 0.06);
         --nav-w: 248px;
-        font-family:
-          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, sans-serif;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       }
       @media (prefers-color-scheme: dark) {
         :root {
@@ -120,1364 +111,249 @@
           --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.25);
         }
       }
-      * {
-        box-sizing: border-box;
-      }
-      html {
-        background: var(--bg);
-        color: var(--ink);
-        -webkit-text-size-adjust: 100%;
-      }
-      body {
-        min-width: 320px;
-        min-height: 100vh;
-        margin: 0;
-        background: var(--bg);
-        font-size: 15px;
-        line-height: 1.5;
-      }
-      button,
-      input,
-      select,
-      textarea {
-        font: inherit;
-        color: inherit;
-      }
-      button {
-        border: 0;
-        background: none;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-      }
-      button:disabled {
-        cursor: not-allowed;
-      }
-      h1,
-      h2,
-      h3,
-      p {
-        margin: 0;
-      }
-      :focus-visible {
-        outline: 3px solid var(--ring);
-        outline-offset: 2px;
-      }
-      .hidden {
-        display: none !important;
-      }
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        margin: -1px;
-        padding: 0;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      .i {
-        width: 20px;
-        height: 20px;
-        flex: none;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 1.75;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-      .i.sm {
-        width: 16px;
-        height: 16px;
-      }
-      .i.lg {
-        width: 24px;
-        height: 24px;
-      }
-      /* ==========================================================
-         NAVEGAÇÃO
-         ========================================================== */
-      .sidebar {
-        position: fixed;
-        inset: 0 auto 0 0;
-        z-index: 20;
-        width: var(--nav-w);
-        padding: 20px 14px;
-        display: flex;
-        flex-direction: column;
-        gap: 26px;
-        border-right: 1px solid var(--line);
-        background: var(--surface);
-      }
-      .brand {
-        padding: 0 6px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .brand-mark {
-        width: 40px;
-        height: 40px;
-        flex: none;
-        display: grid;
-        place-items: center;
-        border-radius: 12px;
-        background: var(--primary);
-        color: var(--on-primary);
-      }
-      .brand-copy strong {
-        display: block;
-        font-size: 16px;
-        letter-spacing: -0.01em;
-      }
-      .brand-copy small {
-        color: var(--muted);
-        font-size: 12px;
-      }
-      .side-nav {
-        display: grid;
-        gap: 4px;
-      }
-      .nav-button {
-        width: 100%;
-        min-height: 44px;
-        padding: 0 12px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        border-radius: var(--radius-sm);
-        color: var(--ink-2);
-        font-size: 14px;
-        font-weight: 600;
-        text-align: left;
-        transition: background 160ms ease, color 160ms ease;
-      }
-      .nav-button:hover {
-        background: var(--surface-2);
-      }
-      .nav-button[aria-current="page"] {
-        background: var(--accent-soft);
-        color: var(--accent-ink);
-      }
-      .sidebar-foot {
-        margin-top: auto;
-        display: grid;
-        gap: 8px;
-      }
-      .conn {
-        min-height: 44px;
-        padding: 8px 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-sm);
-        font-size: 13px;
-      }
-      .conn > span:last-child {
-        min-width: 0;
-        display: grid;
-      }
-      .conn strong {
-        font-size: 13px;
-      }
-      .conn small {
-        overflow: hidden;
-        color: var(--muted);
-        font-size: 12px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .conn-dot {
-        width: 10px;
-        height: 10px;
-        flex: none;
-        border-radius: 50%;
-        background: var(--muted);
-      }
-      .conn[data-state="online"] .conn-dot {
-        background: var(--accent);
-      }
-      .conn[data-state="error"] .conn-dot {
-        background: var(--danger);
-      }
-      .mobile-header,
-      .bottom-nav,
-      .fab {
-        display: none;
-      }
-      .shell {
-        margin-left: var(--nav-w);
-      }
-      main {
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 28px 32px 64px;
-      }
-      /* ==========================================================
-         COMPONENTES
-         ========================================================== */
-      .topbar {
-        margin-bottom: 24px;
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 16px;
-      }
-      .eyebrow {
-        margin-bottom: 4px;
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      h1 {
-        font-size: clamp(24px, 3vw, 32px);
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        line-height: 1.15;
-      }
-      h1:focus {
-        outline: none;
-      }
-      h2 {
-        font-size: 17px;
-        font-weight: 700;
-        letter-spacing: -0.01em;
-      }
-      .top-actions,
-      .dialog-actions {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .button {
-        min-height: 44px;
-        padding: 0 16px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        border: 1px solid transparent;
-        border-radius: var(--radius-sm);
-        font-size: 14px;
-        font-weight: 600;
-        white-space: nowrap;
-        transition: background 160ms ease, border-color 160ms ease, opacity 160ms ease;
-      }
-      .button.primary {
-        background: var(--primary);
-        color: var(--on-primary);
-      }
-      .button.primary:hover {
-        opacity: 0.88;
-      }
-      .button.accent {
-        background: var(--accent);
-        color: var(--on-accent);
-      }
-      .button.accent:hover {
-        opacity: 0.9;
-      }
-      .button.light {
-        background: #ffffff;
-        color: #0f172a;
-      }
-      .button.secondary {
-        border-color: var(--line);
-        background: var(--surface);
-        color: var(--ink);
-      }
-      .button.secondary:hover {
-        background: var(--surface-2);
-      }
-      .button.danger {
-        border-color: var(--danger);
-        color: var(--danger);
-      }
-      .button.danger:hover {
-        background: var(--danger-soft);
-      }
-      .button:disabled {
-        opacity: 0.55;
-      }
-      .icon-button {
-        width: 44px;
-        height: 44px;
-        flex: none;
-        display: inline-grid;
-        place-items: center;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-sm);
-        background: var(--surface);
-        color: var(--ink);
-      }
-      .icon-button:hover {
-        background: var(--surface-2);
-      }
-      .panel {
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: var(--surface);
-      }
-      .panel-heading {
-        padding: 18px 20px 14px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 12px;
-        border-bottom: 1px solid var(--line);
-      }
-      .text-link {
-        min-height: 44px;
-        padding: 0 4px;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        color: var(--accent-ink);
-        font-size: 14px;
-        font-weight: 600;
-      }
-      .text-link:hover {
-        text-decoration: underline;
-      }
-      .view {
-        display: none;
-      }
-      .view.active {
-        display: block;
-        animation: reveal 200ms ease;
-      }
-      @keyframes reveal {
-        from {
-          opacity: 0;
-          transform: translateY(4px);
-        }
-      }
-      .loading {
-        min-height: 300px;
-        display: grid;
-        place-items: center;
-        color: var(--muted);
-        text-align: center;
-      }
-      .spinner {
-        width: 30px;
-        height: 30px;
-        margin: 0 auto 12px;
-        border: 3px solid var(--line);
-        border-top-color: var(--primary);
-        border-radius: 50%;
-        animation: spin 800ms linear infinite;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      .setup-notice {
-        margin-bottom: 18px;
-        padding: 14px 16px;
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        border: 1px solid var(--warn);
-        border-radius: var(--radius-sm);
-        background: var(--warn-soft);
-        color: var(--warn);
-        font-size: 14px;
-      }
-      .setup-notice strong {
-        display: block;
-      }
-      .setup-notice code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 13px;
-      }
-      /* Resumo */
-      .scan-banner {
-        margin-bottom: 16px;
-        padding: 22px 24px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        border-radius: var(--radius);
-        background: var(--banner);
-        color: #ffffff;
-      }
-      .scan-banner h2 {
-        margin-bottom: 4px;
-        font-size: 20px;
-      }
-      .scan-banner p {
-        max-width: 480px;
-        color: #cbd5e1;
-        font-size: 14px;
-      }
-      .summary-grid {
-        margin-bottom: 16px;
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 12px;
-      }
-      .stat {
-        padding: 16px;
-        display: grid;
-        gap: 12px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: var(--surface);
-      }
-      .stat header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        color: var(--muted);
-        font-size: 13px;
-        font-weight: 600;
-      }
-      .stat-icon {
-        width: 34px;
-        height: 34px;
-        display: grid;
-        place-items: center;
-        border-radius: 10px;
-        background: var(--surface-2);
-        color: var(--ink);
-      }
-      .stat.tone-ok .stat-icon {
-        background: var(--accent-soft);
-        color: var(--accent-ink);
-      }
-      .stat.tone-warn .stat-icon {
-        background: var(--warn-soft);
-        color: var(--warn);
-      }
-      .stat.tone-info .stat-icon {
-        background: var(--info-soft);
-        color: var(--info);
-      }
-      .stat strong {
-        font-size: 28px;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        line-height: 1;
-        font-variant-numeric: tabular-nums;
-      }
-      .stat small {
-        color: var(--muted);
-        font-size: 12px;
-      }
-      .dashboard-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-      .list {
-        display: grid;
-      }
-      .list-row {
-        min-height: 64px;
-        padding: 12px 20px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        border-top: 1px solid var(--line);
-      }
-      .list-row:first-child {
-        border-top: 0;
-      }
-      .avatar {
-        width: 40px;
-        height: 40px;
-        flex: none;
-        display: grid;
-        place-items: center;
-        border-radius: 12px;
-        background: var(--surface-2);
-        color: var(--ink-2);
-        font-size: 13px;
-        font-weight: 700;
-      }
-      .row-main {
-        min-width: 0;
-        flex: 1;
-        display: grid;
-      }
-      .row-main strong {
-        overflow: hidden;
-        font-size: 14px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .row-main small {
-        overflow: hidden;
-        color: var(--muted);
-        font-size: 13px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .row-number {
-        text-align: right;
-        font-size: 16px;
-        font-weight: 700;
-        font-variant-numeric: tabular-nums;
-      }
-      .row-number.danger {
-        color: var(--danger);
-      }
-      .move-icon {
-        width: 36px;
-        height: 36px;
-        flex: none;
-        display: grid;
-        place-items: center;
-        border-radius: 10px;
-      }
-      .move-icon.entry {
-        background: var(--accent-soft);
-        color: var(--accent-ink);
-      }
-      .move-icon.exit {
-        background: var(--warn-soft);
-        color: var(--warn);
-      }
-      .empty {
-        padding: 36px 20px;
-        display: grid;
-        justify-items: center;
-        gap: 10px;
-        color: var(--muted);
-        font-size: 14px;
-        text-align: center;
-      }
-      .empty .i {
-        width: 28px;
-        height: 28px;
-      }
-      /* Tabelas e Filtros */
-      .toolbar {
-        margin-bottom: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
-      .toolbar > p {
-        color: var(--muted);
-      }
-      .search {
-        width: min(100%, 420px);
-        min-height: 44px;
-        padding: 0 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-sm);
-        background: var(--surface);
-        color: var(--muted);
-      }
-      .search:focus-within {
-        border-color: var(--ring);
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent);
-      }
-      .search input {
-        width: 100%;
-        min-width: 0;
-        border: 0;
-        outline: 0;
-        background: transparent;
-        font-size: 15px;
-      }
-      .table-wrap {
-        overflow-x: auto;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      th {
-        padding: 12px 16px;
-        background: var(--surface-2);
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        text-align: left;
-        text-transform: uppercase;
-        white-space: nowrap;
-      }
-      td {
-        padding: 12px 16px;
-        border-top: 1px solid var(--line);
-        color: var(--ink-2);
-        font-size: 14px;
-        vertical-align: middle;
-      }
-      tbody tr:hover {
-        background: var(--surface-2);
-      }
-      td strong {
-        color: var(--ink);
-      }
-      .num {
-        font-variant-numeric: tabular-nums;
-      }
-      .product-cell {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .product-cell > div {
-        min-width: 0;
-        display: grid;
-      }
-      .product-cell strong {
-        max-width: 280px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .product-cell small {
-        color: var(--muted);
-        font-size: 13px;
-      }
-      .code {
-        padding: 4px 8px;
-        border-radius: 6px;
-        background: var(--surface-2);
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 13px;
-      }
-      .pill {
-        min-height: 26px;
-        padding: 0 10px;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        border-radius: 999px;
-        font-size: 12px;
-        font-weight: 700;
-        white-space: nowrap;
-      }
-      .pill::before {
-        content: "";
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: currentColor;
-      }
-      .pill.ok,
-      .pill.entry {
-        background: var(--accent-soft);
-        color: var(--accent-ink);
-      }
-      .pill.low,
-      .pill.exit {
-        background: var(--warn-soft);
-        color: var(--warn);
-      }
-      .pill.out {
-        background: var(--danger-soft);
-        color: var(--danger);
-      }
-      .mobile-list {
-        display: none;
-      }
-      .mobile-card {
-        padding: 14px 16px;
-        display: grid;
-        gap: 10px;
-        border-top: 1px solid var(--line);
-      }
-      .mobile-card:first-child {
-        border-top: 0;
-      }
-      .mobile-card header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .mobile-meta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-      .segmented {
-        padding: 4px;
-        display: inline-flex;
-        gap: 2px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-sm);
-        background: var(--surface);
-      }
-      .segmented button {
-        min-height: 40px;
-        padding: 0 14px;
-        border-radius: 8px;
-        color: var(--muted);
-        font-size: 14px;
-        font-weight: 600;
-      }
-      .segmented button[aria-pressed="true"] {
-        background: var(--primary);
-        color: var(--on-primary);
-      }
-      /* Fornecedores */
-      .suppliers {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-      }
-      .supplier-card {
-        padding: 18px;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: var(--surface);
-      }
-      .supplier-card header {
-        margin-bottom: 8px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-      }
-      .supplier-card h3 {
-        font-size: 16px;
-      }
-      .supplier-card > small {
-        color: var(--muted);
-        font-size: 13px;
-      }
-      .contact {
-        margin-top: 10px;
-        display: grid;
-        gap: 2px;
-      }
-      .contact a {
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        overflow: hidden;
-        color: var(--ink-2);
-        font-size: 14px;
-        text-decoration: none;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .contact a:hover {
-        color: var(--accent-ink);
-        text-decoration: underline;
-      }
-      .supplier-note {
-        margin-top: auto;
-        padding-top: 12px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-size: 13px;
-      }
-      /* Relatórios */
-      .report-grid {
-        display: grid;
-        grid-template-columns: 1.4fr 0.8fr;
-        gap: 16px;
-      }
-      .chart-panel,
-      .insights-panel {
-        padding: 22px;
-      }
-      .chart-panel > p,
-      .insights-panel > p {
-        margin-top: 2px;
-        color: var(--muted);
-        font-size: 14px;
-      }
-      .bars {
-        margin-top: 22px;
-        display: grid;
-        gap: 14px;
-      }
-      .bar-row {
-        display: grid;
-        grid-template-columns: minmax(96px, 1fr) minmax(140px, 3fr) 44px;
-        align-items: center;
-        gap: 12px;
-      }
-      .bar-label {
-        overflow: hidden;
-        font-size: 14px;
-        font-weight: 600;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .bar-track {
-        height: 12px;
-        overflow: hidden;
-        border-radius: 999px;
-        background: var(--surface-2);
-      }
-      .bar-fill {
-        display: block;
-        height: 100%;
-        border-radius: inherit;
-        background: var(--accent);
-      }
-      .bar-value {
-        font-size: 14px;
-        font-weight: 700;
-        text-align: right;
-        font-variant-numeric: tabular-nums;
-      }
-      .insights {
-        margin-top: 18px;
-        display: grid;
-        gap: 10px;
-      }
-      .insight {
-        padding: 14px;
-        border-radius: var(--radius-sm);
-        background: var(--surface-2);
-      }
-      .insight strong {
-        display: block;
-        font-size: 14px;
-      }
-      .insight p {
-        margin-top: 2px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-      /* Diálogos e formulários */
-      dialog {
-        width: min(calc(100% - 28px), 640px);
-        max-height: calc(100dvh - 28px);
-        padding: 0;
-        overflow: auto;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: var(--surface);
-        color: var(--ink);
-        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
-      }
-      dialog::backdrop {
-        background: var(--scrim);
-        backdrop-filter: blur(4px);
-      }
-      .dialog-header {
-        padding: 20px 24px 8px;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 16px;
-      }
-      .dialog-header h2 {
-        font-size: 21px;
-      }
-      .form-grid {
-        padding: 12px 24px 8px;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-      }
-      .field {
-        display: grid;
-        align-content: start;
-        gap: 6px;
-      }
-      .field.wide {
-        grid-column: span 2;
-      }
-      .field > span {
-        color: var(--ink-2);
-        font-size: 13px;
-        font-weight: 600;
-      }
-      .field small,
-      .hint {
-        color: var(--muted);
-        font-size: 12px;
-      }
-      .field input,
-      .field select,
-      .field textarea,
-      .manual-code input {
-        width: 100%;
-        min-height: 44px;
-        padding: 9px 12px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-sm);
-        background: var(--surface);
-        color: var(--ink);
-        font-size: 15px;
-      }
-      .field input::placeholder,
-      .field textarea::placeholder {
-        color: var(--muted);
-        opacity: 0.8;
-      }
-      .field input[readonly] {
-        background: var(--surface-2);
-        color: var(--muted);
-      }
-      .field input:focus,
-      .field select:focus,
-      .field textarea:focus {
-        border-color: var(--ring);
-        outline: 0;
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent);
-      }
-      .field textarea {
-        resize: vertical;
-      }
-      .input-action {
-        display: flex;
-        gap: 8px;
-      }
-      .input-action input,
-      .input-action select {
-        min-width: 0;
-        flex: 1;
-      }
-      .form-error {
-        margin: 4px 24px 0;
-        padding: 10px 12px;
-        border-radius: var(--radius-sm);
-        background: var(--danger-soft);
-        color: var(--danger);
-        font-size: 14px;
-        font-weight: 600;
-      }
-      .dialog-actions {
-        margin-top: 12px;
-        padding: 16px 24px 20px;
-        justify-content: flex-end;
-        border-top: 1px solid var(--line);
-      }
-      .dialog-actions .spacer {
-        margin-right: auto;
-      }
-      .movement-types {
-        padding: 8px 24px 4px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-      .movement-types label {
-        cursor: pointer;
-      }
-      .movement-types input {
-        position: absolute;
-        opacity: 0;
-        pointer-events: none;
-      }
-      .movement-types .option {
-        min-height: 64px;
-        padding: 10px 12px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-sm);
-        background: var(--surface);
-      }
-      .movement-types .option .move-icon {
-        background: var(--surface-2);
-        color: var(--ink-2);
-      }
-      .movement-types .option div {
-        display: grid;
-      }
-      .movement-types .option small {
-        color: var(--muted);
-        font-size: 13px;
-      }
-      .movement-types input:checked + .option {
-        border-color: var(--accent);
-        background: var(--accent-soft);
-        box-shadow: inset 0 0 0 1px var(--accent);
-      }
-      .movement-types input:checked + .option .move-icon {
-        background: var(--accent);
-        color: var(--on-accent);
-      }
-      .movement-types input:focus-visible + .option {
-        outline: 3px solid var(--ring);
-        outline-offset: 2px;
-      }
-      .stock-preview {
-        margin: 4px 24px 0;
-        padding: 12px 14px;
-        border-radius: var(--radius-sm);
-        background: var(--surface-2);
-        color: var(--ink-2);
-        font-size: 14px;
-      }
-      .stock-preview.bad {
-        background: var(--danger-soft);
-        color: var(--danger);
-      }
-      .auth-copy {
-        padding: 0 24px;
-        color: var(--muted);
-        font-size: 14px;
-      }
-      /* Leitor: sempre escuro para facilitar a leitura da câmera */
-      .scanner-dialog {
-        border-color: #263350;
-        background: #0f172a;
-        color: #ffffff;
-      }
-      .scanner-dialog .eyebrow {
-        color: #a3b1c6;
-      }
-      .scanner-dialog .icon-button {
-        border-color: #334155;
-        background: #1e293b;
-        color: #ffffff;
-      }
-      .scanner-viewport {
-        position: relative;
-        width: calc(100% - 36px);
-        aspect-ratio: 4 / 3;
-        margin: 8px 18px 0;
-        overflow: hidden;
-        border-radius: 14px;
-        background: #020617;
-      }
-      .scanner-viewport video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .portable-scanner {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background: #020617;
-      }
-      .portable-scanner > div,
-      .portable-scanner video,
-      .portable-scanner canvas {
-        width: 100% !important;
-        height: 100% !important;
-      }
-      .portable-scanner video {
-        object-fit: cover !important;
-      }
-      .scanner-viewport.portable-active .scanner-frame {
-        display: none;
-      }
-      .scanner-frame {
-        position: absolute;
-        inset: 50% auto auto 50%;
-        width: 78%;
-        height: 42%;
-        border: 3px solid #34d399;
-        border-radius: 12px;
-        transform: translate(-50%, -50%);
-        box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.3);
-      }
-      .scanner-frame::after {
-        content: "";
-        position: absolute;
-        left: 7%;
-        right: 7%;
-        top: 8%;
-        height: 2px;
-        background: #34d399;
-        box-shadow: 0 0 12px #34d399;
-        animation: scan 2s ease-in-out infinite;
-      }
-      @keyframes scan {
-        50% {
-          top: 90%;
-        }
-      }
-      .scanner-status {
-        min-height: 20px;
-        margin: 14px 22px;
-        color: #cbd5e1;
-        font-size: 14px;
-        text-align: center;
-      }
-      .manual-code {
-        padding: 16px 22px 22px;
-        display: grid;
-        gap: 8px;
-        border-top: 1px solid #263350;
-      }
-      .manual-code > span {
-        color: #cbd5e1;
-        font-size: 13px;
-        font-weight: 600;
-      }
-      .manual-code > div {
-        display: flex;
-        gap: 8px;
-      }
-      .manual-code input {
-        border-color: #334155;
-        background: #1e293b;
-        color: #ffffff;
-      }
-      .toast-region {
-        position: fixed;
-        z-index: 100;
-        right: 20px;
-        bottom: 20px;
-        display: grid;
-        gap: 8px;
-      }
-      .toast {
-        width: min(calc(100vw - 32px), 380px);
-        min-height: 52px;
-        padding: 12px 14px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border-radius: var(--radius-sm);
-        background: var(--primary);
-        color: var(--on-primary);
-        box-shadow: var(--shadow);
-        font-size: 14px;
-        animation: toast-in 180ms ease;
-      }
-      .toast.error {
-        background: var(--danger);
-        color: #ffffff;
-      }
-      @keyframes toast-in {
-        from {
-          opacity: 0;
-          transform: translateY(8px);
-        }
-      }
-      /* ==========================================================
-         RESPONSIVO
-         ========================================================== */
-      @media (max-width: 1100px) {
-        .summary-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-        .suppliers {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
+      * { box-sizing: border-box; }
+      html { background: var(--bg); color: var(--ink); -webkit-text-size-adjust: 100%; }
+      body { min-width: 320px; min-height: 100vh; margin: 0; background: var(--bg); font-size: 15px; line-height: 1.5; }
+      button, input, select, textarea { font: inherit; color: inherit; }
+      button { border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+      button:disabled { cursor: not-allowed; }
+      h1, h2, h3, p { margin: 0; }
+      :focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+      .hidden { display: none !important; }
+      .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+      .i { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+      .i.sm { width: 16px; height: 16px; }
+      .i.lg { width: 24px; height: 24px; }
+      .sidebar { position: fixed; inset: 0 auto 0 0; z-index: 20; width: var(--nav-w); padding: 20px 14px; display: flex; flex-direction: column; gap: 26px; border-right: 1px solid var(--line); background: var(--surface); }
+      .brand { padding: 0 6px; display: flex; align-items: center; gap: 10px; }
+      .brand-mark { width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 12px; background: var(--primary); color: var(--on-primary); }
+      .brand-copy strong { display: block; font-size: 16px; letter-spacing: -0.01em; }
+      .brand-copy small { color: var(--muted); font-size: 12px; }
+      .side-nav { display: grid; gap: 4px; }
+      .nav-button { width: 100%; min-height: 44px; padding: 0 12px; display: flex; align-items: center; gap: 12px; border-radius: var(--radius-sm); color: var(--ink-2); font-size: 14px; font-weight: 600; text-align: left; transition: background 160ms ease, color 160ms ease; }
+      .nav-button:hover { background: var(--surface-2); }
+      .nav-button[aria-current="page"] { background: var(--accent-soft); color: var(--accent-ink); }
+      .sidebar-foot { margin-top: auto; display: grid; gap: 8px; }
+      .conn { min-height: 44px; padding: 8px 12px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: 13px; }
+      .conn > span:last-child { min-width: 0; display: grid; }
+      .conn strong { font-size: 13px; }
+      .conn small { overflow: hidden; color: var(--muted); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+      .conn-dot { width: 10px; height: 10px; flex: none; border-radius: 50%; background: var(--muted); }
+      .conn[data-state="online"] .conn-dot { background: var(--accent); }
+      .conn[data-state="error"] .conn-dot { background: var(--danger); }
+      .mobile-header, .bottom-nav, .fab { display: none; }
+      .shell { margin-left: var(--nav-w); }
+      main { max-width: 1180px; margin: 0 auto; padding: 28px 32px 64px; }
+      .topbar { margin-bottom: 24px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+      .eyebrow { margin-bottom: 4px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+      h1 { font-size: clamp(24px, 3vw, 32px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+      h1:focus { outline: none; }
+      h2 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+      .top-actions, .dialog-actions { display: flex; align-items: center; gap: 8px; }
+      .button { min-height: 44px; padding: 0 16px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid transparent; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 160ms ease, border-color 160ms ease, opacity 160ms ease; }
+      .button.primary { background: var(--primary); color: var(--on-primary); }
+      .button.primary:hover { opacity: 0.88; }
+      .button.accent { background: var(--accent); color: var(--on-accent); }
+      .button.accent:hover { opacity: 0.9; }
+      .button.light { background: #ffffff; color: #0f172a; }
+      .button.secondary { border-color: var(--line); background: var(--surface); color: var(--ink); }
+      .button.secondary:hover { background: var(--surface-2); }
+      .button.danger { border-color: var(--danger); color: var(--danger); }
+      .button.danger:hover { background: var(--danger-soft); }
+      .button:disabled { opacity: 0.55; }
+      .icon-button { width: 44px; height: 44px; flex: none; display: inline-grid; place-items: center; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
+      .icon-button:hover { background: var(--surface-2); }
+      .panel { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+      .panel-heading { padding: 18px 20px 14px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); }
+      .text-link { min-height: 44px; padding: 0 4px; display: inline-flex; align-items: center; gap: 4px; color: var(--accent-ink); font-size: 14px; font-weight: 600; }
+      .text-link:hover { text-decoration: underline; }
+      .view { display: none; }
+      .view.active { display: block; animation: reveal 200ms ease; }
+      @keyframes reveal { from { opacity: 0; transform: translateY(4px); } }
+      .loading { min-height: 300px; display: grid; place-items: center; color: var(--muted); text-align: center; }
+      .spinner { width: 30px; height: 30px; margin: 0 auto 12px; border: 3px solid var(--line); border-top-color: var(--primary); border-radius: 50%; animation: spin 800ms linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .setup-notice { margin-bottom: 18px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; border: 1px solid var(--warn); border-radius: var(--radius-sm); background: var(--warn-soft); color: var(--warn); font-size: 14px; }
+      .setup-notice strong { display: block; }
+      .setup-notice code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+      .scan-banner { margin-bottom: 16px; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-radius: var(--radius); background: var(--banner); color: #ffffff; }
+      .scan-banner h2 { margin-bottom: 4px; font-size: 20px; }
+      .scan-banner p { max-width: 480px; color: #cbd5e1; font-size: 14px; }
+      .summary-grid { margin-bottom: 16px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+      .stat { padding: 16px; display: grid; gap: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+      .stat header { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 13px; font-weight: 600; }
+      .stat-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: var(--surface-2); color: var(--ink); }
+      .stat.tone-ok .stat-icon { background: var(--accent-soft); color: var(--accent-ink); }
+      .stat.tone-warn .stat-icon { background: var(--warn-soft); color: var(--warn); }
+      .stat.tone-info .stat-icon { background: var(--info-soft); color: var(--info); }
+      .stat strong { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+      .stat small { color: var(--muted); font-size: 12px; }
+      .dashboard-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      .list { display: grid; }
+      .list-row { min-height: 64px; padding: 12px 20px; display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--line); }
+      .list-row:first-child { border-top: 0; }
+      .avatar { width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 12px; background: var(--surface-2); color: var(--ink-2); font-size: 13px; font-weight: 700; }
+      .row-main { min-width: 0; flex: 1; display: grid; }
+      .row-main strong { overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+      .row-main small { overflow: hidden; color: var(--muted); font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+      .row-number { text-align: right; font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .row-number.danger { color: var(--danger); }
+      .move-icon { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: 10px; }
+      .move-icon.entry { background: var(--accent-soft); color: var(--accent-ink); }
+      .move-icon.exit { background: var(--warn-soft); color: var(--warn); }
+      .empty { padding: 36px 20px; display: grid; justify-items: center; gap: 10px; color: var(--muted); font-size: 14px; text-align: center; }
+      .empty .i { width: 28px; height: 28px; }
+      .toolbar { margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+      .toolbar > p { color: var(--muted); }
+      .search { width: min(100%, 420px); min-height: 44px; padding: 0 12px; display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--muted); }
+      .search:focus-within { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent); }
+      .search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 15px; }
+      .table-wrap { overflow-x: auto; }
+      table { width: 100%; border-collapse: collapse; }
+      th { padding: 12px 16px; background: var(--surface-2); color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-align: left; text-transform: uppercase; white-space: nowrap; }
+      td { padding: 12px 16px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 14px; vertical-align: middle; }
+      tbody tr:hover { background: var(--surface-2); }
+      td strong { color: var(--ink); }
+      .num { font-variant-numeric: tabular-nums; }
+      .product-cell { display: flex; align-items: center; gap: 12px; }
+      .product-cell > div { min-width: 0; display: grid; }
+      .product-cell strong { max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .product-cell small { color: var(--muted); font-size: 13px; }
+      .code { padding: 4px 8px; border-radius: 6px; background: var(--surface-2); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+      .pill { min-height: 26px; padding: 0 10px; display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+      .pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+      .pill.ok, .pill.entry { background: var(--accent-soft); color: var(--accent-ink); }
+      .pill.low, .pill.exit { background: var(--warn-soft); color: var(--warn); }
+      .pill.out { background: var(--danger-soft); color: var(--danger); }
+      .mobile-list { display: none; }
+      .mobile-card { padding: 14px 16px; display: grid; gap: 10px; border-top: 1px solid var(--line); }
+      .mobile-card:first-child { border-top: 0; }
+      .mobile-card header { display: flex; align-items: center; gap: 12px; }
+      .mobile-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 13px; }
+      .segmented { padding: 4px; display: inline-flex; gap: 2px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
+      .segmented button { min-height: 40px; padding: 0 14px; border-radius: 8px; color: var(--muted); font-size: 14px; font-weight: 600; }
+      .segmented button[aria-pressed="true"] { background: var(--primary); color: var(--on-primary); }
+      .suppliers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+      .supplier-card { padding: 18px; display: flex; flex-direction: column; gap: 4px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+      .supplier-card header { margin-bottom: 8px; display: flex; align-items: flex-start; justify-content: space-between; }
+      .supplier-card h3 { font-size: 16px; }
+      .supplier-card > small { color: var(--muted); font-size: 13px; }
+      .contact { margin-top: 10px; display: grid; gap: 2px; }
+      .contact a { min-height: 44px; display: flex; align-items: center; gap: 8px; overflow: hidden; color: var(--ink-2); font-size: 14px; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; }
+      .contact a:hover { color: var(--accent-ink); text-decoration: underline; }
+      .supplier-note { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+      .report-grid { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 16px; }
+      .chart-panel, .insights-panel { padding: 22px; }
+      .chart-panel > p, .insights-panel > p { margin-top: 2px; color: var(--muted); font-size: 14px; }
+      .bars { margin-top: 22px; display: grid; gap: 14px; }
+      .bar-row { display: grid; grid-template-columns: minmax(96px, 1fr) minmax(140px, 3fr) 44px; align-items: center; gap: 12px; }
+      .bar-label { overflow: hidden; font-size: 14px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+      .bar-track { height: 12px; overflow: hidden; border-radius: 999px; background: var(--surface-2); }
+      .bar-fill { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
+      .bar-value { font-size: 14px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+      .insights { margin-top: 18px; display: grid; gap: 10px; }
+      .insight { padding: 14px; border-radius: var(--radius-sm); background: var(--surface-2); }
+      .insight strong { display: block; font-size: 14px; }
+      .insight p { margin-top: 2px; color: var(--muted); font-size: 13px; }
+      dialog { width: min(calc(100% - 28px), 640px); max-height: calc(100dvh - 28px); padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--ink); box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3); }
+      dialog::backdrop { background: var(--scrim); backdrop-filter: blur(4px); }
+      .dialog-header { padding: 20px 24px 8px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+      .dialog-header h2 { font-size: 21px; }
+      .form-grid { padding: 12px 24px 8px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .field { display: grid; align-content: start; gap: 6px; }
+      .field.wide { grid-column: span 2; }
+      .field > span { color: var(--ink-2); font-size: 13px; font-weight: 600; }
+      .field small, .hint { color: var(--muted); font-size: 12px; }
+      .field input, .field select, .field textarea, .manual-code input { width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); font-size: 15px; }
+      .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: 0.8; }
+      .field input[readonly] { background: var(--surface-2); color: var(--muted); }
+      .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--ring); outline: 0; box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent); }
+      .field textarea { resize: vertical; }
+      .input-action { display: flex; gap: 8px; }
+      .input-action input, .input-action select { min-width: 0; flex: 1; }
+      .form-error { margin: 4px 24px 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--danger-soft); color: var(--danger); font-size: 14px; font-weight: 600; }
+      .dialog-actions { margin-top: 12px; padding: 16px 24px 20px; justify-content: flex-end; border-top: 1px solid var(--line); }
+      .dialog-actions .spacer { margin-right: auto; }
+      .movement-types { padding: 8px 24px 4px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .movement-types label { cursor: pointer; }
+      .movement-types input { position: absolute; opacity: 0; pointer-events: none; }
+      .movement-types .option { min-height: 64px; padding: 10px 12px; display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
+      .movement-types .option .move-icon { background: var(--surface-2); color: var(--ink-2); }
+      .movement-types .option div { display: grid; }
+      .movement-types .option small { color: var(--muted); font-size: 13px; }
+      .movement-types input:checked + .option { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+      .movement-types input:checked + .option .move-icon { background: var(--accent); color: var(--on-accent); }
+      .movement-types input:focus-visible + .option { outline: 3px solid var(--ring); outline-offset: 2px; }
+      .stock-preview { margin: 4px 24px 0; padding: 12px 14px; border-radius: var(--radius-sm); background: var(--surface-2); color: var(--ink-2); font-size: 14px; }
+      .stock-preview.bad { background: var(--danger-soft); color: var(--danger); }
+      .auth-copy { padding: 0 24px; color: var(--muted); font-size: 14px; }
+      .scanner-dialog { border-color: #263350; background: #0f172a; color: #ffffff; }
+      .scanner-dialog .eyebrow { color: #a3b1c6; }
+      .scanner-dialog .icon-button { border-color: #334155; background: #1e293b; color: #ffffff; }
+      .scanner-viewport { position: relative; width: calc(100% - 36px); aspect-ratio: 4 / 3; margin: 8px 18px 0; overflow: hidden; border-radius: 14px; background: #020617; }
+      .scanner-viewport video { width: 100%; height: 100%; object-fit: cover; }
+      .portable-scanner { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; background: #020617; }
+      .portable-scanner > div, .portable-scanner video, .portable-scanner canvas { width: 100% !important; height: 100% !important; }
+      .portable-scanner video { object-fit: cover !important; }
+      .scanner-viewport.portable-active .scanner-frame { display: none; }
+      .scanner-frame { position: absolute; inset: 50% auto auto 50%; width: 78%; height: 42%; border: 3px solid #34d399; border-radius: 12px; transform: translate(-50%, -50%); box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.3); }
+      .scanner-frame::after { content: ""; position: absolute; left: 7%; right: 7%; top: 8%; height: 2px; background: #34d399; box-shadow: 0 0 12px #34d399; animation: scan 2s ease-in-out infinite; }
+      @keyframes scan { 50% { top: 90%; } }
+      .scanner-status { min-height: 20px; margin: 14px 22px; color: #cbd5e1; font-size: 14px; text-align: center; }
+      .manual-code { padding: 16px 22px 22px; display: grid; gap: 8px; border-top: 1px solid #263350; }
+      .manual-code > span { color: #cbd5e1; font-size: 13px; font-weight: 600; }
+      .manual-code > div { display: flex; gap: 8px; }
+      .manual-code input { border-color: #334155; background: #1e293b; color: #ffffff; }
+      .toast-region { position: fixed; z-index: 100; right: 20px; bottom: 20px; display: grid; gap: 8px; }
+      .toast { width: min(calc(100vw - 32px), 380px); min-height: 52px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; border-radius: var(--radius-sm); background: var(--primary); color: var(--on-primary); box-shadow: var(--shadow); font-size: 14px; animation: toast-in 180ms ease; }
+      .toast.error { background: var(--danger); color: #ffffff; }
+      @keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
+      @media (max-width: 1100px) { .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .suppliers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
       @media (max-width: 900px) {
-        .sidebar {
-          display: none;
-        }
-        .shell {
-          margin-left: 0;
-        }
-        .mobile-header {
-          position: sticky;
-          top: 0;
-          z-index: 30;
-          min-height: calc(60px + env(safe-area-inset-top));
-          padding: env(safe-area-inset-top) calc(14px + env(safe-area-inset-right)) 0
-            calc(14px + env(safe-area-inset-left));
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 10px;
-          border-bottom: 1px solid var(--line);
-          background: color-mix(in srgb, var(--surface) 92%, transparent);
-          backdrop-filter: blur(14px);
-        }
-        .mobile-header .brand {
-          padding: 0;
-        }
-        .mobile-header .conn {
-          min-height: 36px;
-          padding: 4px 10px;
-        }
-        .mobile-header .conn small {
-          display: none;
-        }
-        .mobile-actions {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        main {
-          padding: 20px calc(14px + env(safe-area-inset-right))
-            calc(150px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left));
-        }
-        .top-actions {
-          display: none;
-        }
-        .bottom-nav {
-          position: fixed;
-          inset: auto 0 0;
-          z-index: 40;
-          min-height: calc(64px + env(safe-area-inset-bottom));
-          padding: 4px 6px env(safe-area-inset-bottom);
-          display: grid;
-          grid-template-columns: repeat(5, 1fr);
-          border-top: 1px solid var(--line);
-          background: var(--surface);
-        }
-        .bottom-nav button {
-          min-height: 56px;
-          padding: 4px 2px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 2px;
-          border-radius: var(--radius-sm);
-          color: var(--muted);
-          font-size: 12px;
-          font-weight: 600;
-        }
-        .bottom-nav button[aria-current="page"] {
-          color: var(--accent-ink);
-        }
-        .bottom-nav button[aria-current="page"] .i {
-          stroke-width: 2.4;
-        }
-        .fab {
-          position: fixed;
-          right: calc(16px + env(safe-area-inset-right));
-          bottom: calc(80px + env(safe-area-inset-bottom));
-          z-index: 45;
-          width: 58px;
-          height: 58px;
-          display: grid;
-          place-items: center;
-          border-radius: 18px;
-          background: var(--accent);
-          color: var(--on-accent);
-          box-shadow: 0 8px 24px rgba(4, 120, 87, 0.35);
-        }
-        .scan-banner {
-          flex-direction: column;
-          align-items: stretch;
-        }
-        .dashboard-grid,
-        .report-grid {
-          grid-template-columns: 1fr;
-        }
-        .toast-region {
-          right: 14px;
-          bottom: calc(148px + env(safe-area-inset-bottom));
-        }
+        .sidebar { display: none; }
+        .shell { margin-left: 0; }
+        .mobile-header { position: sticky; top: 0; z-index: 30; min-height: calc(60px + env(safe-area-inset-top)); padding: env(safe-area-inset-top) calc(14px + env(safe-area-inset-right)) 0 calc(14px + env(safe-area-inset-left)); display: flex; align-items: center; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(14px); }
+        .mobile-header .brand { padding: 0; }
+        .mobile-header .conn { min-height: 36px; padding: 4px 10px; }
+        .mobile-header .conn small { display: none; }
+        .mobile-actions { display: flex; align-items: center; gap: 8px; }
+        main { padding: 20px calc(14px + env(safe-area-inset-right)) calc(150px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left)); }
+        .top-actions { display: none; }
+        .bottom-nav { position: fixed; inset: auto 0 0; z-index: 40; min-height: calc(64px + env(safe-area-inset-bottom)); padding: 4px 6px env(safe-area-inset-bottom); display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: var(--surface); }
+        .bottom-nav button { min-height: 56px; padding: 4px 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: var(--radius-sm); color: var(--muted); font-size: 12px; font-weight: 600; }
+        .bottom-nav button[aria-current="page"] { color: var(--accent-ink); }
+        .bottom-nav button[aria-current="page"] .i { stroke-width: 2.4; }
+        .fab { position: fixed; right: calc(16px + env(safe-area-inset-right)); bottom: calc(80px + env(safe-area-inset-bottom)); z-index: 45; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 18px; background: var(--accent); color: var(--on-accent); box-shadow: 0 8px 24px rgba(4, 120, 87, 0.35); }
+        .scan-banner { flex-direction: column; align-items: stretch; }
+        .dashboard-grid, .report-grid { grid-template-columns: 1fr; }
+        .toast-region { right: 14px; bottom: calc(148px + env(safe-area-inset-bottom)); }
       }
       @media (max-width: 700px) {
-        .table-wrap {
-          display: none;
-        }
-        .mobile-list {
-          display: grid;
-        }
-        .toolbar {
-          align-items: stretch;
-          flex-direction: column;
-        }
-        .toolbar .button,
-        .search,
-        .segmented {
-          width: 100%;
-        }
-        .segmented button {
-          flex: 1;
-        }
-        .suppliers {
-          grid-template-columns: 1fr;
-        }
-        .bar-row {
-          grid-template-columns: 90px 1fr 36px;
-          gap: 8px;
-        }
-        .stat strong {
-          font-size: 24px;
-        }
-        dialog {
-          width: 100%;
-          max-height: 94dvh;
-          margin: auto 0 0;
-          border-radius: 18px 18px 0 0;
-        }
-        .form-grid {
-          grid-template-columns: 1fr;
-          padding-inline: 18px;
-        }
-        .field.wide {
-          grid-column: auto;
-        }
-        .dialog-header,
-        .movement-types,
-        .auth-copy {
-          padding-inline: 18px;
-        }
-        .form-error,
-        .stock-preview {
-          margin-inline: 18px;
-        }
-        .dialog-actions {
-          position: sticky;
-          bottom: 0;
-          padding: 14px 18px calc(16px + env(safe-area-inset-bottom));
-          flex-wrap: wrap;
-          background: var(--surface);
-        }
-        .dialog-actions .button {
-          flex: 1;
-        }
-        .dialog-actions .spacer {
-          flex-basis: 100%;
-          margin-right: 0;
-        }
-        .field input,
-        .field select,
-        .field textarea,
-        .manual-code input {
-          font-size: 16px;
-        }
+        .table-wrap { display: none; }
+        .mobile-list { display: grid; }
+        .toolbar { align-items: stretch; flex-direction: column; }
+        .toolbar .button, .search, .segmented { width: 100%; }
+        .segmented button { flex: 1; }
+        .suppliers { grid-template-columns: 1fr; }
+        .bar-row { grid-template-columns: 90px 1fr 36px; gap: 8px; }
+        .stat strong { font-size: 24px; }
+        dialog { width: 100%; max-height: 94dvh; margin: auto 0 0; border-radius: 18px 18px 0 0; }
+        .form-grid { grid-template-columns: 1fr; padding-inline: 18px; }
+        .field.wide { grid-column: auto; }
+        .dialog-header, .movement-types, .auth-copy { padding-inline: 18px; }
+        .form-error, .stock-preview { margin-inline: 18px; }
+        .dialog-actions { position: sticky; bottom: 0; padding: 14px 18px calc(16px + env(safe-area-inset-bottom)); flex-wrap: wrap; background: var(--surface); }
+        .dialog-actions .button { flex: 1; }
+        .dialog-actions .spacer { flex-basis: 100%; margin-right: 0; }
+        .field input, .field select, .field textarea, .manual-code input { font-size: 16px; }
       }
-      @media (max-width: 480px) {
-        .mobile-header .brand-copy {
-          display: none;
-        }
-        .mobile-header {
-          gap: 8px;
-        }
-      }
-      @media (display-mode: standalone) {
-        body {
-          overscroll-behavior-y: none;
-        }
-      }
-      .app-installed [data-install] {
-        display: none !important;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
+      @media (max-width: 480px) { .mobile-header .brand-copy { display: none; } .mobile-header { gap: 8px; } }
+      @media (display-mode: standalone) { body { overscroll-behavior-y: none; } }
+      .app-installed [data-install] { display: none !important; }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
     </style>
   </head>
   <body>
-    <!-- Ícones SVG -->
     <svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
       <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z" /><path d="m3 13 9 5 9-5" /></symbol>
       <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /><path d="M10 21v-6h4v6" /></symbol>
@@ -1958,40 +834,25 @@
       </div>
     </dialog>
     <div id="toast-region" class="toast-region" aria-live="polite"></div>
+
     <script>
-      /* ==========================================================
-         CONFIGURAÇÃO PRINCIPAL
-         Substitua o texto entre aspas pela URL /exec da implantação.
-         A senha de acesso NÃO fica aqui: é definida na planilha
-         (Configuracion > ACCESS_PIN) e solicitada ao abrir o app.
-         ========================================================== */
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby1HW-Ow8RxktryghvY8uEQqP_KubDK1pTxBWwrFDIolZneaQ6Cjv5mmFpOkCau82Jk/exec";
       const CONFIGURED =
         SCRIPT_URL.startsWith("https://script.google.com/macros/s/") &&
         SCRIPT_URL.endsWith("/exec");
+
       const store = {
         get(key) {
-          try {
-            return localStorage.getItem(key) || "";
-          } catch {
-            return "";
-          }
+          try { return localStorage.getItem(key) || ""; } catch { return ""; }
         },
         set(key, value) {
-          try {
-            localStorage.setItem(key, value);
-          } catch {
-            /* Sem suporte a armazenamento: a senha será pedida a cada visita. */
-          }
+          try { localStorage.setItem(key, value); } catch {}
         },
         remove(key) {
-          try {
-            localStorage.removeItem(key);
-          } catch {
-            /* Nada a limpar. */
-          }
+          try { localStorage.removeItem(key); } catch {}
         }
       };
+
       const emptyData = () => ({
         products: [],
         suppliers: [],
@@ -2001,6 +862,7 @@
         topSelling: [],
         settings: { businessName: "Meu Negócio", currency: "BRL" }
       });
+
       const state = {
         route: "dashboard",
         productSearch: "",
@@ -2008,8 +870,10 @@
         session: { pin: store.get("stockflow.pin"), user: store.get("stockflow.user") },
         data: emptyData()
       };
+
       const $ = (selector, root = document) => root.querySelector(selector);
       const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
       const elements = {
         loading: $("#loading"),
         setupNotice: $("#setup-notice"),
@@ -2053,6 +917,7 @@
         manualCode: $("#manual-code"),
         toastRegion: $("#toast-region")
       };
+
       let deferredInstallPrompt = null;
       const titles = {
         dashboard: "Resumo",
@@ -2061,6 +926,7 @@
         suppliers: "Fornecedores",
         reports: "Relatórios"
       };
+
       let cameraStream = null;
       let detector = null;
       let scanFrame = null;
@@ -2074,6 +940,7 @@
         "https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js",
         "https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"
       ];
+
       function escapeHtml(value) {
         return String(value ?? "")
           .replaceAll("&", "&")
@@ -2082,13 +949,16 @@
           .replaceAll('"', """)
           .replaceAll("'", "'");
       }
+
       function icon(name, size = "") {
         return `<svg class="i ${size}" aria-hidden="true"><use href="#i-${name}"/></svg>`;
       }
+
       function number(value, fallback = 0) {
         const parsed = Number(value);
         return Number.isFinite(parsed) ? parsed : fallback;
       }
+
       function initials(value) {
         return String(value || "?")
           .trim()
@@ -2098,6 +968,7 @@
           .join("")
           .toUpperCase();
       }
+
       function money(value) {
         const currency = state.data.settings?.currency || "BRL";
         try {
@@ -2110,6 +981,7 @@
           return "R$ " + number(value).toLocaleString("pt-BR");
         }
       }
+
       function dateText(value, time = false) {
         const date = new Date(value);
         if (Number.isNaN(date.getTime())) return "—";
@@ -2120,17 +992,21 @@
           ...(time ? { hour: "2-digit", minute: "2-digit" } : {})
         }).format(date);
       }
+
       function newId() {
         return globalThis.crypto?.randomUUID
           ? crypto.randomUUID()
           : Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
       }
+
       function productById(id) {
         return state.data.products.find((product) => product.id === id);
       }
+
       function supplierById(id) {
         return state.data.suppliers.find((supplier) => supplier.id === id);
       }
+
       function stockStatus(product) {
         const stock = number(product.stock);
         const minimum = number(product.stockMinimo);
@@ -2138,6 +1014,7 @@
         if (minimum > 0 && stock <= minimum) return { label: "Estoque baixo", className: "low" };
         return { label: "Disponível", className: "ok" };
       }
+
       function showToast(message, type = "success") {
         const toast = document.createElement("div");
         toast.className = "toast" + (type === "error" ? " error" : "");
@@ -2146,18 +1023,38 @@
         elements.toastRegion.append(toast);
         setTimeout(() => toast.remove(), type === "error" ? 7000 : 4200);
       }
+
       function openDialog(dialog) {
-        if (!dialog.open) dialog.showModal();
+        if (dialog && !dialog.open) {
+          if (typeof dialog.showModal === "function") {
+            dialog.showModal();
+          } else {
+            dialog.setAttribute("open", "");
+          }
+        }
       }
+
+      function closeDialog(dialog) {
+        if (dialog && dialog.open) {
+          if (typeof dialog.close === "function") {
+            dialog.close();
+          } else {
+            dialog.removeAttribute("open");
+          }
+        }
+      }
+
       function isInstalled() {
         return (
           window.matchMedia("(display-mode: standalone)").matches ||
           window.navigator.standalone === true
         );
       }
+
       function syncInstallState() {
         document.body.classList.toggle("app-installed", isInstalled());
       }
+
       async function installApp() {
         if (isInstalled()) {
           showToast("O StockFlow já está instalado neste dispositivo.");
@@ -2177,6 +1074,7 @@
             : "No Chrome: abra o menu ⋮ e escolha “Instalar aplicativo”."
         );
       }
+
       function setConnection(status, detail) {
         $$(".conn").forEach((box) => {
           box.dataset.state = status;
@@ -2186,6 +1084,7 @@
             detail || (status === "online" ? "Google Sheets" : "Verifique a configuração");
         });
       }
+
       function setBusy(form, busy) {
         $$("button, input, select, textarea", form).forEach((control) => {
           control.disabled = busy;
@@ -2200,24 +1099,24 @@
           }
         }
       }
+
       function showFormError(form, message) {
         const box = $(".form-error", form);
         if (!box) return;
         box.textContent = message || "";
         box.classList.toggle("hidden", !message);
       }
-      /* ==========================================================
-         API
-         ========================================================== */
+
       function isAuthError(error) {
         return ["AUTH", "AUTH_LOCKED", "AUTH_SETUP"].includes(error?.code);
       }
+
       async function api(action, payload = {}) {
         if (!CONFIGURED) {
           throw new Error("Primeiro cole a URL /exec do Apps Script no arquivo index.html.");
         }
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 30000);
+        const timeout = setTimeout(() => controller.abort(), 25000);
         try {
           const response = await fetch(SCRIPT_URL, {
             method: "POST",
@@ -2226,49 +1125,47 @@
             body: JSON.stringify({ action, pin: state.session.pin, ...payload }),
             signal: controller.signal
           });
+
           const text = await response.text();
           let result;
           try {
             result = JSON.parse(text);
           } catch {
-            throw new Error(
-              "O Apps Script não retornou um JSON válido. Verifique as permissões da implantação web."
-            );
+            throw new Error("O Apps Script retornou uma resposta inválida. Verifique a implantação web.");
           }
+
           if (!result.ok) {
+            throw error;
             const error = new Error(result.error || "A operação não pôde ser concluída.");
             error.code = result.code;
-            throw error;
           }
           return result.data;
         } catch (error) {
           if (error.name === "AbortError") {
-            throw new Error(
-              "O Google Sheets demorou para responder. Você pode tentar novamente sem risco de duplicar dados."
-            );
+            throw new Error("O Google Sheets demorou para responder. Tente novamente.");
           }
           throw error;
         } finally {
           clearTimeout(timeout);
         }
       }
+
       async function refresh() {
         const data = await api("bootstrap");
         state.data = { ...emptyData(), ...data };
         renderAll();
       }
-      /* ==========================================================
-         AUTENTICAÇÃO
-         ========================================================== */
+
       function openAuth(message = "") {
+        elements.loading.classList.add("hidden");
         elements.authError.textContent = message;
         elements.authError.classList.toggle("hidden", !message);
         elements.authForm.elements.pin.value = "";
-        elements.authForm.elements.user.value = state.session.user;
-        elements.loading.classList.add("hidden");
+        elements.authForm.elements.user.value = state.session.user || "";
         openDialog(elements.authDialog);
-        elements.authForm.elements.pin.focus();
+        setTimeout(() => elements.authForm.elements.pin.focus(), 100);
       }
+
       function logout() {
         state.session.pin = "";
         store.remove("stockflow.pin");
@@ -2277,9 +1174,7 @@
         setConnection("idle");
         openAuth();
       }
-      /* ==========================================================
-         NAVEGAÇÃO E VISTAS
-         ========================================================== */
+
       function routeTo(route) {
         const next = titles[route] ? route : "dashboard";
         state.route = next;
@@ -2293,9 +1188,11 @@
         elements.pageTitle.focus({ preventScroll: true });
         window.scrollTo({ top: 0 });
       }
+
       function emptyState(iconName, text) {
         return `<div class="empty">${icon(iconName)}<span>${escapeHtml(text)}</span></div>`;
       }
+
       function renderDashboard() {
         const summary = state.data.summary || {};
         const cards = [
@@ -2324,6 +1221,7 @@
             `
           )
           .join("");
+
         const lowStock = state.data.lowStock || [];
         elements.lowStockList.innerHTML = lowStock.length
           ? lowStock
@@ -2342,7 +1240,8 @@
               )
               .join("")
           : emptyState("box", "Nenhum produto abaixo do estoque mínimo.");
-        const recent = state.data.movements.slice(0, 5);
+
+        const recent = (state.data.movements || []).slice(0, 5);
         elements.recentMovements.innerHTML = recent.length
           ? recent
               .map((movement) => {
@@ -2362,15 +1261,17 @@
               .join("")
           : emptyState("swap", "Nenhuma movimentação registrada ainda.");
       }
+
       function filteredProducts() {
         const query = state.productSearch.toLocaleLowerCase("pt-BR");
-        return state.data.products.filter((product) =>
+        return (state.data.products || []).filter((product) =>
           [product.nombre, product.codigo, product.categoria]
             .join(" ")
             .toLocaleLowerCase("pt-BR")
             .includes(query)
         );
       }
+
       function renderProducts() {
         const products = filteredProducts();
         const editButton = (product) => `
@@ -2402,6 +1303,7 @@
               })
               .join("")
           : `<tr><td colspan="7">${emptyState("box", "Nenhum produto encontrado.")}</td></tr>`;
+
         elements.productsMobile.innerHTML = products.length
           ? products
               .map((product) => {
@@ -2427,10 +1329,12 @@
               .join("")
           : emptyState("box", "Nenhum produto encontrado.");
       }
+
       function filteredMovements() {
-        if (state.movementFilter === "Todos") return state.data.movements;
-        return state.data.movements.filter((movement) => movement.tipo === state.movementFilter);
+        if (state.movementFilter === "Todos") return state.data.movements || [];
+        return (state.data.movements || []).filter((movement) => movement.tipo === state.movementFilter);
       }
+
       function renderMovements() {
         const movements = filteredMovements();
         elements.movementsBody.innerHTML = movements.length
@@ -2459,6 +1363,7 @@
               })
               .join("")
           : `<tr><td colspan="7">${emptyState("swap", "Nenhuma movimentação para este filtro.")}</td></tr>`;
+
         elements.movementsMobile.innerHTML = movements.length
           ? movements
               .map((movement) => {
@@ -2484,16 +1389,18 @@
               .join("")
           : emptyState("swap", "Nenhuma movimentação para este filtro.");
       }
+
       function renderSuppliers() {
-        elements.suppliersGrid.innerHTML = state.data.suppliers.length
-          ? state.data.suppliers
+        const suppliers = state.data.suppliers || [];
+        elements.suppliersGrid.innerHTML = suppliers.length
+          ? suppliers
               .map(
                 (supplier) => `
                   <article class="supplier-card">
                     <header>
+                        aria-label="Editar ${escapeHtml(supplier.nombre)}" type="button">${icon("edit")}</button>
                       <span class="avatar" aria-hidden="true">${escapeHtml(initials(supplier.nombre))}</span>
                       <button class="icon-button" data-edit-supplier="${escapeHtml(supplier.id)}"
-                        aria-label="Editar ${escapeHtml(supplier.nombre)}" type="button">${icon("edit")}</button>
                     </header>
                     <h3>${escapeHtml(supplier.nombre)}</h3>
                     <small>${escapeHtml(supplier.contacto || "Sem pessoa de contato")}</small>
@@ -2501,9 +1408,9 @@
                       ${
                         supplier.telefono
                           ? `<a href="tel:${escapeHtml(supplier.telefono)}">${icon("phone", "sm")}${escapeHtml(supplier.telefono)}</a>`
+                      ${
                           : ""
                       }
-                      ${
                         supplier.email
                           ? `<a href="mailto:${escapeHtml(supplier.email)}">${icon("mail", "sm")}${escapeHtml(supplier.email)}</a>`
                           : ""
@@ -2516,6 +1423,7 @@
               .join("")
           : `<div class="panel">${emptyState("truck", "Nenhum fornecedor cadastrado ainda.")}</div>`;
       }
+
       function renderReports() {
         const ranking = state.data.topSelling || [];
         const max = Math.max(...ranking.map((item) => number(item.cantidad)), 1);
@@ -2535,9 +1443,10 @@
               )
               .join("")
           : emptyState("chart", "Registre saídas para gerar o ranking.");
+
         const summary = state.data.summary || {};
         const leader = ranking[0];
-        const totalValue = state.data.products.reduce(
+        const totalValue = (state.data.products || []).reduce(
           (sum, product) => sum + number(product.precio) * number(product.stock),
           0
         );
@@ -2556,17 +1465,20 @@
           </article>
         `;
       }
+
       function renderSelects() {
+        const suppliers = state.data.suppliers || [];
+        const products = state.data.products || [];
         const supplierOptions = [
           '<option value="">Sem fornecedor</option>',
-          ...state.data.suppliers.map(
+          ...suppliers.map(
             (supplier) =>
               `<option value="${escapeHtml(supplier.id)}">${escapeHtml(supplier.nombre)}</option>`
           )
         ].join("");
         const productOptions = [
           '<option value="">Selecione um produto</option>',
-          ...state.data.products.map(
+          ...products.map(
             (product) =>
               `<option value="${escapeHtml(product.id)}">${escapeHtml(product.nombre)} · Estoque ${number(product.stock)}</option>`
           )
@@ -2575,11 +1487,13 @@
         elements.movementSupplier.innerHTML = supplierOptions;
         elements.movementProduct.innerHTML = productOptions;
       }
+
       function renderBranding() {
         const name = state.data.settings?.businessName || "Meu Negócio";
         elements.businessName.textContent = name;
         document.title = name + " — StockFlow";
       }
+
       function renderAll() {
         renderBranding();
         renderDashboard();
@@ -2590,12 +1504,11 @@
         renderSelects();
         updateStockPreview();
       }
-      /* ==========================================================
-         FORMULÁRIOS
-         ========================================================== */
+
       function formValues(form) {
         return Object.fromEntries(new FormData(form).entries());
       }
+
       function resetForm(form) {
         form.reset();
         Object.keys(form.dataset).forEach((key) => {
@@ -2603,6 +1516,7 @@
         });
         showFormError(form, "");
       }
+
       function openProduct(product = null) {
         const form = elements.productForm;
         resetForm(form);
@@ -2626,6 +1540,7 @@
         }
         openDialog(elements.productDialog);
       }
+
       function openSupplier(supplier = null) {
         const form = elements.supplierForm;
         resetForm(form);
@@ -2639,12 +1554,14 @@
         }
         openDialog(elements.supplierDialog);
       }
+
       function openMovement(productId = "") {
         resetForm(elements.movementForm);
         elements.movementProduct.value = productId;
         openDialog(elements.movementDialog);
         updateStockPreview();
       }
+
       function updateStockPreview() {
         const product = productById(elements.movementProduct.value);
         elements.stockPreview.classList.remove("bad");
@@ -2665,6 +1582,7 @@
         elements.stockPreview.innerHTML =
           "Estoque atual: <strong>" + current + "</strong> → Estoque resultante: <strong>" + result + "</strong>";
       }
+
       async function submitForm(form, dialog, action, payload, successMessage) {
         const key = "rid" + action;
         if (!form.dataset[key]) form.dataset[key] = newId();
@@ -2675,10 +1593,10 @@
           await api(action, { ...payload, requestId: form.dataset[key] });
           saved = true;
           delete form.dataset[key];
-          dialog.close();
+          closeDialog(dialog);
         } catch (error) {
           if (isAuthError(error)) {
-            dialog.close();
+            closeDialog(dialog);
             openAuth(error.message);
           } else {
             showFormError(form, error.message);
@@ -2697,6 +1615,7 @@
           );
         }
       }
+
       function loadPortableScannerLibrary() {
         if (window.Html5Qrcode) return Promise.resolve();
         if (scannerLibraryPromise) return scannerLibraryPromise;
@@ -2710,19 +1629,11 @@
             script.src = SCANNER_LIBRARY_URLS[index];
             script.async = true;
             script.crossOrigin = "anonymous";
-            script.dataset.stockflowScanner = "true";
             script.onload = () => {
-              if (window.Html5Qrcode) {
-                resolve();
-              } else {
-                script.remove();
-                trySource(index + 1);
-              }
+              if (window.Html5Qrcode) resolve();
+              else { script.remove(); trySource(index + 1); }
             };
-            script.onerror = () => {
-              script.remove();
-              trySource(index + 1);
-            };
+            script.onerror = () => { script.remove(); trySource(index + 1); };
             document.head.appendChild(script);
           };
           trySource(0);
@@ -2732,40 +1643,23 @@
         });
         return scannerLibraryPromise;
       }
+
       function portableScannerFormats() {
         const formats = window.Html5QrcodeSupportedFormats;
         if (!formats) return [];
-        return [
-          "QR_CODE",
-          "EAN_13",
-          "EAN_8",
-          "CODE_128",
-          "CODE_39",
-          "CODE_93",
-          "UPC_A",
-          "UPC_E",
-          "ITF",
-          "DATA_MATRIX",
-          "PDF_417"
-        ]
+        return ["QR_CODE", "EAN_13", "EAN_8", "CODE_128", "CODE_39", "CODE_93", "UPC_A", "UPC_E", "ITF", "DATA_MATRIX", "PDF_417"]
           .map((name) => formats[name])
           .filter((value) => Number.isInteger(value));
       }
+
       function cameraErrorMessage(error) {
-        if (!window.isSecureContext) {
-          return "A câmera requer uma conexão HTTPS segura.";
-        }
-        if (error?.name === "NotAllowedError" || error?.name === "SecurityError") {
-          return "Conceda permissão de acesso à câmera para o StockFlow e tente novamente.";
-        }
-        if (error?.name === "NotFoundError" || error?.message === "NO_CAMERA") {
-          return "Nenhuma câmera encontrada neste dispositivo.";
-        }
-        if (error?.name === "NotReadableError") {
-          return "A câmera está em uso por outro aplicativo. Feche-o e tente novamente.";
-        }
-        return "Não foi possível iniciar a câmera. Verifique as permissões ou digite o código manualmente.";
+        if (!window.isSecureContext) return "A câmera requer uma conexão HTTPS segura.";
+        if (error?.name === "NotAllowedError" || error?.name === "SecurityError") return "Conceda permissão de acesso à câmera para o StockFlow.";
+        if (error?.name === "NotFoundError" || error?.message === "NO_CAMERA") return "Nenhuma câmera encontrada neste dispositivo.";
+        if (error?.name === "NotReadableError") return "A câmera está em uso por outro aplicativo.";
+        return "Não foi possível iniciar a câmera. Digite o código manualmente.";
       }
+
       function stopNativeScanner() {
         if (scanFrame) cancelAnimationFrame(scanFrame);
         scanFrame = null;
@@ -2775,53 +1669,30 @@
         elements.scannerVideo.pause();
         elements.scannerVideo.srcObject = null;
       }
-      async function stopPortableScanner(
-        scanner = portableScannerInstance,
-        wasStarted = portableScannerStarted
-      ) {
+
+      async function stopPortableScanner(scanner = portableScannerInstance, wasStarted = portableScannerStarted) {
         if (!scanner) return;
         if (scanner === portableScannerInstance) {
           portableScannerInstance = null;
           portableScannerStarted = false;
         }
         if (wasStarted) {
-          try {
-            await scanner.stop();
-          } catch {
-            // A câmera pode ter sido interrompida antes.
-          }
+          try { await scanner.stop(); } catch {}
         }
-        try {
-          await scanner.clear();
-        } catch {
-          // Limpeza do leitor
-        }
+        try { await scanner.clear(); } catch {}
       }
+
       async function startNativeScanner(session) {
         const supported = await window.BarcodeDetector.getSupportedFormats();
-        const wanted = [
-          "qr_code",
-          "ean_13",
-          "ean_8",
-          "code_128",
-          "code_39",
-          "upc_a",
-          "upc_e",
-          "itf",
-          "data_matrix"
-        ].filter((format) => supported.includes(format));
-        if (!wanted.length) {
-          throw new Error("NATIVE_DECODER_UNAVAILABLE");
-        }
+        const wanted = ["qr_code", "ean_13", "ean_8", "code_128", "code_39", "upc_a", "upc_e", "itf", "data_matrix"].filter((format) => supported.includes(format));
+        if (!wanted.length) throw new Error("NATIVE_DECODER_UNAVAILABLE");
+
         detector = new window.BarcodeDetector({ formats: wanted });
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: {
-            facingMode: { ideal: "environment" },
-            width: { ideal: 1920 },
-            height: { ideal: 1080 }
-          },
+          video: { facingMode: { ideal: "environment" }, width: { ideal: 1920 }, height: { ideal: 1080 } },
           audio: false
         });
+
         if (session !== scanSession || !elements.scannerDialog.open) {
           stream.getTracks().forEach((track) => track.stop());
           return;
@@ -2832,38 +1703,35 @@
         elements.scannerViewport.classList.remove("portable-active");
         elements.scannerVideo.srcObject = cameraStream;
         await elements.scannerVideo.play();
-        elements.scannerStatus.textContent =
-          "Aponte a câmera para o código e mantenha o celular firme.";
+        elements.scannerStatus.textContent = "Aponte a câmera para o código e mantenha o celular firme.";
         scanLoop(session);
       }
+
       async function startPortableScanner(session) {
-        elements.scannerStatus.textContent =
-          "Carregando leitor compatível para este dispositivo…";
+        elements.scannerStatus.textContent = "Carregando leitor compatível para este dispositivo…";
         await loadPortableScannerLibrary();
         if (session !== scanSession || !elements.scannerDialog.open) return;
+
         const formats = portableScannerFormats();
         const configuration = formats.length ? { formatsToSupport: formats } : {};
-        const scanner = new window.Html5Qrcode(
-          "portable-scanner",
-          configuration,
-          false
-        );
+        const scanner = new window.Html5Qrcode("portable-scanner", configuration, false);
         portableScannerInstance = scanner;
+
         const cameras = await window.Html5Qrcode.getCameras();
         if (!cameras?.length) {
           const error = new Error("NO_CAMERA");
           error.name = "NotFoundError";
           throw error;
         }
-        const rearCamera = cameras.find((camera) =>
-          /back|rear|environment|traser|posterior|arrière|rück/i.test(camera.label)
-        );
+
+        const rearCamera = cameras.find((camera) => /back|rear|environment|traser|posterior|arrière|rück/i.test(camera.label));
         const mobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent);
-        const selectedCamera =
-          rearCamera || cameras[mobile ? cameras.length - 1 : 0];
+        const selectedCamera = rearCamera || cameras[mobile ? cameras.length - 1 : 0];
+
         elements.scannerVideo.classList.add("hidden");
         elements.portableScanner.classList.remove("hidden");
         elements.scannerViewport.classList.add("portable-active");
+
         await scanner.start(
           selectedCamera.id,
           {
@@ -2874,21 +1742,18 @@
             }),
             disableFlip: false
           },
-          (decodedText) => {
-            if (session === scanSession && decodedText) finishScan(decodedText);
-          },
-          () => {
-            // Leitura contínua de quadros
-          }
+          (decodedText) => { if (session === scanSession && decodedText) finishScan(decodedText); },
+          () => {}
         );
+
         if (scanner === portableScannerInstance) portableScannerStarted = true;
         if (session !== scanSession || !elements.scannerDialog.open) {
           await stopPortableScanner(scanner, true);
           return;
         }
-        elements.scannerStatus.textContent =
-          "Aponte a câmera para o código e mantenha o celular firme.";
+        elements.scannerStatus.textContent = "Aponte a câmera para o código e mantenha o celular firme.";
       }
+
       async function openScanner(callback) {
         const session = ++scanSession;
         scanCallback = callback;
@@ -2898,14 +1763,15 @@
         elements.scannerVideo.classList.remove("hidden");
         elements.portableScanner.classList.add("hidden");
         elements.scannerViewport.classList.remove("portable-active");
-        elements.scannerDialog.showModal();
+        openDialog(elements.scannerDialog);
+
         if (!navigator.mediaDevices?.getUserMedia) {
-          elements.scannerStatus.textContent =
-            window.isSecureContext
-              ? "Este dispositivo não suporta acesso à câmera."
-              : "A câmera requer uma conexão HTTPS segura.";
+          elements.scannerStatus.textContent = window.isSecureContext
+            ? "Este dispositivo não suporta acesso à câmera."
+            : "A câmera requer uma conexão HTTPS segura.";
           return;
         }
+
         try {
           if ("BarcodeDetector" in window) {
             try {
@@ -2913,11 +1779,7 @@
               return;
             } catch (nativeError) {
               stopNativeScanner();
-              if (
-                ["NotAllowedError", "SecurityError", "NotFoundError", "NotReadableError"].includes(
-                  nativeError?.name
-                )
-              ) {
+              if (["NotAllowedError", "SecurityError", "NotFoundError", "NotReadableError"].includes(nativeError?.name)) {
                 throw nativeError;
               }
             }
@@ -2934,6 +1796,7 @@
           elements.scannerStatus.textContent = cameraErrorMessage(error);
         }
       }
+
       async function scanLoop(session) {
         if (!detector || !cameraStream || session !== scanSession) return;
         try {
@@ -2942,11 +1805,10 @@
             finishScan(codes[0].rawValue);
             return;
           }
-        } catch {
-          // Ilegível no quadro atual
-        }
+        } catch {}
         scanFrame = requestAnimationFrame(() => scanLoop(session));
       }
+
       async function finishScan(value) {
         if (scanFinishing) return;
         scanFinishing = true;
@@ -2955,10 +1817,11 @@
         navigator.vibrate?.(80);
         callback?.(String(value).trim());
       }
+
       async function closeScanner() {
         scanSession += 1;
         scanCallback = null;
-        if (elements.scannerDialog.open) elements.scannerDialog.close();
+        closeDialog(elements.scannerDialog);
         stopNativeScanner();
         await stopPortableScanner();
         elements.portableScanner.replaceChildren();
@@ -2966,10 +1829,9 @@
         elements.scannerVideo.classList.remove("hidden");
         elements.scannerViewport.classList.remove("portable-active");
       }
+
       function scannedMain(code) {
-        const product = state.data.products.find(
-          (item) => String(item.codigo) === String(code)
-        );
+        const product = (state.data.products || []).find((item) => String(item.codigo) === String(code));
         if (product) {
           openMovement(product.id);
           showToast(product.nombre + " encontrado.");
@@ -2979,196 +1841,190 @@
           showToast("Código novo. Preencha os dados do produto.");
         }
       }
-      /* ==========================================================
-         EVENTOS
-         ========================================================== */
-      window.addEventListener("beforeinstallprompt", (event) => {
-        event.preventDefault();
-        deferredInstallPrompt = event;
-      });
-      window.addEventListener("appinstalled", () => {
-        deferredInstallPrompt = null;
-        syncInstallState();
-        showToast("StockFlow instalado com sucesso.");
-      });
-      $$("[data-install]").forEach((button) => button.addEventListener("click", installApp));
-      $$("[data-logout]").forEach((button) => button.addEventListener("click", logout));
-      $$("[data-route]").forEach((button) => {
-        button.addEventListener("click", () => routeTo(button.dataset.route));
-      });
-      $$("[data-go]").forEach((button) => {
-        button.addEventListener("click", () => routeTo(button.dataset.go));
-      });
-      $$("[data-scan]").forEach((button) => {
-        button.addEventListener("click", () => openScanner(scannedMain));
-      });
-      $$("[data-new-movement]").forEach((button) => {
-        button.addEventListener("click", () => openMovement());
-      });
-      $$("[data-close]").forEach((button) => {
-        button.addEventListener("click", () => $("#" + button.dataset.close).close());
-      });
-      $("#scanner-close").addEventListener("click", closeScanner);
-      elements.scannerDialog.addEventListener("cancel", (event) => {
-        event.preventDefault();
-        closeScanner();
-      });
-      elements.authDialog.addEventListener("cancel", (event) => event.preventDefault());
-      $("#use-manual-code").addEventListener("click", () => {
-        const value = elements.manualCode.value.trim();
-        if (value) finishScan(value);
-      });
-      elements.manualCode.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
+
+      function setupEventListeners() {
+        window.addEventListener("beforeinstallprompt", (event) => {
           event.preventDefault();
-          $("#use-manual-code").click();
-        }
-      });
-      $("#scan-product-code").addEventListener("click", () => {
-        openScanner((code) => {
-          elements.productForm.elements.codigo.value = code;
+          deferredInstallPrompt = event;
         });
-      });
-      $("#scan-movement-product").addEventListener("click", () => {
-        openScanner((code) => {
-          const product = state.data.products.find((item) => String(item.codigo) === String(code));
+
+        window.addEventListener("appinstalled", () => {
+          deferredInstallPrompt = null;
+          syncInstallState();
+          showToast("StockFlow instalado com sucesso.");
+        });
+
+        $$("[data-install]").forEach((button) => button.addEventListener("click", installApp));
+        $$("[data-logout]").forEach((button) => button.addEventListener("click", logout));
+        $$("[data-route]").forEach((button) => {
+          button.addEventListener("click", () => routeTo(button.dataset.route));
+        });
+        $$("[data-go]").forEach((button) => {
+          button.addEventListener("click", () => routeTo(button.dataset.go));
+        });
+        $$("[data-scan]").forEach((button) => {
+          button.addEventListener("click", () => openScanner(scannedMain));
+        });
+        $$("[data-new-movement]").forEach((button) => {
+          button.addEventListener("click", () => openMovement());
+        });
+        $$("[data-close]").forEach((button) => {
+          button.addEventListener("click", () => closeDialog($("#" + button.dataset.close)));
+        });
+
+        $("#scanner-close").addEventListener("click", closeScanner);
+        elements.scannerDialog.addEventListener("cancel", (event) => {
+          event.preventDefault();
+          closeScanner();
+        });
+        elements.authDialog.addEventListener("cancel", (event) => event.preventDefault());
+
+        $("#use-manual-code").addEventListener("click", () => {
+          const value = elements.manualCode.value.trim();
+          if (value) finishScan(value);
+        });
+
+        elements.manualCode.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            $("#use-manual-code").click();
+          }
+        });
+
+        $("#scan-product-code").addEventListener("click", () => {
+          openScanner((code) => {
+            elements.productForm.elements.codigo.value = code;
+          });
+        });
+
+        $("#scan-movement-product").addEventListener("click", () => {
+          openScanner((code) => {
+            const product = (state.data.products || []).find((item) => String(item.codigo) === String(code));
+            if (!product) {
+              showToast("Este código ainda não está cadastrado.", "error");
+              return;
+            }
+            elements.movementProduct.value = product.id;
+            updateStockPreview();
+          });
+        });
+
+        $("#add-product").addEventListener("click", () => openProduct());
+        $("#add-supplier").addEventListener("click", () => openSupplier());
+
+        elements.productSearch.addEventListener("input", (event) => {
+          state.productSearch = event.target.value.trim();
+          renderProducts();
+        });
+
+        $$("[data-movement-filter]").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.movementFilter = button.dataset.movementFilter;
+            $$("[data-movement-filter]").forEach((item) => {
+              item.setAttribute("aria-pressed", String(item === button));
+            });
+            renderMovements();
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          const editProduct = event.target.closest("[data-edit-product]");
+          if (editProduct) openProduct(productById(editProduct.dataset.editProduct));
+          const editSupplier = event.target.closest("[data-edit-supplier]");
+          if (editSupplier) openSupplier(supplierById(editSupplier.dataset.editSupplier));
+        });
+
+        elements.movementForm.addEventListener("input", updateStockPreview);
+        elements.movementForm.addEventListener("change", updateStockPreview);
+
+        elements.authForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const values = formValues(elements.authForm);
+          state.session.pin = String(values.pin || "").trim();
+          state.session.user = String(values.user || "").trim();
+          store.set("stockflow.pin", state.session.pin);
+          store.set("stockflow.user", state.session.user);
+          closeDialog(elements.authDialog);
+          await loadInitial();
+        });
+
+        elements.productForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const values = formValues(elements.productForm);
+          submitForm(
+            elements.productForm,
+            elements.productDialog,
+            "saveProduct",
+            {
+              product: {
+                ...values,
+                precio: number(values.precio),
+                stock: number(values.stock),
+                stockMinimo: number(values.stockMinimo),
+                usuario: state.session.user
+              }
+            },
+            values.id ? "Produto atualizado com sucesso." : "Produto adicionado com sucesso."
+          );
+        });
+
+        elements.archiveProduct.addEventListener("click", () => {
+          const id = elements.productForm.elements.id.value;
+          const product = productById(id);
+          if (!product) return;
+          const extra = number(product.stock) > 0 ? ` Ainda possui ${number(product.stock)} unidades.` : "";
+          if (!confirm(`Deseja arquivar “${product.nombre}”?${extra} Ele deixará de ser exibido no app.`)) return;
+          submitForm(elements.productForm, elements.productDialog, "archiveProduct", { id }, "Produto arquivado.");
+        });
+
+        elements.supplierForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const values = formValues(elements.supplierForm);
+          submitForm(
+            elements.supplierForm,
+            elements.supplierDialog,
+            "saveSupplier",
+            { supplier: values },
+            values.id ? "Fornecedor atualizado com sucesso." : "Fornecedor adicionado com sucesso."
+          );
+        });
+
+        elements.archiveSupplier.addEventListener("click", () => {
+          const id = elements.supplierForm.elements.id.value;
+          const supplier = supplierById(id);
+          if (!supplier) return;
+          if (!confirm(`Deseja arquivar “${supplier.nombre}”? Ele deixará de ser exibido no app.`)) return;
+          submitForm(elements.supplierForm, elements.supplierDialog, "archiveSupplier", { id }, "Fornecedor arquivado.");
+        });
+
+        elements.movementForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const values = formValues(elements.movementForm);
+          const product = productById(values.productoId);
+          const quantity = number(values.cantidad);
           if (!product) {
-            showToast("Este código ainda não está cadastrado.", "error");
+            showFormError(elements.movementForm, "Selecione um produto válido.");
             return;
           }
-          elements.movementProduct.value = product.id;
-          updateStockPreview();
-        });
-      });
-      $("#add-product").addEventListener("click", () => openProduct());
-      $("#add-supplier").addEventListener("click", () => openSupplier());
-      elements.productSearch.addEventListener("input", (event) => {
-        state.productSearch = event.target.value.trim();
-        renderProducts();
-      });
-      $$("[data-movement-filter]").forEach((button) => {
-        button.addEventListener("click", () => {
-          state.movementFilter = button.dataset.movementFilter;
-          $$("[data-movement-filter]").forEach((item) => {
-            item.setAttribute("aria-pressed", String(item === button));
-          });
-          renderMovements();
-        });
-      });
-      document.addEventListener("click", (event) => {
-        const editProduct = event.target.closest("[data-edit-product]");
-        if (editProduct) openProduct(productById(editProduct.dataset.editProduct));
-        const editSupplier = event.target.closest("[data-edit-supplier]");
-        if (editSupplier) openSupplier(supplierById(editSupplier.dataset.editSupplier));
-      });
-      elements.movementForm.addEventListener("input", updateStockPreview);
-      elements.movementForm.addEventListener("change", updateStockPreview);
-      elements.authForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const values = formValues(elements.authForm);
-        state.session.pin = String(values.pin || "").trim();
-        state.session.user = String(values.user || "").trim();
-        store.set("stockflow.pin", state.session.pin);
-        store.set("stockflow.user", state.session.user);
-        elements.authDialog.close();
-        await loadInitial();
-      });
-      elements.productForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const values = formValues(elements.productForm);
-        submitForm(
-          elements.productForm,
-          elements.productDialog,
-          "saveProduct",
-          {
-            product: {
-              ...values,
-              precio: number(values.precio),
-              stock: number(values.stock),
-              stockMinimo: number(values.stockMinimo),
-              usuario: state.session.user
-            }
-          },
-          values.id ? "Produto atualizado com sucesso." : "Produto adicionado com sucesso."
-        );
-      });
-      elements.archiveProduct.addEventListener("click", () => {
-        const id = elements.productForm.elements.id.value;
-        const product = productById(id);
-        if (!product) return;
-        const extra =
-          number(product.stock) > 0 ? ` Ainda possui ${number(product.stock)} unidades.` : "";
-        if (
-          !confirm(
-            `Deseja arquivar “${product.nombre}”?${extra} Ele deixará de ser exibido no app, mas seu histórico permanecerá na planilha.`
-          )
-        ) {
-          return;
-        }
-        submitForm(
-          elements.productForm,
-          elements.productDialog,
-          "archiveProduct",
-          { id },
-          "Produto arquivado."
-        );
-      });
-      elements.supplierForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const values = formValues(elements.supplierForm);
-        submitForm(
-          elements.supplierForm,
-          elements.supplierDialog,
-          "saveSupplier",
-          { supplier: values },
-          values.id ? "Fornecedor atualizado com sucesso." : "Fornecedor adicionado com sucesso."
-        );
-      });
-      elements.archiveSupplier.addEventListener("click", () => {
-        const id = elements.supplierForm.elements.id.value;
-        const supplier = supplierById(id);
-        if (!supplier) return;
-        if (!confirm(`Deseja arquivar “${supplier.nombre}”? Ele deixará de ser exibido no app.`)) return;
-        submitForm(
-          elements.supplierForm,
-          elements.supplierDialog,
-          "archiveSupplier",
-          { id },
-          "Fornecedor arquivado."
-        );
-      });
-      elements.movementForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const values = formValues(elements.movementForm);
-        const product = productById(values.productoId);
-        const quantity = number(values.cantidad);
-        if (!product) {
-          showFormError(elements.movementForm, "Selecione um produto válido.");
-          return;
-        }
-        if (!Number.isInteger(quantity) || quantity < 1) {
-          showFormError(elements.movementForm, "A quantidade deve ser um número inteiro maior que zero.");
-          return;
-        }
-        if (values.tipo === "Salida" && quantity > number(product.stock)) {
-          showFormError(
+          if (!Number.isInteger(quantity) || quantity < 1) {
+            showFormError(elements.movementForm, "A quantidade deve ser um número inteiro maior que zero.");
+            return;
+          }
+          if (values.tipo === "Salida" && quantity > number(product.stock)) {
+            showFormError(elements.movementForm, "Estoque insuficiente: há apenas " + number(product.stock) + " unidades.");
+            return;
+          }
+          const successText = values.tipo === "Entrada" ? "Entrada registrada com sucesso." : "Saída registrada com sucesso.";
+          submitForm(
             elements.movementForm,
-            "Estoque insuficiente: há apenas " + number(product.stock) + " unidades."
+            elements.movementDialog,
+            "movement",
+            { movement: { ...values, cantidad: quantity, usuario: state.session.user } },
+            successText
           );
-          return;
-        }
-        const successText = values.tipo === "Entrada" ? "Entrada registrada com sucesso." : "Saída registrada com sucesso.";
-        submitForm(
-          elements.movementForm,
-          elements.movementDialog,
-          "movement",
-          { movement: { ...values, cantidad: quantity, usuario: state.session.user } },
-          successText
-        );
-      });
-      /* ==========================================================
-         INICIALIZAÇÃO
-         ========================================================== */
+        });
+      }
+
       async function loadInitial() {
         elements.loading.classList.remove("hidden");
         elements.setupNotice.classList.add("hidden");
@@ -3177,11 +2033,9 @@
           setConnection("online");
         } catch (error) {
           if (isAuthError(error)) {
-            if (error.code === "AUTH") {
-              state.session.pin = "";
-              store.remove("stockflow.pin");
-            }
-            setConnection("error", "Acesso necessário");
+            state.session.pin = "";
+            store.remove("stockflow.pin");
+            setConnection("error", "Senha incorreta ou pendente");
             openAuth(error.message);
           } else {
             setConnection("error", error.message);
@@ -3195,33 +2049,34 @@
           elements.loading.classList.add("hidden");
         }
       }
+
       async function start() {
         syncInstallState();
+        setupEventListeners();
         renderAll();
+
         if (!CONFIGURED) {
           elements.loading.classList.add("hidden");
           elements.setupNotice.classList.remove("hidden");
           setConnection("error", "URL /exec não configurada");
           return;
         }
+
         if (!state.session.pin) {
           openAuth();
           return;
         }
+
         await loadInitial();
       }
+
       if (!("BarcodeDetector" in window)) {
-        window.addEventListener(
-          "load",
-          () => {
-            loadPortableScannerLibrary().catch(() => {
-              // Tentativa secundária ao abrir a câmera
-            });
-          },
-          { once: true }
-        );
+        window.addEventListener("load", () => {
+          loadPortableScannerLibrary().catch(() => {});
+        }, { once: true });
       }
-      start();
+
+      document.addEventListener("DOMContentLoaded", start);
     </script>
   </body>
 </html>
